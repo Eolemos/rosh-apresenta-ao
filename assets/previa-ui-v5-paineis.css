@@ -1,0 +1,119 @@
+/* Interface do Rosh: cozinha compacta e painel de gestão que segue o conteúdo */
+
+/* Cozinha compacta, com a idade do pedido */
+.ui-card {
+  gap: 2px;
+  padding: 10px 11px;
+}
+
+.ui-card__mesa {
+  font-size: 21px;
+}
+
+.ui-card__tempo {
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.ui-card--demorando .ui-card__tempo {
+  background: var(--latao-fundo);
+  color: var(--latao);
+}
+
+.ui-card--atrasado {
+  border-color: rgba(229, 72, 77, 0.6);
+}
+
+.ui-card--atrasado .ui-card__tempo {
+  background: rgba(229, 72, 77, 0.18);
+  color: #ff8a8e;
+}
+
+.ui-card__item + .ui-card__item {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed #3a2d40;
+}
+
+.ui-card__rosh {
+  font-size: 15px;
+}
+
+.ui-card__sabores {
+  font-size: 13.5px;
+}
+
+.ui-card__acoes {
+  margin-top: 6px;
+}
+
+.ui-card__acoes .ui-botao {
+  min-height: 44px;
+}
+
+.ui-coluna__mais {
+  margin-left: auto;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--brasa-fundo);
+  color: var(--brasa-2);
+  font-size: 12px;
+}
+
+.ui-coluna__titulo {
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.ui-coluna__qtd {
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #2a2030;
+}
+
+/* Gestão: cada linha do painel com a altura do conteúdo; a página rola se precisar */
+.ui--gestao .ui-gestao:not(.ui-config) {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.ui-gestao:not(.ui-config) .ui-gestao__grade {
+  flex: none;
+  grid-template-rows: none;
+  grid-auto-rows: auto;
+}
+
+.ui-painel--fechamentos .ui-fechamentos--rede {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+}
+
+.ui-fechamentos--rede .ui-fechamentos__item {
+  padding: 4px 10px;
+}
+
+.ui-painel--estoque .ui-compras li {
+  padding: 4px 9px;
+}
+
+.ui-painel--estoque .ui-estoque-resumo__linha strong {
+  font-size: 17px;
+}
+
+.ui-gestao__grade .ui-grafico {
+  min-height: 140px;
+}
+
+.ui-gestao:not(.ui-config) .ui-kpi {
+  padding: 10px 14px;
+}
+
+.ui-gestao:not(.ui-config) .ui-kpi__valor {
+  font-size: 23px;
+}
+
+.ui-icone--grande {
+  width: 48px;
+  height: 48px;
+}

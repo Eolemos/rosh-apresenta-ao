@@ -1,0 +1,334 @@
+/* Interface do Rosh: configuração de marcas, adicionais e promoções */
+
+.ui-config {
+  overflow: hidden;
+}
+
+.ui-config .ui-segmento button {
+  padding: 0 12px;
+  font-size: 13.5px;
+}
+
+.ui-cfg-duas {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.ui-cfg-duas--promos {
+  grid-template-columns: minmax(0, 1fr) 390px;
+}
+
+.ui-cfg-duas--estoque {
+  grid-template-columns: minmax(0, 1fr) 330px;
+}
+
+.ui-cfg-duas .ui-painel {
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.ui-cfg-coluna {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.ui-cfg-marcas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-cfg-marca {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 7px 10px;
+  border: 1px solid #2f2535;
+  border-radius: 11px;
+  background: #201824;
+  color: var(--texto);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ui-cfg-marca[aria-pressed="true"] {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+}
+
+.ui-cfg-marca__cor {
+  grid-row: 1 / span 3;
+  width: 14px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.ui-cfg-marca__nome {
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.ui-cfg-marca__info {
+  font-size: 11.5px;
+  color: var(--texto-3);
+}
+
+.ui-cfg-cabeca {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ui-cfg-dica {
+  max-width: 46ch;
+  font-size: 12px;
+  color: var(--texto-3);
+  text-align: right;
+}
+
+.ui-tabela--cfg td,
+.ui-tabela--cfg th {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.ui-tabela--cfg td:last-child {
+  text-align: right;
+}
+
+.ui-tabela__falta th,
+.ui-tabela__falta td:not(:last-child) {
+  color: var(--texto-3);
+}
+
+.ui-alternar--so {
+  min-height: 40px;
+}
+
+.ui-alternar__trilho--falta {
+  background: #3a2d40;
+}
+
+.ui-alternar[aria-pressed="true"] .ui-alternar__trilho--falta {
+  background: var(--recusa);
+}
+
+/* Promoções */
+.ui-cfg-promos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-cfg-promo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 11px;
+  background: #201824;
+}
+
+.ui-cfg-promo__nome {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ui-cfg-promo__regra {
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.ui-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--texto-3);
+}
+
+.ui-campo input,
+.ui-campo select {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #3a2d40;
+  border-radius: 10px;
+  background: #1f1823;
+  color: var(--texto);
+  font: 500 14.5px var(--fonte);
+}
+
+.ui-campo input:focus,
+.ui-campo select:focus {
+  outline: 0;
+  border-color: var(--brasa);
+}
+
+.ui-campo--curto input {
+  width: 120px;
+}
+
+.ui-segmento--form {
+  width: fit-content;
+}
+
+.ui-segmento--form button {
+  min-height: 38px;
+  padding: 0 11px;
+  font-size: 13px;
+}
+
+.ui-dias {
+  display: flex;
+  gap: 5px;
+}
+
+.ui-dias .ui-filtro {
+  min-height: 38px;
+  padding: 0 9px;
+  font-size: 12.5px;
+}
+
+.ui-form__ate {
+  font-size: 13px;
+  color: var(--texto-3);
+}
+
+.ui-form__erro {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--recusa);
+}
+
+.ui-form .ui-botao--primario {
+  align-self: flex-start;
+}
+
+/* Cadastro: botões pequenos, ações nas tabelas e estados inativos */
+.ui-botao--mini {
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 9px;
+  font-size: 12.5px;
+}
+
+.ui-botao--perigo {
+  border-color: rgba(229, 72, 77, 0.55);
+  background: rgba(229, 72, 77, 0.1);
+  color: #ff8a8e;
+}
+
+.ui-botao--perigo:hover:not(:disabled) {
+  background: rgba(229, 72, 77, 0.2);
+}
+
+.ui-tabela__acoes {
+  white-space: nowrap;
+}
+
+.ui-tabela__acoes .ui-botao + .ui-botao {
+  margin-left: 4px;
+}
+
+.ui-cfg-marca--inativa {
+  opacity: 0.55;
+}
+
+.ui-cfg-promo__texto {
+  flex: 1;
+  min-width: 0;
+}
+
+.ui-cfg-promo__acoes {
+  margin-top: 7px;
+  gap: 6px;
+}
+
+.ui-cfg-promo--editando {
+  box-shadow: inset 0 0 0 1px var(--brasa);
+}
+
+.ui-cfg-dica--esquerda {
+  max-width: none;
+  margin-top: 10px !important;
+  text-align: left;
+}
+
+.ui-linha--filtros {
+  margin-bottom: 8px;
+}
+
+.ui-form__nota {
+  margin-bottom: 4px !important;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--latao-fundo);
+  color: #e8d4ad;
+  font-size: 12.5px;
+}
+
+/* Diálogos de cadastro */
+.ui-modal__caixa--form {
+  width: 560px;
+  max-height: 92%;
+  overflow: auto;
+}
+
+.ui-form--modal {
+  gap: 12px;
+}
+
+.ui-form__duas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ui-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ui-cor {
+  width: 38px;
+  height: 38px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ui-cor[aria-pressed="true"] {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--brasa);
+}
+
+.ui-modal__acoes .ui-botao--perigo,
+.ui-modal__acoes .ui-form__nota {
+  margin-right: auto;
+}

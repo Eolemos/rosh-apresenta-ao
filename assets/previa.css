@@ -1,0 +1,395 @@
+/* Prévia das telas: página, abas, molduras dos aparelhos e impressora */
+
+.pv-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+}
+
+.pv-marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+.pv-marca__brasa {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: radial-gradient(circle at 40% 35%, var(--brasa-2), var(--brasa) 55%, #7a2a0c);
+  box-shadow: 0 0 14px rgba(255, 123, 53, 0.7);
+  transform: rotate(8deg);
+}
+
+.pv-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pv-principal {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem 4rem;
+}
+
+.pv-titulo {
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  font-weight: 700;
+  font-variation-settings: "wdth" 82;
+  letter-spacing: -0.02em;
+}
+
+.pv-lide {
+  margin-top: 0.6rem;
+  max-width: 62ch;
+  font-size: 1.1rem;
+  color: var(--texto-2);
+}
+
+.pv-abas {
+  display: flex;
+  gap: 0.3rem;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 1.75rem;
+  padding: 0.3rem;
+  overflow-x: auto;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--fumo-2);
+  scrollbar-width: none;
+}
+
+.pv-aba {
+  flex: none;
+  min-height: 42px;
+  padding: 0 1.05rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--texto-2);
+  font: 600 0.95rem/1 var(--fonte);
+  cursor: pointer;
+}
+
+.pv-aba:hover {
+  color: var(--texto);
+}
+
+.pv-aba[aria-selected="true"] {
+  background: var(--brasa);
+  color: #2a1408;
+}
+
+.pv-dica {
+  margin-top: 0.9rem;
+  max-width: 75ch;
+  color: var(--texto-2);
+}
+
+.pv-palco {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.pv-palco[data-vista="ao-vivo"] {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+
+.pv-item {
+  display: none;
+  min-width: 0;
+  margin: 0;
+}
+
+.pv-palco[data-vista="ao-vivo"] .pv-item--tablet,
+.pv-palco[data-vista="ao-vivo"] .pv-item--cozinha,
+.pv-palco[data-vista="tablet"] .pv-item--tablet,
+.pv-palco[data-vista="cozinha"] .pv-item--cozinha,
+.pv-palco[data-vista="caixa"] .pv-item--caixa,
+.pv-palco[data-vista="gestao"] .pv-item--gestao,
+.pv-palco[data-vista="config"] .pv-item--config {
+  display: block;
+}
+
+/* Vista de uma tela só: no máximo o tamanho real do desenho */
+.pv-palco:not([data-vista="ao-vivo"]) .pv-item {
+  justify-self: center;
+  width: 100%;
+}
+
+.pv-palco[data-vista="tablet"] .pv-item--tablet {
+  max-width: 1110px;
+}
+
+.pv-palco[data-vista="caixa"] .pv-item--caixa {
+  max-width: 1102px;
+}
+
+.pv-palco[data-vista="cozinha"] .pv-item--cozinha {
+  max-width: 982px;
+}
+
+.pv-palco[data-vista="gestao"] .pv-item--gestao,
+.pv-palco[data-vista="config"] .pv-item--config {
+  max-width: 1202px;
+}
+
+.pv-legenda {
+  margin-top: 1rem;
+  max-width: 68ch;
+  font-size: 0.95rem;
+  color: var(--texto-2);
+}
+
+.pv-legenda strong {
+  color: var(--texto);
+}
+
+/* Aparelhos */
+.aparelho {
+  position: relative;
+}
+
+.aparelho__moldura {
+  background: #0b080c;
+  border: 1px solid #2e2433;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.aparelho--tablet .aparelho__moldura {
+  padding: 14px;
+  border-radius: 26px;
+}
+
+.aparelho--monitor .aparelho__moldura {
+  padding: 10px;
+  border-radius: 14px;
+}
+
+.aparelho--monitor::after {
+  content: "";
+  display: block;
+  width: 22%;
+  height: 30px;
+  margin: 0 auto;
+  background: linear-gradient(#251c29, #19131c);
+  clip-path: polygon(32% 0, 68% 0, 100% 100%, 0 100%);
+}
+
+.aparelho--janela .aparelho__moldura {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.aparelho__barra {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  background: #1b141e;
+  border-bottom: 1px solid #2e2433;
+}
+
+.aparelho__barra p {
+  margin: 0 auto;
+  padding: 0.2rem 0.9rem;
+  border-radius: 999px;
+  background: #110c13;
+  color: var(--texto-3);
+  font-size: 0.78rem;
+}
+
+.aparelho__janela {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #140e17;
+}
+
+.aparelho--monitor .aparelho__janela,
+.aparelho--janela .aparelho__janela {
+  border-radius: 4px;
+}
+
+.aparelho--janela .aparelho__janela {
+  border-radius: 0;
+}
+
+.aparelho__tela {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+/* Impressora da cozinha: a comanda sobe pela fenda */
+.pv-impressora {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  z-index: 3;
+  width: 196px;
+  height: 52px;
+  transform: scale(var(--s-imp, 0.8));
+  transform-origin: 100% 100%;
+  pointer-events: none;
+}
+
+.pv-impressora__corpo {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 48px;
+  border-radius: 12px 12px 6px 6px;
+  background: linear-gradient(180deg, #3a2d40, #2a2030);
+  border: 1px solid var(--linha);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.pv-impressora__corpo::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 9px;
+  height: 5px;
+  border-radius: 3px;
+  background: #0f0a10;
+}
+
+.pv-impressora__corpo::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vidro);
+  box-shadow: 0 0 8px var(--vidro);
+}
+
+.pv-impressora__saida {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 38px;
+  height: 320px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.pv-impressora__comanda {
+  max-width: none;
+  width: 100%;
+  padding: 10px 10px 14px;
+  font-size: 10.5px;
+  visibility: hidden;
+  transform: translateY(105%);
+}
+
+.pv-impressora__comanda .comanda__mesa {
+  font-size: 19px;
+}
+
+.pv-impressora--imprimindo .pv-impressora__comanda {
+  visibility: visible;
+  animation: pv-sair 1.5s steps(18, end) forwards;
+}
+
+.pv-impressora--saindo .pv-impressora__comanda {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 0;
+  transition: opacity 0.45s;
+}
+
+@keyframes pv-sair {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Embutido na especificação: só as abas e o palco */
+.embutido body {
+  background: var(--fumo);
+}
+
+.embutido .pv-topo,
+.embutido .pv-cabecalho {
+  display: none;
+}
+
+.embutido .pv-principal {
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+.embutido .pv-abas {
+  margin-top: 0;
+}
+
+.embutido .pv-palco {
+  gap: 1.75rem;
+  margin-top: 1rem;
+}
+
+.embutido .pv-legenda {
+  margin-top: 0.7rem;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 980px) {
+  .pv-palco[data-vista="ao-vivo"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .pv-topo,
+  .pv-principal {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .pv-topo .botao {
+    font-size: 0.85rem;
+    padding: 0.55em 0.85em;
+  }
+
+  .pv-abas {
+    border-radius: var(--raio-m);
+  }
+
+  .aparelho--tablet .aparelho__moldura {
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .aparelho--monitor .aparelho__moldura {
+    padding: 6px;
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-impressora--imprimindo .pv-impressora__comanda {
+    animation: none;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,334 @@
+/* Interface do Rosh: montagem do pedido em passos e rodapé com a conta */
+
+.ui-construtor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Passos: sequência real, por isso numerada */
+.ui-passos {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 14px 0;
+}
+
+.ui-passo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 54px;
+  padding: 6px 10px;
+  border: 1px solid #2f2535;
+  border-radius: 12px;
+  background: #19121c;
+  color: var(--texto-2);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ui-passo[aria-current="step"] {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+  color: var(--texto);
+}
+
+.ui-passo__numero {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #2a2030;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ui-passo[aria-current="step"] .ui-passo__numero {
+  background: var(--brasa);
+  color: #2a1408;
+}
+
+.ui-passo--feito .ui-passo__numero {
+  background: var(--vidro-fundo);
+  color: var(--vidro);
+}
+
+.ui-passo__numero svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 2.4;
+}
+
+.ui-passo__texto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ui-passo__nome {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.ui-passo__resumo {
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--texto-3);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ui-passo-conteudo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px 10px;
+  overflow: hidden;
+}
+
+.ui-passo1 {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.ui-faixa {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 1px solid;
+  border-radius: 12px;
+  font-size: 13.5px;
+}
+
+.ui-faixa p {
+  flex: 1;
+}
+
+.ui-faixa--vidro {
+  border-color: rgba(99, 199, 186, 0.6);
+  background: var(--vidro-fundo);
+  color: #cdeee9;
+}
+
+.ui-faixa--vidro svg {
+  color: var(--vidro);
+}
+
+.ui-faixa--latao {
+  margin: 4px 0 0;
+  border-color: rgba(207, 167, 96, 0.6);
+  background: var(--latao-fundo);
+}
+
+/* Adicionais */
+.ui-passo3 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 620px;
+}
+
+.ui-adicional {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 74px;
+  padding: 10px 16px;
+  border: 1px solid #2f2535;
+  border-radius: 14px;
+  background: #1c1520;
+}
+
+.ui-adicional--modal {
+  min-height: 64px;
+  margin: 14px 0;
+}
+
+.ui-adicional__nome {
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.ui-adicional__preco {
+  margin-top: 2px !important;
+  font-size: 13px;
+  color: var(--texto-3);
+}
+
+.ui-qtd {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ui-qtd__botao {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #241c28;
+  color: var(--texto);
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ui-qtd__botao:hover:not(:disabled) {
+  border-color: var(--brasa);
+}
+
+.ui-qtd__botao:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.ui-qtd__valor {
+  min-width: 44px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Promoção e pagamento */
+.ui-passo4 {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.ui-passo4 .ui-secao {
+  min-height: 0;
+  overflow: auto;
+}
+
+.ui-pilha--promos {
+  gap: 7px;
+}
+
+.ui-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1px;
+  min-height: 50px;
+  padding: 6px 14px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #1f1823;
+  color: var(--texto);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ui-promo[aria-pressed="true"] {
+  border-color: var(--latao);
+  background: var(--latao-fundo);
+}
+
+.ui-promo:disabled {
+  opacity: 0.45;
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+.ui-promo__nome {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.ui-promo__regra {
+  font-size: 12px;
+  color: var(--texto-3);
+}
+
+/* Rodapé com o resumo e a conta */
+.ui-rodape-pedido {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 86px;
+  padding: 10px 14px;
+  border-top: 1px solid #2f2535;
+  background: #18121b;
+}
+
+.ui-rodape-pedido__resumo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ui-rodape-pedido__linha1 {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.ui-rodape-pedido__itens {
+  overflow: hidden;
+  font-size: 12.5px;
+  color: var(--texto-2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ui-rodape-pedido__falta {
+  font-size: 12px;
+  color: var(--latao);
+}
+
+.ui-conta {
+  flex: none;
+  display: grid;
+  min-width: 200px;
+  margin: 0;
+  font-size: 12.5px;
+}
+
+.ui-conta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.ui-conta dt {
+  color: var(--texto-3);
+}
+
+.ui-conta dd {
+  margin: 0;
+  color: var(--texto-2);
+}
+
+.ui-conta__desconto dd {
+  color: var(--vidro);
+}
+
+.ui-conta__total {
+  margin-top: 2px;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.ui-conta__total dt,
+.ui-conta__total dd {
+  color: var(--texto);
+}

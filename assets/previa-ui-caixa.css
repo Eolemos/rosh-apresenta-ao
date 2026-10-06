@@ -1,0 +1,272 @@
+/* Interface do Rosh: turno do caixa, diálogos e avisos */
+
+/* Caixa: turno por forma de pagamento */
+.ui-formas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ui-forma {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 8px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: #201824;
+}
+
+.ui-forma__icone {
+  grid-row: 1 / span 2;
+  display: grid;
+  color: var(--texto-2);
+}
+
+.ui-forma__nome {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.ui-forma__qtd {
+  grid-column: 2;
+  font-size: 12px;
+  color: var(--texto-3);
+}
+
+.ui-forma__valor {
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ui-forma--total {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 10px 2px;
+  border-top: 1px solid #2f2535;
+  border-radius: 0;
+  background: transparent;
+}
+
+.ui-forma--total .ui-forma__qtd {
+  grid-column: 1;
+}
+
+.ui-forma--total .ui-forma__valor {
+  grid-column: 2;
+  font-size: 17px;
+}
+
+.ui-fechado {
+  padding: 12px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #201824;
+}
+
+.ui-fechado__titulo {
+  font-weight: 700;
+}
+
+.ui-fechado__texto {
+  margin-top: 4px !important;
+  font-size: 13px;
+  color: var(--texto-2);
+}
+
+/* Diálogo de fechamento */
+.ui-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 6, 12, 0.72);
+}
+
+.ui-modal[hidden] {
+  display: none;
+}
+
+.ui-modal__caixa {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 420px;
+  padding: 22px;
+  border: 1px solid #3a2d40;
+  border-radius: 16px;
+  background: #1f1823;
+}
+
+.ui-modal__titulo {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.ui-modal__texto {
+  font-size: 14px;
+  color: var(--texto-2);
+}
+
+.ui-modal__comanda {
+  align-self: center;
+  max-width: 250px;
+  font-size: 11.5px;
+}
+
+.ui-modal__comanda .comanda__mesa {
+  font-size: 22px;
+}
+
+.ui-modal__acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Aviso rápido dentro da tela */
+.ui-aviso {
+  position: absolute;
+  left: 50%;
+  top: 66px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f1e9ee;
+  color: #1d1520;
+  font-size: 14px;
+  font-weight: 650;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%);
+  animation: ui-aviso 0.25s ease-out;
+  transition: opacity 0.4s;
+}
+
+.ui-aviso--saindo {
+  opacity: 0;
+}
+
+@keyframes ui-aviso {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}
+
+.ui-novo {
+  animation: ui-chega 0.45s ease-out;
+}
+
+@keyframes ui-chega {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.ui-miudos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--texto-2);
+}
+
+.ui-miudos li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ui-miudos strong {
+  color: var(--texto);
+}
+
+.ui-modal__caixa--fechamento {
+  width: 800px;
+}
+
+.ui-fechamento {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 18px;
+  align-items: start;
+}
+
+.ui-fechamento .ui-miudos {
+  margin-top: 12px;
+}
+
+.ui-fechamento .ui-modal__comanda {
+  max-width: none;
+  font-size: 10.5px;
+}
+
+.ui-fechamento .comanda__mesa {
+  font-size: 18px;
+}
+
+/* Diálogos do pedido: PIN do gerente e reposição */
+.ui-modal__caixa--pin {
+  width: 360px;
+}
+
+.ui-modal__caixa--largo {
+  width: 640px;
+}
+
+.ui-pin {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 6px 0;
+}
+
+.ui-pin__ponto {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #5a4862;
+  border-radius: 50%;
+}
+
+.ui-pin__ponto--cheio {
+  border-color: var(--brasa);
+  background: var(--brasa);
+}
+
+.ui-teclado {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.ui-tecla {
+  min-height: 50px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #241c28;
+  color: var(--texto);
+  font-size: 20px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ui-tecla--texto {
+  font-size: 14px;
+  color: var(--texto-2);
+}
+
+.ui-modal__total {
+  margin-right: auto !important;
+  font-size: 18px;
+  font-weight: 750;
+}

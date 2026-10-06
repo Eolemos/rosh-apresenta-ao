@@ -1,0 +1,282 @@
+/* Página inicial: a história de uma noite no lounge. Telinhas em inicio-telas.css; seções finais em inicio-secoes.css */
+
+.pagina {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Abertura */
+.abre {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 3rem;
+  align-items: start;
+  padding: 3.5rem 0 4.5rem;
+}
+
+.abre__titulo {
+  font-size: clamp(2.3rem, 4.8vw, 4rem);
+  font-weight: 700;
+  font-variation-settings: "wdth" 82;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.abre__lide {
+  margin-top: 1.5rem;
+  max-width: 54ch;
+  font-size: 1.2rem;
+  color: var(--texto-2);
+}
+
+.abre__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* Impressora com a comanda saindo: o elemento marcante da página */
+.imp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.imp__corpo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 340px;
+  height: 92px;
+  border-radius: 18px 18px 8px 8px;
+  background: linear-gradient(180deg, #3a2d40, #2a2030);
+  border: 1px solid var(--linha);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.imp__nome {
+  position: absolute;
+  top: 14px;
+  left: 22px;
+  font-size: 0.8rem;
+  color: var(--texto-3);
+}
+
+.imp__luz {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vidro);
+  box-shadow: 0 0 10px var(--vidro);
+}
+
+.imp__fenda {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 14px;
+  height: 6px;
+  border-radius: 3px;
+  background: #0f0a10;
+}
+
+.imp__saida {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  margin-top: -18px;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.imp__saida .comanda {
+  animation: sair-papel 2.6s steps(26, end) 0.5s both;
+}
+
+@keyframes sair-papel {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Partes da página */
+.parte {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--linha);
+}
+
+.parte__titulo {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  font-weight: 700;
+  font-variation-settings: "wdth" 82;
+  letter-spacing: -0.02em;
+}
+
+.parte__lide {
+  margin-top: 0.9rem;
+  max-width: 60ch;
+  font-size: 1.12rem;
+  color: var(--texto-2);
+}
+
+.parte__nota {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--texto-3);
+}
+
+/* Listas de pontos curtos, com um fio colorido que diz o tom */
+.pontos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.75rem 2.5rem;
+  margin: 2.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pontos li {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--latao);
+}
+
+.pontos--dor li {
+  border-left-color: var(--recusa);
+}
+
+.pontos--loja li {
+  border-left-color: var(--brasa);
+}
+
+/* Quatro pontos ficam melhor em dois pares do que em 3 + 1 */
+.pontos--pares {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+}
+
+.pontos strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.pontos span {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--texto-2);
+}
+
+/* A noite: sequência real, marcada pelo relógio */
+.noite {
+  margin: 2.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.passo {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 340px);
+  gap: 1.5rem 2rem;
+  align-items: start;
+  padding-bottom: 3rem;
+}
+
+.passo::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  top: 2rem;
+  bottom: 0.4rem;
+  border-left: 2px solid var(--linha);
+}
+
+.passo:last-child {
+  padding-bottom: 0;
+}
+
+.passo:last-child::before {
+  display: none;
+}
+
+.passo__hora {
+  font-size: 1.05rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--latao);
+}
+
+.passo__titulo {
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.passo__texto {
+  margin-top: 0.45rem;
+  max-width: 46ch;
+  color: var(--texto-2);
+}
+
+@media (max-width: 900px) {
+  .abre {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  .passo {
+    grid-template-columns: 4rem minmax(0, 1fr);
+  }
+
+  .passo .tela {
+    grid-column: 2;
+  }
+
+  .passo::before {
+    left: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .pagina {
+    padding: 0 1rem;
+  }
+
+  .pontos--pares {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .parte {
+    padding: 3.25rem 0;
+  }
+
+  .passo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .passo .tela {
+    grid-column: 1;
+    margin-top: 0.4rem;
+  }
+
+  .passo::before {
+    display: none;
+  }
+}

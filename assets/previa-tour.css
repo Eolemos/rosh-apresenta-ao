@@ -1,0 +1,167 @@
+/* Tour guiado: a tela cabe na janela, com destaque, balão de legenda e controles */
+
+.tour {
+  --tour-alt: calc(100vh - 176px);
+  overflow-x: hidden;
+}
+
+/* No tour só fica a tela da vez; abas, títulos e legendas da prévia saem */
+.tour .pv-cabecalho,
+.tour .pv-abas,
+.tour .pv-dica,
+.tour .pv-legenda {
+  display: none;
+}
+
+.tour .pv-topo {
+  max-width: none;
+  padding: 0.45rem 16px 0.35rem;
+}
+
+.tour .pv-principal {
+  max-width: none;
+  padding: 0 16px 120px;
+}
+
+/* As telas são operadas pelo tour; quem quiser mexer usa Explorar sozinho */
+.tour .pv-palco {
+  min-height: var(--tour-alt);
+  margin-top: 4px;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.tour .pv-palco[data-vista="ao-vivo"] {
+  max-width: min(1400px, calc((var(--tour-alt) - 30px) * 2.8));
+  margin-inline: auto;
+}
+
+.tour .pv-palco[data-vista="tablet"] .pv-item--tablet {
+  max-width: min(1110px, calc((var(--tour-alt) - 30px) * 1.6));
+}
+
+.tour .pv-palco[data-vista="caixa"] .pv-item--caixa {
+  max-width: min(1102px, calc((var(--tour-alt) - 54px) * 1.6));
+}
+
+.tour .pv-palco[data-vista="cozinha"] .pv-item--cozinha {
+  max-width: min(982px, calc((var(--tour-alt) - 54px) * 1.77));
+}
+
+/* Telas altas (painel do dono e configuração): ficam grandes e a página acompanha o destaque */
+.tour .pv-palco[data-vista="config"] .pv-item--config,
+.tour .pv-palco[data-vista="gestao"] .pv-item--gestao {
+  max-width: min(1202px, max(1000px, calc((var(--tour-alt) - 38px) * 1.53)));
+}
+
+.tour .pv-palco[data-vista="gestao"] {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+/* Painel do dono: computador ou celular, um de cada vez */
+.tour .pv-palco[data-vista="gestao"] .pv-item--celular,
+.tour .pv-palco[data-vista="gestao"][data-foco="celular"] .pv-item--gestao {
+  display: none;
+}
+
+.tour .pv-palco[data-vista="gestao"][data-foco="celular"] .pv-item--celular {
+  display: block;
+  width: 100%;
+  max-width: min(410px, calc((var(--tour-alt) - 22px) * 0.5));
+}
+
+/* Destaque: escurece o resto e acende a parte explicada */
+.tour-luz {
+  position: fixed;
+  z-index: 40;
+  border: 3px solid var(--brasa-2);
+  border-radius: 16px;
+  box-shadow: 0 0 0 200vmax rgba(13, 8, 15, 0.6), 0 0 0 7px rgba(255, 123, 53, 0.22), 0 0 36px rgba(255, 123, 53, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: left 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.45s cubic-bezier(0.3, 0.7, 0.2, 1),
+    width 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), height 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), opacity 0.3s;
+}
+
+.tour-sem-transicao {
+  transition: none !important;
+}
+
+.tour-luz--ligada {
+  opacity: 1;
+  animation: tour-brilho 2.2s ease-in-out infinite;
+}
+
+@keyframes tour-brilho {
+  50% {
+    box-shadow: 0 0 0 200vmax rgba(13, 8, 15, 0.6), 0 0 0 11px rgba(255, 123, 53, 0.12), 0 0 52px rgba(255, 123, 53, 0.75);
+  }
+}
+
+/* Marca de toque: mostra onde o tour "encostou o dedo" */
+.tour-toque {
+  position: fixed;
+  z-index: 45;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tour-toque--agora {
+  animation: tour-toque 0.6s ease-out;
+}
+
+@keyframes tour-toque {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Balão de legenda */
+.tour-balao {
+  position: fixed;
+  z-index: 50;
+  width: min(410px, calc(100vw - 24px));
+  padding: 14px 18px 16px;
+  border-radius: 16px;
+  background: var(--papel);
+  color: var(--tinta);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  transition: left 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.tour-balao[hidden] {
+  display: none;
+}
+
+.tour-balao--fixo {
+  left: 12px;
+  right: 12px;
+  width: auto;
+}
+
+.tour-balao__cap {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #9a4310;
+}
+
+.tour-balao__texto {
+  margin-top: 4px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.4;
+}

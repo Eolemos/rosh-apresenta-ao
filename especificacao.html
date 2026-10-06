@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Rosh: todos os detalhes</title>
+  <meta name="description" content="Especificação do Rosh, o sistema de pedidos para a tabacaria do lounge: funcionamento, arquitetura, tecnologia e etapas de construção.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/nav.css">
+  <link rel="stylesheet" href="assets/especificacao.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__marca" href="index.html"><span class="nav__brasa" aria-hidden="true"></span>Rosh</a>
+  <nav aria-label="Páginas da apresentação">
+    <ul class="nav__links">
+      <li><a class="nav__link" href="index.html">Início</a></li>
+      <li><a class="nav__link" href="tour.html">Tour guiado</a></li>
+      <li><a class="nav__link" href="previa.html">Explorar as telas</a></li>
+      <li><a class="nav__link" href="animacao.html">Em 2 minutos</a></li>
+      <li><a class="nav__link" href="especificacao.html" aria-current="page">Detalhes</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="inicio">
+
+  <section class="abertura" aria-labelledby="titulo-principal">
+    <div>
+      <h1 class="abertura__titulo" id="titulo-principal">Todos os detalhes do Rosh</h1>
+      <p class="abertura__lide">Rosh é o sistema de pedidos da tabacaria do lounge. O garçom monta o narguilé no próprio tablet, ou o caixa atende o cliente no balcão. O pedido é pago na hora, vai direto para a cozinha e fica registrado com quem vendeu e como foi pago. Começa em uma unidade e já nasce preparado para uma rede inteira.</p>
+      <div class="abertura__acoes">
+        <a class="botao botao--brasa" href="#previa">Ver as telas do sistema</a>
+        <a class="botao" href="#mapa">Ver o mapa do sistema</a>
+        <a class="botao" href="animacao.html">Assistir à animação</a>
+      </div>
+      <p class="abertura__versao">Especificação do sistema, versão 5, outubro de 2026.</p>
+    </div>
+
+    <div class="impressora" aria-label="Exemplo de comanda impressa na cozinha">
+      <div class="impressora__corpo" aria-hidden="true">
+        <span class="impressora__nome">Impressora da cozinha</span>
+        <span class="impressora__luz"></span>
+        <span class="impressora__fenda"></span>
+      </div>
+      <div class="impressora__saida">
+        <div class="comanda" id="comanda-abertura">
+          <div class="comanda__centro">Cozinha</div>
+          <div class="comanda__linha"><span>02/10 21:47</span><span>Pedido 0153</span></div>
+          <div class="comanda__mesa">MESA 07</div>
+          <hr class="comanda__corte">
+          <div><strong>1x Rosh grande</strong></div>
+          <div>&nbsp;&nbsp;Watermelon Mint (Zomo)</div>
+          <div>&nbsp;&nbsp;Love 66 (Adalya)</div>
+          <div>+ 1 carvão extra</div>
+          <div>Obs: gelo no vaso</div>
+          <hr class="comanda__corte">
+          <div>Vendido por: Rafa (garçom)</div>
+          <div>Pagamento: Pix</div>
+        </div>
+      </div>
+      <button class="botao impressora__repetir" type="button" id="repetir-impressao">Imprimir de novo</button>
+    </div>
+  </section>
+
+  <section class="faixa-previa" id="previa" aria-labelledby="titulo-previa">
+    <h2 class="faixa-previa__titulo" id="titulo-previa">Prévia das telas</h2>
+    <p class="faixa-previa__texto">Esta é a proposta de interface do Rosh, e ela funciona: lance um pedido no tablet do garçom e acompanhe na cozinha até ficar pronto. Nas abas estão também a tela do caixa, com o fechamento de turno, e o painel de gestão. Nomes, mesas e valores são de exemplo.</p>
+    <iframe class="previa-moldura" src="previa.html?embutido=1" title="Prévia interativa das telas do Rosh" loading="lazy"></iframe>
+    <p class="faixa-previa__acoes"><a class="botao botao--brasa" href="previa.html">Abrir a prévia em tela cheia</a></p>
+  </section>
+
+  <div class="leiaute">
+
+    <details class="indice" open>
+      <summary>Mapa do documento</summary>
+      <nav aria-label="Índice do documento">
+        <ul class="indice__grupo">
+          <li class="indice__capitulo">O sistema
+            <ul class="indice__lista">
+              <li><a href="#previa">Prévia das telas</a></li>
+              <li><a href="#resumo">O que é o Rosh</a></li>
+              <li><a href="#mapa">Mapa do sistema</a></li>
+              <li><a href="#cargos">Cargos e permissões</a></li>
+            </ul>
+          </li>
+          <li class="indice__capitulo">Como funciona
+            <ul class="indice__lista">
+              <li><a href="#pedido">A jornada de um pedido</a></li>
+              <li><a href="#estados">Os estados do pedido</a></li>
+              <li><a href="#cardapio">Rosh e essências</a></li>
+              <li><a href="#adicionais">Adicionais e promoções</a></li>
+              <li><a href="#estoque">Estoque e avisos</a></li>
+              <li><a href="#pagamento">Pagamento e fechamento</a></li>
+              <li><a href="#impressao">Impressão na cozinha</a></li>
+              <li><a href="#facilidade">Feito para quem nunca usou</a></li>
+            </ul>
+          </li>
+          <li class="indice__capitulo">Como é construído
+            <ul class="indice__lista">
+              <li><a href="#arquitetura">Loja e nuvem</a></li>
+              <li><a href="#falhas">Quando algo falha</a></li>
+              <li><a href="#tecnologia">Linguagem e tecnologias</a></li>
+              <li><a href="#modelos">Modelos de arquitetura</a></li>
+              <li><a href="#dados">O que o sistema guarda</a></li>
+              <li><a href="#seguranca">Segurança</a></li>
+              <li><a href="#qualidade">Qualidade e testes</a></li>
+              <li><a href="#equipamentos">Equipamentos</a></li>
+            </ul>
+          </li>
+          <li class="indice__capitulo">Como cresce
+            <ul class="indice__lista">
+              <li><a href="#rede">Uma rede de lounges</a></li>
+              <li><a href="#etapas">Etapas de construção</a></li>
+              <li><a href="#fora">Fora da primeira versão</a></li>
+              <li><a href="#glossario">Glossário</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </details>
+
+    <div class="conteudo">
+
+      <!-- Parte 1 -->
+      <header class="capitulo">
+        <p class="capitulo__parte">Parte 1 de 4</p>
+        <h2 class="capitulo__titulo">O sistema</h2>
+        <p class="capitulo__resumo">O que o Rosh resolve, quem participa e como as peças se ligam.</p>
+      </header>
+
+      <section class="secao" id="resumo">
+        <h3>O que é o Rosh</h3>
+        <p>Hoje o pedido de narguilé depende de alguém anotar, levar até a cozinha e lembrar quem vendeu e como o cliente pagou. O Rosh transforma esse caminho em um fluxo único: o garçom ou o caixa lança o pedido, registra o pagamento, e o pedido aparece na tela e na impressora de quem monta o narguilé.</p>
+        <p>O sistema foi desenhado em torno de quatro compromissos:</p>
+        <dl class="compromissos">
+          <div>
+            <dt>Todo pedido nasce pago</dt>
+            <dd>O pedido só é criado depois que a forma de pagamento é registrada. Nada vai para a cozinha sem estar pago, então ninguém consome e vai embora sem pagar.</dd>
+          </div>
+          <div>
+            <dt>Cada venda tem dono</dt>
+            <dd>O sistema sabe quem vendeu, para qual mesa, a que horas e como foi pago. No fim do turno, cada garçom e cada caixa fecha o seu próprio movimento.</dd>
+          </div>
+          <div>
+            <dt>Nenhum pedido se perde</dt>
+            <dd>Todo pedido fica na tela da cozinha. A comanda impressa é uma cópia; se o papel acabar, nada some e dá para reimprimir.</dd>
+          </div>
+          <div>
+            <dt>A loja não para e o dono vê tudo</dt>
+            <dd>Cada lounge tem o próprio servidor local e funciona sem internet. Uma central na nuvem recebe uma cópia de tudo, e o dono acompanha todas as unidades de casa.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="secao" id="mapa">
+        <h3>Mapa do sistema</h3>
+        <p>Cada lounge tem uma <strong>caixinha</strong>: um mini PC que é o servidor da loja. Os tablets dos garçons e as telas do caixa e da cozinha falam com ela pela Wi-Fi do lounge, e ela comanda as impressoras. Acima de todas as unidades fica a <strong>central na nuvem</strong>.</p>
+
+        <div class="mapa" role="group" aria-label="Diagrama: central na nuvem ligada à unidade">
+          <div class="mapa__nuvem">
+            <p class="mapa__rotulo">Central na nuvem<small>Acessada pelo master e pelos gerentes de qualquer lugar</small></p>
+            <ul class="mapa__itens">
+              <li>Painel da rede</li>
+              <li>Cardápio base e preços</li>
+              <li>Equipe e cargos</li>
+              <li>Vendas por unidade e por garçom</li>
+              <li>Backup de tudo</li>
+            </ul>
+          </div>
+
+          <p class="mapa__elo">Sincronizam pela internet: pedidos, pagamentos e fechamentos sobem; cardápio e equipe descem.</p>
+
+          <div class="mapa__loja">
+            <p class="mapa__rotulo">Unidade: o lounge<small>Tudo aqui funciona mesmo sem internet</small></p>
+            <div class="mapa__interno">
+              <div>
+                <div class="mapa__grupo">
+                  <h4>Quem vende</h4>
+                  <ul>
+                    <li>Tablets dos garçons</li>
+                    <li>Tela do caixa (balcão)</li>
+                  </ul>
+                </div>
+                <div class="mapa__grupo">
+                  <h4>Quem prepara</h4>
+                  <ul><li>Tela da cozinha</li></ul>
+                </div>
+              </div>
+              <div class="mapa__caixinha">
+                <strong>Caixinha da loja</strong>
+                <span>Servidor local, banco de dados e fila de impressão</span>
+              </div>
+              <div>
+                <div class="mapa__grupo">
+                  <h4>Impressoras térmicas</h4>
+                  <ul>
+                    <li>Cozinha: comandas</li>
+                    <li>Caixa: comprovantes e fechamentos</li>
+                  </ul>
+                </div>
+                <div class="mapa__grupo">
+                  <h4>Ligação</h4>
+                  <ul>
+                    <li>Cabo USB</li>
+                    <li>Rede (cabo ou Wi-Fi)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="cargos">
+        <h3>Cargos e permissões</h3>
+        <p>Cada pessoa entra com o seu cargo e só enxerga o que precisa. Master e gerente entram com e-mail e senha. Garçom, caixa e cozinha entram com um PIN pessoal, e é esse PIN que identifica quem fez cada venda.</p>
+
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead>
+              <tr><th scope="col">Cargo</th><th scope="col">Onde usa</th><th scope="col">O que pode fazer</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Garçom</th>
+                <td>Tablet próprio</td>
+                <td>Ver o mapa de mesas, lançar pedidos (um ou vários narguilés) com adicionais e promoções, usar o crédito do rosh duplo, confirmar o pagamento, trocar a mesa ou os sabores enquanto o pedido está na fila, pedir cancelamento ao gerente, entregar os pedidos prontos, liberar a mesa e fechar o próprio turno.</td>
+              </tr>
+              <tr>
+                <th scope="row">Caixa</th>
+                <td>Tela do caixa</td>
+                <td>Abrir o turno com o fundo de troco, lançar pedidos do balcão com adicionais e promoções, confirmar o pagamento (com troco no dinheiro), registrar retiradas, imprimir o comprovante e fechar o turno comparando o dinheiro contado com o esperado.</td>
+              </tr>
+              <tr>
+                <th scope="row">Cozinha</th>
+                <td>Tela da montagem</td>
+                <td>Ver a fila de pedidos, marcar em preparo e pronto, dar baixa no estoque ao abrir um pacote de essência, marcar uma essência como em falta e reimprimir a comanda.</td>
+              </tr>
+              <tr>
+                <th scope="row">Gerente</th>
+                <td>Painel da unidade</td>
+                <td>Tudo da operação da sua unidade: aprovar cancelamentos pelo sininho (até pelo celular), ligar o modo treino, cadastrar marcas, essências, tipos de rosh, adicionais e promoções da sua loja, lançar entrada e contagem de estoque, receber os avisos da loja, autorizar desconto avulso com o próprio PIN, cancelar pedidos com estorno e motivo, conferir os fechamentos de turno, cadastrar equipe e PINs, tablets e impressoras, preço e disponibilidade locais, relatórios da unidade e o modo contingência.</td>
+              </tr>
+              <tr>
+                <th scope="row">Master</th>
+                <td>Central, de qualquer lugar</td>
+                <td>O dono. Tudo, em todas as unidades, também pelo celular: catálogo da rede (só o master altera marcas e essências para todas as lojas), promoções da rede, estoque e avisos de todas as lojas, unidades, gerentes e relatórios da rede.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota">Ações sensíveis, como cancelar um pedido pago ou corrigir um fechamento de turno, são exclusivas do gerente, pedem um motivo e ficam registradas com nome, data e hora.</p>
+      </section>
+
+      <!-- Parte 2 -->
+      <header class="capitulo">
+        <p class="capitulo__parte">Parte 2 de 4</p>
+        <h2 class="capitulo__titulo">Como funciona</h2>
+        <p class="capitulo__resumo">O caminho de um pedido, do tablet do garçom até o fechamento do turno.</p>
+      </header>
+
+
+      <section class="secao" id="pedido">
+        <h3>A jornada de um pedido</h3>
+        <p>Um exemplo real de uso: a mesa 07 pede ao garçom Rafa um rosh grande com Watermelon Mint da Zomo e Love 66 da Adalya, mais um carvão extra, e paga no Pix.</p>
+
+        <ol class="jornada">
+          <li>
+            <h4>O garçom monta o pedido no tablet</h4>
+            <p>Já identificado pelo PIN, ele escolhe a mesa, o tipo de rosh e os sabores (por marca), até o limite daquele rosh. Se o cliente quiser, acrescenta adicionais, como carvão extra, e aplica uma promoção ativa. Essências em falta não aparecem.</p>
+            <span class="quem">Garçom, no tablet</span>
+          </li>
+          <li>
+            <h4>O cliente paga e o garçom confirma</h4>
+            <p>Se a mesa quiser mais de um narguilé, o garçom adiciona todos ao mesmo pedido. A tela mostra o total detalhado (rosh, acréscimo premium, adicionais, desconto). O garçom cobra na maquininha ou no Pix e só então toca em "Pagamento recebido: R$ 95,00 no Pix". No dinheiro, digita o valor recebido e o tablet mostra o troco. O preço é calculado pela caixinha, e um toque duplo não cria pedido nem cobrança repetida.</p>
+            <span class="quem">Garçom, no tablet</span>
+          </li>
+          <li>
+            <h4>A cozinha recebe</h4>
+            <p>O pedido pago aparece na tela da cozinha com aviso sonoro, e a comanda sai na impressora com a mesa, os sabores, quem vendeu e a forma de pagamento.</p>
+            <span class="quem quem--brasa">Tela e impressora da cozinha</span>
+          </li>
+          <li>
+            <h4>Em preparo</h4>
+            <p>A cozinha marca que começou a montar. O tablet do garçom mostra o novo status.</p>
+            <span class="quem">Cozinha</span>
+          </li>
+          <li>
+            <h4>Pronto</h4>
+            <p>A cozinha marca como pronto e o tablet do garçom avisa: "Mesa 07 pronta".</p>
+            <span class="quem">Cozinha</span>
+          </li>
+          <li>
+            <h4>Entregue</h4>
+            <p>O garçom leva o narguilé à mesa e marca como entregue. Pedidos prontos também aparecem numa lista "Prontos para entregar" em todos os tablets, para que qualquer garçom leve os pedidos do balcão.</p>
+            <span class="quem">Garçom</span>
+          </li>
+          <li>
+            <h4>Fechamento do turno</h4>
+            <p>No fim do turno, o garçom fecha o seu movimento: o sistema mostra quantos pedidos ele vendeu e o total em dinheiro, cartão e Pix. O gerente confere.</p>
+            <span class="quem">Garçom e gerente</span>
+          </li>
+        </ol>
+        <p class="nota">Durante a sessão, o cliente pode pedir mais carvão: o garçom lança um pedido só de adicional para a mesa, pago na hora, e a cozinha recebe como reposição. Se a mesa ganhou o rosh duplo, o 2º rosh é lançado do mesmo jeito, a partir do crédito da mesa, sem cobrança do rosh.</p>
+        <p class="nota">Errou? Logo depois de enviar, um botão "Desfazer" fica disponível por 5 segundos. Enquanto o pedido está na fila, quem vendeu pode trocar a mesa ou os sabores. Qualquer outra correção, ou um cancelamento, é pedida ao gerente pelo próprio tablet e aprovada por ele no sininho, até pelo celular.</p>
+        <p class="nota nota--brasa">Quando o cliente vai até o balcão, o caminho é o mesmo: o caixa lança o pedido com a mesa (ou "balcão"), registra o pagamento e o pedido segue para a cozinha. A venda fica registrada no nome de quem estava no caixa.</p>
+      </section>
+
+      <section class="secao" id="estados">
+        <h3>Os estados do pedido</h3>
+        <p>Todo pedido está sempre em um único estado e só pode andar pelos caminhos permitidos. Como ele só existe depois de pago, o primeiro estado já é a fila da cozinha.</p>
+
+        <div class="estados" role="list" aria-label="Caminho principal do pedido">
+          <span class="estado estado--latao" role="listitem">Na fila da cozinha</span>
+          <svg class="estados__seta" viewBox="0 0 22 12" aria-hidden="true"><path d="M1 6h18M14 1.5 19.5 6 14 10.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="estado estado--brasa" role="listitem">Em preparo</span>
+          <svg class="estados__seta" viewBox="0 0 22 12" aria-hidden="true"><path d="M1 6h18M14 1.5 19.5 6 14 10.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="estado estado--vidro" role="listitem">Pronto</span>
+          <svg class="estados__seta" viewBox="0 0 22 12" aria-hidden="true"><path d="M1 6h18M14 1.5 19.5 6 14 10.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="estado estado--vidro" role="listitem">Entregue</span>
+        </div>
+
+        <div class="estados__ramos">
+          <p class="estados__ramo"><span class="estado estado--recusa">Cancelado</span> só com aprovação do gerente, com motivo. O valor é estornado e sai do fechamento de quem vendeu.</p>
+        </div>
+      </section>
+
+      <section class="secao" id="cardapio">
+        <h3>Rosh e essências</h3>
+        <p>O cardápio da tabacaria tem duas partes: os tipos de rosh e as essências. Cada tipo de rosh tem o seu preço e o número máximo de sabores; o tablet e o caixa só deixam escolher até esse limite.</p>
+
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <caption>Exemplo ilustrativo: nomes, limites e preços são definidos pela gestão.</caption>
+            <thead>
+              <tr><th scope="col">Tipo de rosh</th><th scope="col">Sabores por narguilé</th><th scope="col">Preço</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Rosh simples</th><td>1 essência</td><td>Definido pela gestão</td></tr>
+              <tr><th scope="row">Rosh mix</th><td>Até 2 essências</td><td>Definido pela gestão</td></tr>
+              <tr><th scope="row">Rosh grande</th><td>Até 3 essências</td><td>Definido pela gestão</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Essências organizadas por marca</h4>
+        <p>Cada marca tem o seu estilo de sabores, e é assim que a equipe conhece o estoque. Por isso o catálogo é montado por marca, com uma categoria em comum para atravessar as marcas quando o cliente pede pelo gosto.</p>
+
+        <div class="fichas fichas--3">
+          <article class="ficha"><h4>Marca</h4><ul class="campos"><li>Nome, cor e ordem na tela</li><li>Faixa: tradicional, premium ou super premium</li><li>Acréscimo de preço opcional</li></ul></article>
+          <article class="ficha"><h4>Linha</h4><ul class="campos"><li>Opcional, só para marcas que têm linhas</li><li>Ex.: Zomo Classic, Strong, Max</li></ul></article>
+          <article class="ficha"><h4>Essência</h4><ul class="campos"><li>Nome como é vendido</li><li>Categoria e etiquetas (ice, chiclete, cremoso)</li><li>Descrição curta e em falta</li></ul></article>
+        </div>
+
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <caption>Exemplo de catálogo inicial. As marcas e os sabores reais saem do estoque do lounge.</caption>
+            <thead>
+              <tr><th scope="col">Marca</th><th scope="col">Como organiza os sabores</th><th scope="col">Exemplos</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Zomo</th><td>Linhas próprias: Classic, Strong, Max, Flavors of Brazil</td><td>Watermelon Mint, Strong Mint, Passion Lemonade, Acai Cream</td></tr>
+              <tr><th scope="row">Ziggy</th><td>Famílias no nome: Tropical, Bomb, Happy, e a linha Mix</td><td>Banana Tropical, Hapocalyx Mint, Happy Berry, Duas Goiabas</td></tr>
+              <tr><th scope="row">Nay</th><td>Família Blend e nomes próprios</td><td>Menta, Maracujá, Moon, Vision</td></tr>
+              <tr><th scope="row">Onix</th><td>Famílias High, Drops e Experience</td><td>High Mint, High Lemon, Chiclete de Canela, Goiaba e Morango</td></tr>
+              <tr><th scope="row">Adalya</th><td>Marca premium, com categorias próprias</td><td>Love 66, Hawaii, Double Melon Ice, Banana Milk</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Como a equipe escolhe os sabores</h4>
+        <ol class="jornada">
+          <li><h5>Escolhe a marca</h5><p>Uma grade com a cor de cada marca, as mais pedidas primeiro e um selo nas premium.</p></li>
+          <li><h5>Escolhe os sabores</h5><p>A lista daquela marca, com filtros por categoria (Frutas, Cítricos, Mentolados e ice, Doces e sobremesas, Bebidas, Mixes) e uma busca.</p></li>
+          <li><h5>Mistura, se quiser</h5><p>Dá para combinar marcas diferentes no mesmo rosh, até o limite de sabores. Quando há acréscimo, vale o da marca mais cara.</p></li>
+        </ol>
+        <p>Para o cliente que pede "algo mentolado" sem dizer a marca, o atalho "Buscar por sabor" mostra as opções de todas as marcas. Os sabores usados há pouco ficam numa fila de recentes.</p>
+
+        <ul class="lista">
+          <li><strong>Essência em falta:</strong> a cozinha ou o gerente marca em um toque. Ela continua visível, apagada e no fim da lista, para ninguém achar que sumiu do cardápio. O estoque de cada essência é controlado em pacotes (veja Estoque e avisos).</li>
+          <li><strong>Catálogo da rede:</strong> o master e os gerentes cadastram e editam marcas e essências, e todas as unidades recebem. Cada unidade controla o próprio estoque e pode ajustar preços.</li>
+          <li><strong>Pode mudar a qualquer momento:</strong> marcas e essências podem ser desativadas sem apagar o histórico de vendas.</li>
+          <li><strong>Preço congelado:</strong> o pedido guarda o preço do momento da venda. Se o preço mudar depois, os pedidos e fechamentos anteriores não mudam.</li>
+        </ul>
+      </section>
+
+      <section class="secao" id="adicionais">
+        <h3>Adicionais e promoções</h3>
+        <p>Tudo o que muda o valor de um pedido é configurado pela gestão e escolhido pela equipe no momento da venda. Assim o preço continua sendo calculado pela caixinha, e cada real de desconto tem origem registrada.</p>
+
+        <h4>Adicionais</h4>
+        <ul class="lista">
+          <li><strong>Cobrados à parte:</strong> o narguilé já vem com o carvão básico. Carvão extra é um adicional com preço próprio. A gestão cria outros adicionais quando quiser, como mangueira extra, muda preços e desativa os que saírem.</li>
+          <li><strong>No pedido:</strong> o garçom ou o caixa marca a quantidade ("+2 carvões") junto do narguilé, e o valor soma no total.</li>
+          <li><strong>Depois, durante a sessão:</strong> um pedido só de adicional ("Mesa 07, 2 carvões") é pago na hora e vai para a cozinha destacado como reposição.</li>
+        </ul>
+
+        <h4>Promoções em porcentagem</h4>
+        <ul class="lista">
+          <li><strong>Criadas pela gestão:</strong> o gerente (ou o master, para a rede toda) cadastra nome, porcentagem, onde vale (pedido inteiro, um tipo de rosh, os adicionais) e quando vale (datas, dias da semana, horário). Exemplo: "Terça 20%, das 18h às 22h".</li>
+          <li><strong>Editáveis a qualquer momento:</strong> uma promoção existente pode ter porcentagem, dias, horário e itens alterados, ser pausada, reativada ou encerrada. Pedidos já feitos guardam o desconto que valia na hora.</li>
+          <li><strong>Automáticas ou opcionais:</strong> uma promoção automática, como o happy hour, entra sozinha no pedido enquanto está valendo. Uma opcional, como a de aniversariante, aparece para o garçom ou o caixa escolher.</li>
+          <li><strong>Desconto avulso:</strong> fora de uma promoção cadastrada, só com o PIN do gerente e um motivo.</li>
+          <li><strong>Sempre visível:</strong> a promoção aparece no total do pedido, na comanda, no fechamento de turno e nos relatórios.</li>
+        </ul>
+
+        <h4>Rosh duplo: paga um, ganha dois</h4>
+        <ol class="jornada">
+          <li><h5>O pedido entra na promoção</h5><p>O cliente paga o narguilé normalmente e o pedido é marcado como rosh duplo.</p></li>
+          <li><h5>A mesa ganha um crédito</h5><p>O sistema guarda 1 rosh grátis para aquela mesa, do mesmo tipo de rosh, mostrando de qual pedido veio (número, hora e garçom). A promoção exige uma mesa: não vale no balcão sem mesa.</p></li>
+          <li><h5>O garçom lança o 2º rosh</h5><p>Quando o cliente pedir, o garçom abre a mesa, vê "1 rosh grátis disponível", escolhe os sabores e lança. O rosh não é cobrado; carvão extra e outros adicionais, sim.</p></li>
+          <li><h5>O crédito acaba</h5><p>Depois de usado, quando o prazo termina (por exemplo, 3 horas) ou quando o garçom libera a mesa, o crédito deixa de existir. Assim o próximo grupo daquela mesa não herda o rosh grátis.</p></li>
+        </ol>
+      </section>
+
+      <section class="secao" id="estoque">
+        <h3>Estoque e avisos</h3>
+        <p>Cada loja sabe quantos pacotes tem de cada essência, e o sistema avisa antes que um sabor procurado acabe no meio da noite.</p>
+
+        <h4>Estoque de essências, em pacotes</h4>
+        <ul class="lista">
+          <li><strong>Quantidade e mínimo:</strong> cada essência tem a quantidade de pacotes fechados na loja e um estoque mínimo (por exemplo, 2 pacotes).</li>
+          <li><strong>Entrada:</strong> o gerente lança os pacotes que chegaram ("+5 Watermelon Mint, Zomo"). Se a essência estava em falta, ela volta para os tablets sozinha.</li>
+          <li><strong>Abrir pacote:</strong> quando a cozinha abre um pacote novo, toca em "Abrir pacote" na própria tela e o estoque cai um.</li>
+          <li><strong>Contagem:</strong> o gerente confere a prateleira e corrige a quantidade com um motivo.</li>
+          <li><strong>Em falta:</strong> quando o pacote aberto acaba e não há outro, a cozinha marca a essência em falta e ela fica apagada nos tablets. Se ainda houver pacote fechado, o sistema pergunta "Abrir um pacote?" antes.</li>
+          <li><strong>Lista de compras:</strong> as essências no mínimo ou abaixo dele formam uma lista de compras pronta, com a quantidade sugerida.</li>
+          <li><strong>Histórico:</strong> toda entrada, abertura e contagem fica registrada com quem fez e quando.</li>
+        </ul>
+
+        <h4>O sininho de avisos</h4>
+        <p>No painel de gestão, um sino mostra uma bolinha vermelha com o número de avisos novos. Ao tocar nele, abre uma janela com a lista:</p>
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead>
+              <tr><th scope="col">Aviso</th><th scope="col">Exemplo</th><th scope="col">Quando aparece</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Em falta</th><td>Unidade 1 Centro: Love 66 (Adalya) em falta</td><td>A cozinha ou o gerente marcou a essência em falta</td></tr>
+              <tr><th scope="row">Estoque baixo</th><td>Unidade 2: High Mint (Onix), resta 1 pacote</td><td>A quantidade chegou ao estoque mínimo</td></tr>
+              <tr><th scope="row">Impressora com falha</th><td>Unidade 1: impressora da cozinha sem resposta</td><td>A comanda não saiu depois das novas tentativas</td></tr>
+              <tr><th scope="row">Turno para conferir</th><td>Unidade 1: fechamento da Bia aguardando conferência</td><td>Um garçom ou caixa fechou o turno</td></tr>
+              <tr><th scope="row">Cancelamento pedido</th><td>Unidade 1: Rafa pede cancelar o pedido 0158 (mesa errada)</td><td>Um garçom ou caixa pediu cancelamento</td></tr>
+              <tr><th scope="row">Pedido demorando</th><td>Unidade 1: mesa 04 esperando há 18 min</td><td>Um pedido passou do tempo na fila da cozinha</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="lista">
+          <li><strong>Quem vê:</strong> o master recebe os avisos de todas as lojas; o gerente, os da sua loja.</li>
+          <li><strong>Aviso que resolve:</strong> cada aviso traz o botão da ação certa, como "Lançar entrada", "Aprovar cancelamento" ou "Conferir turno".</li>
+          <li><strong>Lido e não lido:</strong> cada aviso pode ser marcado como lido, ou todos de uma vez. A bolinha some quando não há nada novo.</li>
+        </ul>
+
+        <h4>O que a gestão configura</h4>
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead>
+              <tr><th scope="col">Item</th><th scope="col">O que dá para fazer</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Marcas</th><td>Cadastrar, editar (nome, cor, faixa, acréscimo) e desativar. O master altera para a rede; o gerente cria itens e ajusta a sua loja (estoque, preço local, esconder)</td></tr>
+              <tr><th scope="row">Essências</th><td>Cadastrar, editar (marca, linha, categoria, etiquetas, descrição, estoque mínimo) e desativar</td></tr>
+              <tr><th scope="row">Estoque</th><td>Lançar entrada, contagem e ver o histórico de cada essência</td></tr>
+              <tr><th scope="row">Tipos de rosh</th><td>Cadastrar e editar nome, preço e máximo de sabores</td></tr>
+              <tr><th scope="row">Adicionais</th><td>Criar novos, mudar preço e desativar</td></tr>
+              <tr><th scope="row">Promoções</th><td>Criar (automática ou opcional), editar as existentes, pausar, reativar e encerrar</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota">Tudo o que é cadastrado ou editado aparece na hora nos tablets, no caixa e na cozinha. Desativar um item nunca apaga o histórico de vendas.</p>
+      </section>
+
+      <section class="secao" id="pagamento">
+        <h3>Pagamento e fechamento de caixa</h3>
+        <div class="lado-a-lado">
+          <div>
+            <p class="texto-2">O cliente paga cada pedido no momento em que pede. Não existe conta da mesa acumulando ao longo da noite, e por isso não existe pedido sem pagamento. O dia do sistema é o dia operacional do lounge: ele vira de madrugada (por exemplo, às 6h), e não à meia-noite.</p>
+            <ul class="lista">
+              <li><strong>Forma de pagamento:</strong> dinheiro, cartão ou Pix, registrada em cada pedido junto com quem recebeu.</li>
+              <li><strong>Promoções e descontos:</strong> o desconto de uma promoção aparece no total do pedido; o fechamento mostra o total bruto, os descontos e o líquido.</li>
+              <li><strong>Comprovante:</strong> o caixa pode imprimir um comprovante do pedido para o cliente.</li>
+              <li><strong>Fechamento por operador:</strong> no fim do turno, cada garçom e cada caixa vê o próprio movimento: quantidade de pedidos e o total em dinheiro, cartão e Pix. O fechamento é impresso e o gerente confere.</li>
+              <li><strong>Fundo de troco e retiradas:</strong> o caixa abre o turno informando o fundo de troco e registra cada retirada (sangria) com motivo.</li>
+              <li><strong>Dinheiro conferido:</strong> no fechamento, quem fecha digita o dinheiro contado e o sistema mostra o esperado e a diferença, que o gerente confere com um motivo.</li>
+              <li><strong>Relatórios por garçom:</strong> vendas, pedidos e formas de pagamento de cada pessoa, por dia e por período.</li>
+            </ul>
+          </div>
+          <div class="comanda" aria-label="Exemplo de fechamento de turno impresso">
+            <div class="comanda__centro">Fechamento de turno</div>
+            <div class="comanda__linha"><span>02/10</span><span>18:00 a 02:00</span></div>
+            <div class="comanda__mesa">RAFA</div>
+            <div class="comanda__centro">garçom</div>
+            <hr class="comanda__corte">
+            <div class="comanda__linha"><span>Pedidos</span><span>23</span></div>
+            <div class="comanda__linha"><span>Dinheiro</span><span>6 pedidos</span></div>
+            <div class="comanda__linha"><span>Cartão</span><span>9 pedidos</span></div>
+            <div class="comanda__linha"><span>Pix</span><span>8 pedidos</span></div>
+            <div class="comanda__linha"><span>Com promoção</span><span>5 pedidos</span></div>
+            <div class="comanda__linha"><span>Carvões extra</span><span>11</span></div>
+            <hr class="comanda__corte">
+            <div>Conferido por: Ana (gerente)</div>
+          </div>
+        </div>
+        <p class="nota">O pagamento passa na maquininha ou no Pix do lounge; o Rosh registra a forma e o valor, mas não processa o pagamento. A nota fiscal (NFC-e) continua no sistema fiscal atual.</p>
+      </section>
+
+      <section class="secao" id="impressao">
+        <h3>Impressão na cozinha</h3>
+        <div class="lado-a-lado">
+          <div>
+            <p class="texto-2">A comanda é pensada para ser lida de longe, com as mãos ocupadas: o número da mesa em letra grande, depois o rosh, os sabores, os adicionais e a observação, e no fim a promoção, se houver, e quem vendeu.</p>
+            <ul class="lista">
+              <li><strong>Impressoras de mercado:</strong> o Rosh fala ESC/POS, a linguagem padrão das impressoras térmicas, em bobinas de 58 ou 80 mm.</li>
+              <li><strong>Ligação flexível:</strong> cada impressora pode estar no cabo USB de um computador ou na rede, com endereço próprio. A configuração é feita por impressora.</li>
+              <li><strong>Duas funções:</strong> a impressora da cozinha recebe as comandas; a do caixa, os comprovantes e os fechamentos de turno.</li>
+              <li><strong>Falhou, tenta de novo:</strong> se a impressora estiver desligada ou sem papel, o sistema insiste algumas vezes e então avisa a cozinha e o gerente na tela.</li>
+              <li><strong>A tela é a fonte da verdade:</strong> o pedido nunca depende do papel. Existe sempre o botão de reimprimir.</li>
+            </ul>
+          </div>
+          <div class="comanda" aria-label="Comanda de exemplo">
+            <div class="comanda__centro">Cozinha</div>
+            <div class="comanda__linha"><span>02/10 22:05</span><span>Pedido 0161</span></div>
+            <div class="comanda__mesa">MESA 12</div>
+            <hr class="comanda__corte">
+            <div><strong>1x Rosh mix</strong></div>
+            <div>&nbsp;&nbsp;Banana Tropical (Ziggy)</div>
+            <div>&nbsp;&nbsp;High Mint (Onix)</div>
+            <div>+ 2 carvões extra</div>
+            <div>Promoção: Terça 20%</div>
+            <hr class="comanda__corte">
+            <div>Vendido por: Bia (caixa)</div>
+            <div>Pagamento: cartão</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="facilidade">
+        <h3>Feito para quem nunca usou</h3>
+        <p>Num lounge cheio, ninguém tem tempo de ler manual. O Rosh foi desenhado para que um funcionário novo consiga vender na primeira noite.</p>
+        <div class="fichas fichas--3">
+          <article class="ficha"><h4>Mapa de mesas</h4><p>As mesas ocupadas mostram há quanto tempo está o narguilé e quando foi o último carvão. Passou de 30 minutos, a mesa fica âmbar: é hora de oferecer carvão.</p></article>
+          <article class="ficha"><h4>Total explicado</h4><p>O valor nunca "pula": a tela mostra rosh, acréscimo premium, adicionais e desconto, linha por linha, antes de cobrar.</p></article>
+          <article class="ficha"><h4>Desfazer e corrigir</h4><p>"Desfazer" por 5 segundos, troca de mesa e de sabores enquanto o pedido está na fila, e um pedido de correção ao gerente para o resto.</p></article>
+          <article class="ficha"><h4>Cozinha que avisa</h4><p>O cartão do pedido muda de cor quando demora (âmbar depois de 10 minutos, vermelho depois de 15) e o gerente recebe um aviso.</p></article>
+          <article class="ficha"><h4>Modo treino</h4><p>O gerente liga o treino num aparelho e o funcionário novo pratica à vontade: tudo sai marcado "TREINO" e nada conta no caixa, no estoque ou nos relatórios.</p></article>
+          <article class="ficha"><h4>Dicas de primeiro uso</h4><p>Na primeira vez em cada tela aparecem 3 dicas curtas, e um botão "?" mostra de novo. Os textos dizem o que fazer, como "Chegou de novo" em vez de termos técnicos.</p></article>
+          <article class="ficha"><h4>Painel do dono no celular</h4><p>O master acompanha as lojas pelo celular numa tela feita para ele: números do dia empilhados, avisos em lista e a loja escolhida no topo.</p></article>
+          <article class="ficha"><h4>Troca rápida de usuário</h4><p>Nas telas compartilhadas, como a cozinha e o caixa, cada pessoa entra com o próprio PIN em um toque. Cinco PINs errados bloqueiam o acesso por alguns minutos.</p></article>
+          <article class="ficha"><h4>Promoção que não se esquece</h4><p>As promoções automáticas entram sozinhas no pedido. O garçom não precisa lembrar do happy hour.</p></article>
+        </div>
+      </section>
+
+      <!-- Parte 3 -->
+      <header class="capitulo">
+        <p class="capitulo__parte">Parte 3 de 4</p>
+        <h2 class="capitulo__titulo">Como é construído</h2>
+        <p class="capitulo__resumo">A arquitetura, as tecnologias escolhidas e por que cada uma está aqui.</p>
+      </header>
+
+      <section class="secao" id="arquitetura">
+        <h3>Loja e nuvem</h3>
+        <p>O Rosh roda em dois lugares ao mesmo tempo, com papéis diferentes. A <strong>caixinha da loja</strong> é a principal: é nela que o lounge opera. A <strong>central na nuvem</strong> é o espelho: guarda uma cópia de tudo, reúne as unidades e é por onde o master acompanha a rede.</p>
+        <p>Para que as duas nunca se contradigam, cada informação tem um único dono. Quem é dono escreve; o outro lado recebe a cópia.</p>
+
+        <div class="donos">
+          <div class="dono dono--loja">
+            <h4>A loja é dona de</h4>
+            <p>Tudo o que acontece no salão.</p>
+            <ul>
+              <li>Pedidos e pagamentos</li>
+              <li>Fechamentos de turno</li>
+              <li>Estoque e essências em falta</li>
+              <li>Impressões</li>
+            </ul>
+          </div>
+          <div class="donos__fluxo" aria-hidden="true">
+            <div class="donos__sobe">
+              <svg class="donos__seta" viewBox="0 0 150 14"><path d="M4 7h138M134 2l8 5-8 5" fill="none" stroke="#ff7b35" stroke-width="2"/></svg>
+              Sobem: pedidos, pagamentos e fechamentos
+            </div>
+            <div class="donos__desce">
+              <svg class="donos__seta" viewBox="0 0 150 14"><path d="M146 7H8M16 2 8 7l8 5" fill="none" stroke="#63c7ba" stroke-width="2"/></svg>
+              Descem: cardápio, preços e equipe
+            </div>
+          </div>
+          <div class="dono dono--nuvem">
+            <h4>A central é dona de</h4>
+            <p>A configuração da rede.</p>
+            <ul>
+              <li>Cardápio base e preços</li>
+              <li>Equipe, cargos e PINs</li>
+              <li>Unidades, mesas e tablets</li>
+              <li>Configurações gerais</li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="lista">
+          <li><strong>Sem internet, a fila espera:</strong> tudo o que acontece na loja vira um registro numa fila. Quando a internet volta, a fila sobe para a central em ordem, e repetir um envio nunca duplica nada.</li>
+          <li><strong>Um só sistema, dois modos:</strong> o mesmo código roda como unidade (na caixinha) ou como central (na nuvem). As regras de pedido, pagamento e preço são idênticas nos dois, e é isso que permite a nuvem assumir uma loja em emergência.</li>
+          <li><strong>A caixinha não fica exposta:</strong> ela é que chama a central, nunca o contrário. O lounge não precisa abrir portas no roteador nem ter IP fixo.</li>
+        </ul>
+      </section>
+
+      <section class="secao" id="falhas">
+        <h3>Quando algo falha</h3>
+        <p>Um lounge funciona à noite, com movimento e sem técnico por perto. Por isso cada falha provável tem uma resposta definida.</p>
+
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead>
+              <tr><th scope="col">Situação</th><th scope="col">O que o sistema faz</th><th scope="col">O que a equipe faz</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">A internet caiu</th>
+                <td>A loja segue normal. Os registros esperam na fila e sobem para a central quando a conexão volta.</td>
+                <td>Nada. Com o 4G de reserva, a central nem chega a ficar desatualizada.</td>
+              </tr>
+              <tr>
+                <th scope="row">Impressora sem papel ou desligada</th>
+                <td>O pedido continua na tela da cozinha. O sistema tenta imprimir de novo e, se não conseguir, mostra um alerta.</td>
+                <td>Troca a bobina ou liga a impressora e toca em reimprimir.</td>
+              </tr>
+              <tr>
+                <th scope="row">O tablet de um garçom perdeu a Wi-Fi</th>
+                <td>O tablet avisa "Sem conexão" e não finaliza o pedido enquanto a caixinha não confirmar. Nenhuma venda fica sem registro.</td>
+                <td>O garçom lança o pedido pelo caixa enquanto o tablet reconecta.</td>
+              </tr>
+              <tr>
+                <th scope="row">A caixinha da loja parou</th>
+                <td>No modo contingência, tablets e telas passam a falar direto com a central na nuvem. Os pedidos aparecem só na tela da cozinha, sem impressão.</td>
+                <td>O gerente ativa o modo contingência pela central.</td>
+              </tr>
+              <tr>
+                <th scope="row">A caixinha voltou durante a contingência</th>
+                <td>Ela se bloqueia sozinha, puxa tudo o que aconteceu na nuvem e espera. Só um lado opera por vez, então não existem duas versões do mesmo pedido.</td>
+                <td>O gerente devolve a operação para a loja.</td>
+              </tr>
+              <tr>
+                <th scope="row">Sem caixinha e sem internet</th>
+                <td>Este é o limite: sem os dois, o sistema não tem onde rodar.</td>
+                <td>Comanda manual até um dos dois voltar. O 4G de reserva e o nobreak tornam esse cenário raro.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="secao" id="tecnologia">
+        <h3>A linguagem e as tecnologias</h3>
+        <p>O Rosh é escrito em uma única linguagem, do tablet do garçom até a central na nuvem.</p>
+
+        <div class="linguagem">
+          <div>
+            <p class="linguagem__nome">TypeScript</p>
+            <p class="linguagem__onde">No tablet do garçom, nas telas do caixa e da cozinha, na caixinha da loja e na central.</p>
+          </div>
+          <ul>
+            <li><strong>Erros pegos antes de chegar ao lounge:</strong> a linguagem confere os tipos de cada informação enquanto o sistema é escrito. Um preço que deveria ser número e veio como texto é barrado antes de ir ao ar.</li>
+            <li><strong>As mesmas regras em todo lugar:</strong> a regra que calcula o preço ou valida um pedido é a mesma na loja e na nuvem. É o que torna a contingência possível.</li>
+            <li><strong>Uma equipe só mantém tudo:</strong> sem trocar de linguagem entre telas, servidor e impressão, a manutenção fica mais rápida e mais barata.</li>
+            <li><strong>Padrão de mercado:</strong> uma das linguagens mais usadas no mundo, com muitos profissionais e bibliotecas maduras.</li>
+          </ul>
+        </div>
+
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead>
+              <tr><th scope="col">Tecnologia</th><th scope="col">Papel no Rosh</th><th scope="col">Por que foi escolhida</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Node.js</th>
+                <td>Servidor da caixinha e da central</td>
+                <td>Leve o bastante para rodar num mini PC e feito para atender muitas conexões ao mesmo tempo: tablets e telas.</td>
+              </tr>
+              <tr>
+                <th scope="row">PostgreSQL</th>
+                <td>Banco de dados</td>
+                <td>Grava pedido, pagamento e impressão juntos ou não grava nada, o que evita venda pela metade. Valores guardados em centavos inteiros, sem erro de arredondamento. Roda igual na loja e na nuvem.</td>
+              </tr>
+              <tr>
+                <th scope="row">WebSocket</th>
+                <td>Tempo real</td>
+                <td>O pedido aparece na tela da cozinha no mesmo segundo, e o aviso de pronto chega ao tablet do garçom sem recarregar nada.</td>
+              </tr>
+              <tr>
+                <th scope="row">React</th>
+                <td>Todas as telas</td>
+                <td>Componentes reaproveitados entre o tablet do garçom, o caixa, a cozinha e o painel de gestão. A mesma aparência em todo o sistema.</td>
+              </tr>
+              <tr>
+                <th scope="row">PWA (aplicativo web)</th>
+                <td>App do tablet e das telas</td>
+                <td>Funciona em qualquer tablet, sem loja de aplicativos. Atualiza sozinho e roda em tela cheia, travado no Rosh.</td>
+              </tr>
+              <tr>
+                <th scope="row">ESC/POS</th>
+                <td>Impressão térmica</td>
+                <td>Padrão aceito pelas principais impressoras do mercado, por USB ou pela rede.</td>
+              </tr>
+              <tr>
+                <th scope="row">HTTPS e verificação em 2 etapas</th>
+                <td>Segurança</td>
+                <td>Toda conversa com a central é criptografada. Master e gerente confirmam o acesso com um segundo fator.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="secao" id="modelos">
+        <h3>Modelos de arquitetura</h3>
+        <p>Os modelos abaixo são as decisões de engenharia que sustentam os compromissos do sistema. Cada um resolve um problema concreto do dia a dia do lounge.</p>
+        <div class="fichas fichas--4">
+          <article class="ficha">
+            <h4>Loja primeiro, nuvem como espelho</h4>
+            <p>A operação acontece na caixinha da loja; a nuvem guarda a cópia. Resolve: o lounge não para quando a internet cai.</p>
+          </article>
+          <article class="ficha">
+            <h4>Um dono para cada informação</h4>
+            <p>Pedidos são da loja, cardápio é da central. Resolve: loja e nuvem nunca se contradizem.</p>
+          </article>
+          <article class="ficha">
+            <h4>Registro de eventos</h4>
+            <p>Tudo o que acontece vira um registro com quem, o quê e quando. Resolve: histórico completo e sincronização confiável.</p>
+          </article>
+          <article class="ficha">
+            <h4>Pedido só existe pago</h4>
+            <p>O pedido e o pagamento são gravados juntos, e só então ele entra na fila. Resolve: nada é preparado sem estar pago.</p>
+          </article>
+          <article class="ficha">
+            <h4>Fila de impressão com confirmação</h4>
+            <p>Cada comanda é um trabalho com tentativas e status. Resolve: falta de papel não apaga pedido.</p>
+          </article>
+          <article class="ficha">
+            <h4>Um código, dois modos</h4>
+            <p>O mesmo sistema roda como unidade ou como central. Resolve: a nuvem pode assumir uma loja em emergência.</p>
+          </article>
+          <article class="ficha">
+            <h4>Envio sem duplicidade</h4>
+            <p>Cada envio carrega uma identificação única. Resolve: toque duplo ou Wi-Fi instável não geram pedido nem cobrança repetida.</p>
+          </article>
+          <article class="ficha">
+            <h4>Preço congelado em centavos</h4>
+            <p>O valor é guardado no momento da venda, em centavos inteiros. Resolve: fechamentos exatos, mesmo com mudança de preço.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="secao" id="dados">
+        <h3>O que o sistema guarda</h3>
+        <p>As informações se organizam em três grupos. Toda informação já nasce marcada com a unidade a que pertence, por isso a loja-teste vira a unidade número 1 da rede sem nenhuma reescrita.</p>
+
+        <div class="grupo-dados">
+          <h4>Rede e pessoas</h4>
+          <div class="fichas fichas--4">
+            <article class="ficha"><h4>Unidade</h4><ul class="campos"><li>Nome e endereço</li><li>Ativa ou inativa</li></ul></article>
+            <article class="ficha"><h4>Usuário</h4><ul class="campos"><li>Nome e cargo</li><li>Unidade (exceto o master)</li><li>Senha ou PIN</li></ul></article>
+            <article class="ficha"><h4>Mesa</h4><ul class="campos"><li>Número ou nome</li><li>Unidade</li></ul></article>
+            <article class="ficha"><h4>Dispositivo</h4><ul class="campos"><li>Tablet ou tela</li><li>Ativo ou desativado</li></ul></article>
+          </div>
+        </div>
+
+        <div class="grupo-dados">
+          <h4>Cardápio</h4>
+          <div class="fichas fichas--3">
+            <article class="ficha"><h4>Tipo de rosh</h4><ul class="campos"><li>Nome e preço</li><li>Máximo de sabores</li></ul></article>
+            <article class="ficha"><h4>Marca, linha e essência</h4><ul class="campos"><li>Faixa e acréscimo da marca</li><li>Categoria, etiquetas, em falta</li></ul></article>
+            <article class="ficha"><h4>Estoque da unidade</h4><ul class="campos"><li>Pacotes e mínimo</li><li>Em falta, preço próprio</li></ul></article>
+            <article class="ficha"><h4>Adicional</h4><ul class="campos"><li>Nome e preço</li><li>Ex.: carvão extra</li></ul></article>
+            <article class="ficha"><h4>Promoção</h4><ul class="campos"><li>Porcentagem e onde vale</li><li>Datas, dias e horário</li><li>Rede ou unidade</li></ul></article>
+            <article class="ficha"><h4>Rosh duplo</h4><ul class="campos"><li>Crédito da mesa</li><li>Vale no dia, uso único</li></ul></article>
+          </div>
+        </div>
+
+        <div class="grupo-dados">
+          <h4>Operação</h4>
+          <div class="fichas fichas--3">
+            <article class="ficha"><h4>Pedido</h4><ul class="campos"><li>Mesa ou balcão, dia operacional</li><li>Quem vendeu, um ou mais narguilés</li><li>Estado, treino ou real</li></ul></article>
+            <article class="ficha"><h4>Ocupação da mesa</h4><ul class="campos"><li>Aberta e liberada em</li><li>Último carvão, créditos</li></ul></article>
+            <article class="ficha"><h4>Pedido de cancelamento</h4><ul class="campos"><li>Quem pediu e motivo</li><li>Aprovado ou recusado por</li></ul></article>
+            <article class="ficha"><h4>Item do pedido</h4><ul class="campos"><li>Rosh, sabores e adicionais</li><li>Preço congelado</li><li>Promoção e desconto</li></ul></article>
+            <article class="ficha"><h4>Pagamento</h4><ul class="campos"><li>Forma e valor</li><li>Quem recebeu</li><li>Estorno, se houver</li></ul></article>
+            <article class="ficha"><h4>Turno</h4><ul class="campos"><li>Fundo de troco e retiradas</li><li>Totais por forma, dinheiro contado</li><li>Conferido por, diferença</li></ul></article>
+            <article class="ficha"><h4>Impressora e impressão</h4><ul class="campos"><li>USB ou rede, 58 ou 80 mm</li><li>Pendente, impresso ou falhou</li></ul></article>
+            <article class="ficha"><h4>Movimento de estoque</h4><ul class="campos"><li>Entrada, abertura ou contagem</li><li>Quem, quando e motivo</li></ul></article>
+            <article class="ficha"><h4>Aviso</h4><ul class="campos"><li>Tipo, loja e item</li><li>Lido por quem</li></ul></article>
+            <article class="ficha"><h4>Evento</h4><ul class="campos"><li>Quem, o quê e quando</li><li>Base do histórico e da sincronização</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="seguranca">
+        <h3>Segurança</h3>
+        <ul class="lista">
+          <li><strong>Tablet travado:</strong> roda em modo quiosque, só com o Rosh. O gerente desativa um tablet perdido a qualquer momento.</li>
+          <li><strong>PIN pessoal:</strong> cada garçom, caixa e cozinha entra com o próprio PIN, e a sessão termina sozinha depois de um tempo sem uso. Cinco PINs errados bloqueiam o acesso por alguns minutos. Ninguém vende no nome de outro.</li>
+          <li><strong>Catálogo protegido:</strong> só o master altera marcas e essências para todas as lojas; o gerente ajusta apenas a sua.</li>
+          <li><strong>Desconto sob controle:</strong> garçom e caixa só aplicam promoções cadastradas. Qualquer desconto fora delas exige o PIN do gerente e fica registrado com motivo.</li>
+          <li><strong>Estorno só com gerente:</strong> garçom e caixa não cancelam pedidos pagos. O gerente cancela com motivo e o estorno aparece no fechamento.</li>
+          <li><strong>Acesso remoto protegido:</strong> a central exige senha e verificação em duas etapas para master e gerente.</li>
+          <li><strong>Caixinha fechada para a internet:</strong> só ela inicia a conexão com a central, sempre criptografada.</li>
+          <li><strong>Redes separadas:</strong> a Wi-Fi dos tablets e da equipe é diferente da Wi-Fi oferecida aos clientes.</li>
+          <li><strong>O servidor confere tudo:</strong> preço, limite de sabores e permissão de cada cargo são verificados na caixinha, nunca confiados ao tablet.</li>
+        </ul>
+      </section>
+
+      <section class="secao" id="qualidade">
+        <h3>Qualidade e testes</h3>
+        <p>Cada parte do sistema é coberta por testes automáticos que rodam a cada mudança, antes de qualquer atualização chegar ao lounge.</p>
+        <ul class="lista">
+          <li><strong>Regras do negócio:</strong> limite de sabores, preço congelado, adicionais, cálculo das promoções, crédito do rosh duplo (uso único, vence no dia), estoque (entrada, abertura, contagem e mínimo gerando aviso), virada do dia operacional, pedidos de treino fora das contas, troco e fechamento do dinheiro, caminhos do pedido e totais do fechamento. Exemplo: um pedido sem pagamento nunca chega à cozinha.</li>
+          <li><strong>Integração:</strong> o servidor testado com um banco de dados real.</li>
+          <li><strong>Impressora de teste:</strong> uma impressora simulada captura a comanda para conferir o conteúdo sem gastar papel.</li>
+          <li><strong>Sincronização:</strong> testes que derrubam a internet, repetem envios e simulam a troca da contingência.</li>
+          <li><strong>Fluxo completo no navegador:</strong> o garçom vende, a cozinha prepara, o garçom entrega e fecha o turno, tudo automatizado.</li>
+        </ul>
+      </section>
+
+      <section class="secao" id="equipamentos">
+        <h3>Equipamentos</h3>
+        <p>Perfil recomendado por unidade. Marcas e modelos podem ser trocados por equivalentes.</p>
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead>
+              <tr><th scope="col">Equipamento</th><th scope="col">Para quê</th><th scope="col">Perfil recomendado</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Caixinha (mini PC)</th>
+                <td>Servidor da loja, banco de dados e impressão</td>
+                <td>Mini PC silencioso de baixo consumo, 8 GB de memória, SSD de 256 GB, ligado por cabo de rede.</td>
+              </tr>
+              <tr>
+                <th scope="row">Tablets dos garçons</th>
+                <td>Lançar pedidos e receber avisos</td>
+                <td>Tablet Android de 8 a 10 polegadas, um por garçom em serviço, com capa resistente e carregador no balcão.</td>
+              </tr>
+              <tr>
+                <th scope="row">Telas do caixa e da cozinha</th>
+                <td>Pedidos no balcão e fila de montagem</td>
+                <td>Tablet ou monitor com computador simples.</td>
+              </tr>
+              <tr>
+                <th scope="row">Impressoras térmicas</th>
+                <td>Comandas, comprovantes e fechamentos</td>
+                <td>Compatível com ESC/POS, bobina de 80 mm, USB ou rede. <small>Exemplos de mercado: Epson TM-T20, Elgin i9, Bematech MP-4200 TH.</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Roteador com 4G de reserva</th>
+                <td>Manter a central atualizada se a internet cair</td>
+                <td>Roteador com segunda conexão por chip e duas redes Wi-Fi: equipe e clientes.</td>
+              </tr>
+              <tr>
+                <th scope="row">Nobreak</th>
+                <td>Queda de energia</td>
+                <td>Mantém caixinha, roteador e impressora da cozinha ligados por alguns minutos.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Parte 4 -->
+      <header class="capitulo">
+        <p class="capitulo__parte">Parte 4 de 4</p>
+        <h2 class="capitulo__titulo">Como cresce</h2>
+        <p class="capitulo__resumo">Da loja-teste a uma rede de lounges administrada de casa.</p>
+      </header>
+
+      <section class="secao" id="rede">
+        <h3>Uma rede de lounges</h3>
+        <p>O Rosh começa em uma unidade, mas cada peça foi desenhada para dez ou mais. Pela central, o master acompanha a rede inteira de casa:</p>
+        <ul class="lista">
+          <li>Pedidos acontecendo agora, em cada unidade.</li>
+          <li>Faturamento por unidade, por garçom e por forma de pagamento, com comparativos entre lojas.</li>
+          <li>Os sabores e os tipos de rosh que mais vendem.</li>
+          <li>Fechamentos de turno conferidos em cada unidade.</li>
+          <li>Os avisos de todas as lojas num só sino: essência em falta, estoque baixo, impressora com falha e turnos para conferir.</li>
+          <li>Estoque de essências de cada loja, lado a lado.</li>
+          <li>Promoções da rede inteira, criadas pelo master, ou de uma unidade, criadas pelo gerente, com o resultado de cada uma.</li>
+          <li>Cardápio base enviado para todas as lojas, com ajustes locais de preço e disponibilidade.</li>
+          <li>Gerentes e equipes de cada unidade.</li>
+          <li>Atualizações do sistema enviadas para todas as caixinhas, aplicadas com a loja fechada e desfeitas sozinhas se algo falhar.</li>
+          <li>Backup diário de toda a rede.</li>
+        </ul>
+
+        <h4>Abrir uma unidade nova</h4>
+        <ol class="jornada">
+          <li><h5>Cadastrar a unidade na central</h5><p>Nome, endereço e gerente responsável.</p></li>
+          <li><h5>Cadastrar mesas, equipe e impressoras</h5><p>Cada pessoa recebe o seu PIN. O cardápio base da rede já vem pronto.</p></li>
+          <li><h5>Ligar a caixinha</h5><p>Ela se conecta à central e baixa toda a configuração sozinha.</p></li>
+          <li><h5>Ativar os tablets e as telas</h5><p>O gerente ativa cada aparelho lendo um QR code.</p></li>
+          <li><h5>Imprimir uma comanda de teste</h5><p>Com a impressão confirmada, a unidade está pronta para abrir.</p></li>
+        </ol>
+      </section>
+
+      <section class="secao" id="etapas">
+        <h3>Etapas de construção</h3>
+        <p>O sistema é entregue em três etapas. Cada uma já funciona sozinha e prepara a próxima.</p>
+        <ol class="etapas">
+          <li class="etapa">
+            <h4>Sistema da loja</h4>
+            <ul>
+              <li>Pedido pelo tablet do garçom e pelo caixa</li>
+              <li>Pagamento registrado na hora</li>
+              <li>Adicionais, promoções e rosh duplo</li>
+              <li>Estoque de essências e avisos da loja</li>
+              <li>Mapa de mesas, modo treino e dicas de primeiro uso</li>
+              <li>Tela da cozinha e comanda impressa</li>
+              <li>Fechamento de turno por operador</li>
+              <li>Gestão da unidade: cardápio, equipe, PINs</li>
+            </ul>
+            <p class="etapa__ganho"><strong>O lounge ganha:</strong> a operação completa na loja-teste, funcionando mesmo sem internet.</p>
+          </li>
+          <li class="etapa">
+            <h4>Central na nuvem</h4>
+            <ul>
+              <li>Espelho de tudo o que acontece na loja</li>
+              <li>Painel do master</li>
+              <li>Cardápio base da rede</li>
+              <li>Relatórios por garçom e backup diário</li>
+              <li>Avisos de todas as lojas e painel do dono no celular</li>
+            </ul>
+            <p class="etapa__ganho"><strong>O lounge ganha:</strong> o dono acompanha de casa, e os dados ficam seguros fora da loja.</p>
+          </li>
+          <li class="etapa">
+            <h4>Contingência e expansão</h4>
+            <ul>
+              <li>Modo contingência pela nuvem</li>
+              <li>Atualizações remotas das caixinhas</li>
+              <li>Abertura de novas unidades</li>
+              <li>Comparativos da rede</li>
+            </ul>
+            <p class="etapa__ganho"><strong>O lounge ganha:</strong> uma rede pronta para crescer, com cada loja protegida contra falhas.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="secao" id="fora">
+        <h3>Fora da primeira versão</h3>
+        <p>Para entregar rápido e bem feito, alguns temas ficam de fora de propósito. Todos podem entrar em versões seguintes sem mudar a base do sistema.</p>
+        <ul class="lista">
+          <li>Integração automática com a maquininha ou com o Pix (o Rosh registra o pagamento, mas não o processa).</li>
+          <li>Pagamento dividido entre formas no mesmo pedido.</li>
+          <li>Cardápio de comidas e bebidas do bar.</li>
+          <li>Delivery.</li>
+          <li>Comissão de garçom calculada pelo sistema (os relatórios por garçom já trazem a base).</li>
+          <li>Estoque em gramas com baixa automática a cada pedido (na primeira versão, o estoque é em pacotes com baixa manual).</li>
+          <li>Estoque de carvão e outros insumos.</li>
+          <li>Emissão de nota fiscal, que continua no sistema fiscal atual.</li>
+        </ul>
+      </section>
+
+      <section class="secao" id="glossario">
+        <h3>Glossário</h3>
+        <dl class="glossario">
+          <dt>Rosh</dt><dd>A cabeça do narguilé, onde vai a essência. Também é o nome provisório do sistema.</dd>
+          <dt>Essência</dt><dd>O sabor do tabaco usado no narguilé. Cada essência pertence a uma marca, e algumas marcas dividem os sabores em linhas.</dd>
+          <dt>Cozinha</dt><dd>O lugar onde o narguilé é montado, com a sua tela de pedidos e a sua impressora.</dd>
+          <dt>Adicional</dt><dd>Item cobrado à parte no pedido, como o carvão extra. Pode ser pedido junto do narguilé ou depois, sozinho.</dd>
+          <dt>Promoção</dt><dd>Desconto em porcentagem cadastrado pelo gerente, com período e itens em que vale.</dd>
+          <dt>Rosh duplo</dt><dd>A promoção em que o cliente paga um rosh e ganha o segundo, lançado depois a partir do crédito da mesa.</dd>
+          <dt>Estoque mínimo</dt><dd>A quantidade de pacotes de uma essência abaixo da qual o sistema avisa que está acabando.</dd>
+          <dt>Avisos</dt><dd>A lista aberta pelo sininho do painel: essência em falta, estoque baixo, impressora com falha e turnos para conferir.</dd>
+          <dt>Dia operacional</dt><dd>O dia de trabalho do lounge, que vira de madrugada (por exemplo, às 6h). Relatórios, turnos e créditos usam esse dia.</dd>
+          <dt>Fundo de troco</dt><dd>O dinheiro com que o caixa começa o turno.</dd>
+          <dt>Sangria</dt><dd>Uma retirada de dinheiro do caixa durante o turno, registrada com motivo.</dd>
+          <dt>Liberar mesa</dt><dd>A ação do garçom quando o grupo vai embora: a mesa fica livre no mapa e os créditos de rosh duplo daquela mesa acabam.</dd>
+          <dt>Modo treino</dt><dd>Um modo para praticar: os pedidos saem marcados "TREINO" e não contam no caixa, no estoque nem nos relatórios.</dd>
+          <dt>Comanda</dt><dd>O papel impresso na cozinha com o pedido da mesa.</dd>
+          <dt>Fechamento de turno</dt><dd>O resumo do movimento de um garçom ou caixa: pedidos e totais por forma de pagamento, conferido pelo gerente.</dd>
+          <dt>Master</dt><dd>O cargo do dono, com acesso a todas as unidades pela central.</dd>
+          <dt>Caixinha</dt><dd>O mini PC instalado em cada lounge, que funciona como servidor da loja.</dd>
+          <dt>Central</dt><dd>A parte do sistema que roda na nuvem e reúne todas as unidades.</dd>
+          <dt>Unidade</dt><dd>Cada lounge da rede.</dd>
+          <dt>Modo contingência</dt><dd>A operação de emergência em que a central assume uma unidade cuja caixinha parou.</dd>
+          <dt>PWA</dt><dd>Aplicativo que roda pelo navegador, sem loja de aplicativos, e pode ocupar a tela inteira.</dd>
+          <dt>ESC/POS</dt><dd>A linguagem padrão das impressoras térmicas de comanda e cupom.</dd>
+          <dt>Evento</dt><dd>O registro de algo que aconteceu no sistema: quem fez, o quê e quando.</dd>
+          <dt>NFC-e</dt><dd>A nota fiscal eletrônica do consumidor, emitida pelo sistema fiscal do lounge.</dd>
+        </dl>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <p>Rosh, especificação do sistema, versão 5.</p>
+  <a href="animacao.html">Ver a animação do sistema</a>
+</footer>
+
+<script src="assets/especificacao.js"></script>
+</body>
+</html>

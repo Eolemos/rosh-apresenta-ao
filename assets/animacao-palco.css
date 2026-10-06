@@ -1,0 +1,180 @@
+/* Elementos do palco SVG */
+
+.s-corpo {
+  fill: var(--fumo-3);
+  stroke: var(--linha);
+  stroke-width: 2.5;
+  transition: stroke 0.4s, fill 0.4s;
+}
+
+.s-tela {
+  fill: #150f18;
+}
+
+.s-detalhe {
+  fill: none;
+  stroke: var(--linha);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.aceso-brasa .s-corpo {
+  stroke: var(--brasa);
+  filter: url(#brilho);
+}
+
+.aceso-vidro .s-corpo {
+  stroke: var(--vidro);
+  fill: #1f2a30;
+  filter: url(#brilho);
+}
+
+.falha .s-corpo {
+  stroke: var(--recusa);
+  fill: #3a1d26;
+}
+
+.bloqueado .s-corpo {
+  stroke: var(--latao);
+}
+
+.apagado {
+  opacity: 0.35;
+  transition: opacity 0.4s;
+}
+
+.s-nuvem {
+  fill: #1f2b30;
+  stroke: var(--vidro);
+  stroke-width: 2.5;
+}
+
+.aceso-nuvem .s-nuvem {
+  filter: url(#brilho);
+}
+
+.s-rotulo {
+  fill: var(--texto-2);
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.s-rotulo--forte {
+  fill: var(--texto);
+  font-weight: 650;
+}
+
+.s-rotulo--pequeno {
+  font-size: 15px;
+}
+
+.s-rotulo--latao {
+  fill: var(--latao);
+}
+
+.s-camada-nome {
+  font-size: 24px;
+}
+
+.s-numero-medio {
+  fill: var(--texto);
+  font-size: 40px;
+  font-weight: 760;
+  font-stretch: 85%;
+}
+
+.s-tela-texto {
+  fill: var(--texto);
+  font-size: 14px;
+}
+
+.s-tela-texto--fraco {
+  fill: var(--texto-3);
+}
+
+.s-tela-texto--forte {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.s-tela-texto--negrito {
+  font-weight: 700;
+}
+
+.s-tela-texto--mini {
+  font-size: 12.5px;
+}
+
+.s-titulo-palco {
+  fill: var(--texto);
+  font-size: 68px;
+  font-weight: 760;
+  font-stretch: 82%;
+  letter-spacing: -0.02em;
+}
+
+.s-numero {
+  font-size: 64px;
+  font-weight: 780;
+  font-stretch: 80%;
+}
+
+.s-linha {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke 0.4s, opacity 0.4s;
+}
+
+.s-linha--latao { stroke: var(--latao); }
+.s-linha--brasa { stroke: var(--brasa); }
+.s-linha--vidro { stroke: var(--vidro); }
+.s-linha--falha { stroke: var(--recusa); }
+.s-linha--apagada { stroke: var(--linha); }
+.s-linha--fina { stroke-width: 2; }
+.s-tracejada { stroke-dasharray: 7 9; }
+
+.s-token {
+  filter: url(#brilho);
+}
+
+.s-preenche-brasa { fill: var(--brasa); }
+.s-preenche-brasa2 { fill: var(--brasa-2); }
+.s-preenche-vidro { fill: var(--vidro); }
+.s-preenche-latao { fill: var(--latao); }
+.s-preenche-falha { fill: var(--recusa); }
+.s-preenche-texto { fill: var(--texto); }
+.s-preenche-escuro { fill: #2a1408; }
+.s-preenche-fumo { fill: var(--fumo); }
+
+.s-contorno-brasa { fill: var(--brasa-fundo); stroke: var(--brasa); stroke-width: 2; }
+.s-contorno-vidro { fill: var(--vidro-fundo); stroke: var(--vidro); stroke-width: 2; }
+.s-contorno-latao { fill: var(--latao-fundo); stroke: var(--latao); stroke-width: 2; }
+.s-contorno-falha { fill: var(--recusa-fundo); stroke: var(--recusa); stroke-width: 2; }
+.s-contorno-linha { fill: var(--fumo-2); stroke: var(--linha); stroke-width: 2; }
+
+.s-anel {
+  fill: none;
+  stroke-width: 3;
+}
+
+.s-anel--brasa { stroke: var(--brasa-2); }
+.s-anel--vidro { stroke: var(--vidro); }
+.s-anel--falha { stroke: var(--recusa); }
+
+.s-papel { fill: var(--papel); }
+
+.s-comanda-texto {
+  fill: var(--tinta);
+  font-family: var(--fonte-comanda);
+  font-size: 11.5px;
+}
+
+.s-comanda-mesa {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.s-comanda--compacta .s-comanda-texto:not(.s-comanda-mesa) {
+  font-size: 10.5px;
+}

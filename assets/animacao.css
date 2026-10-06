@@ -1,0 +1,282 @@
+/* Página da animação: layout, controles e estilos do palco SVG */
+
+.pagina {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px clamp(16px, 3vw, 40px) 48px;
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 4px 0 22px;
+}
+
+.marca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  font-weight: 400;
+}
+
+.marca__nome {
+  font-size: 2.1rem;
+  font-weight: 760;
+  font-stretch: 82%;
+  letter-spacing: -0.015em;
+  color: var(--brasa);
+}
+
+.marca__desc {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-stretch: 90%;
+  color: var(--texto);
+}
+
+.apresentacao {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "palco" "legenda" "cenas";
+  gap: 28px;
+}
+
+@media (min-width: 1000px) {
+  .apresentacao {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-areas: "palco legenda" "cenas cenas";
+    gap: 28px 36px;
+  }
+
+  .legenda {
+    position: sticky;
+    top: 24px;
+  }
+}
+
+.palco-area {
+  grid-area: palco;
+  min-width: 0;
+}
+
+.palco {
+  position: relative;
+  aspect-ratio: 5 / 3;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-m);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 70% at 50% 118%, rgba(255, 123, 53, 0.15), transparent 62%),
+    var(--fumo-2);
+}
+
+.palco__fumaca,
+.palco > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.narracao {
+  min-height: 3.3em;
+  margin-top: 16px;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--texto);
+  transition: opacity 0.25s;
+}
+
+.narracao.trocando {
+  opacity: 0.2;
+}
+
+.narracao-lista {
+  margin: 16px 0 0;
+  padding-left: 1.4em;
+  color: var(--texto);
+  display: grid;
+  gap: 6px;
+}
+
+.narracao-lista li::marker {
+  color: var(--latao);
+  font-weight: 700;
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.controles .botao:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.controles .botao:disabled:hover {
+  background: var(--fumo-2);
+  border-color: var(--linha);
+}
+
+.controles .botao svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#btn-tocar .icone-tocar {
+  fill: currentColor;
+  display: none;
+}
+
+#btn-tocar.parado .icone-tocar {
+  display: inline;
+}
+
+#btn-tocar.parado .icone-pausar {
+  display: none;
+}
+
+.legenda {
+  grid-area: legenda;
+  align-self: start;
+  padding-left: 20px;
+  border-left: 2px solid var(--latao);
+}
+
+.legenda__contagem {
+  color: var(--latao);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.legenda__titulo {
+  margin-top: 6px;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 720;
+  font-stretch: 88%;
+  letter-spacing: -0.01em;
+}
+
+.legenda__texto {
+  margin-top: 12px;
+  color: var(--texto-2);
+}
+
+.legenda__beneficios {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.legenda__beneficios li {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.45;
+}
+
+.legenda__beneficios li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brasa);
+  box-shadow: 0 0 10px rgba(255, 123, 53, 0.6);
+}
+
+.cenas {
+  grid-area: cenas;
+}
+
+.cenas ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 1000px) {
+  .cenas ol {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+.cena-btn {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 6px;
+  padding: 10px 12px 12px;
+  text-align: left;
+  font: inherit;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  color: var(--texto-2);
+  background: transparent;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-s);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.cena-btn:hover {
+  background: var(--fumo-2);
+  color: var(--texto);
+}
+
+.cena-btn[aria-current="step"] {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+  color: var(--texto);
+}
+
+.cena-btn__num {
+  font-weight: 700;
+  color: var(--latao);
+}
+
+.cena-btn__barra {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--fumo-3);
+  overflow: hidden;
+}
+
+.cena-btn__barra span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--brasa);
+}
+
+.movimento-reduzido #btn-tocar,
+.movimento-reduzido .cena-btn__barra {
+  display: none;
+}
+
+/* Navegação entre as páginas: marca a página atual */
+.topo__links .botao[aria-current="page"] {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+  color: var(--texto);
+}

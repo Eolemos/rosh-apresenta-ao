@@ -1,0 +1,231 @@
+/* Interface do Rosh: celular do dono (layout próprio para tela pequena) */
+
+.ui--celular {
+  font-size: 15px;
+}
+
+.ui-cel-topo {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: 58px;
+  padding: 0 14px;
+  background: #1c1520;
+  border-bottom: 1px solid #2f2535;
+}
+
+.ui-cel-topo__marca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.ui-cel-loja select {
+  max-width: 220px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid #3a2d40;
+  border-radius: 10px;
+  background: #241c28;
+  color: var(--texto);
+  font: 600 14px var(--fonte);
+}
+
+.ui-cel-dia {
+  flex: none;
+  padding: 8px 14px 0;
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-cel-corpo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 14px 16px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.ui-cel-kpi {
+  padding: 12px 14px;
+  border: 1px solid #2f2535;
+  border-radius: 14px;
+  background: #1f1823;
+}
+
+.ui-cel-kpi--destaque {
+  border-color: rgba(255, 123, 53, 0.5);
+  background: linear-gradient(135deg, rgba(255, 123, 53, 0.16), #1f1823 70%);
+}
+
+.ui-cel-kpi__rotulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-3);
+}
+
+.ui-cel-kpi__valor {
+  margin-top: 2px !important;
+  font-size: 24px;
+  font-weight: 750;
+}
+
+.ui-cel-kpi--destaque .ui-cel-kpi__valor {
+  font-size: 30px;
+}
+
+.ui-cel-kpi__detalhe {
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-cel-duas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ui-cel-bloco {
+  padding: 12px;
+  border: 1px solid #2f2535;
+  border-radius: 14px;
+  background: #1a131d;
+}
+
+.ui-cel-bloco__titulo {
+  margin-bottom: 8px !important;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ui-cel-bloco .ui-grafico {
+  gap: 5px;
+}
+
+.ui-cel-bloco .ui-grafico__barra {
+  max-width: 22px;
+}
+
+.ui-cel-avisos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-cel-aviso {
+  padding: 10px 11px;
+  border: 1px solid #3a2d40;
+  border-left: 4px solid var(--linha);
+  border-radius: 11px;
+  background: #241c28;
+}
+
+.ui-cel-aviso.ui-aviso-item--falta,
+.ui-cel-aviso.ui-aviso-item--impressora {
+  border-left-color: #e5484d;
+}
+
+.ui-cel-aviso.ui-aviso-item--baixo {
+  border-left-color: var(--latao);
+}
+
+.ui-cel-aviso.ui-aviso-item--turno,
+.ui-cel-aviso.ui-aviso-item--cancelamento {
+  border-left-color: var(--vidro);
+}
+
+.ui-cel-aviso__titulo {
+  margin-top: 4px !important;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.ui-cel-aviso__loja {
+  font-size: 12.5px;
+  color: var(--texto-2);
+}
+
+.ui-cel-sub {
+  font-size: 13px;
+  color: var(--texto-3);
+}
+
+.ui-cel-nav {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  height: 66px;
+  background: #1c1520;
+  border-top: 1px solid #2f2535;
+}
+
+.ui-cel-nav__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 0;
+  background: transparent;
+  color: var(--texto-3);
+  font: 600 12px var(--fonte);
+  cursor: pointer;
+}
+
+.ui-cel-nav__item svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ui-cel-nav__item[aria-current="page"] {
+  color: var(--brasa-2);
+}
+
+.ui-cel-nav__n {
+  position: absolute;
+  top: 8px;
+  left: calc(50% + 6px);
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #e5484d;
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+}
+
+.ui--celular .ui-aviso {
+  bottom: 80px;
+}
+
+.ui--celular .ui-modal__caixa {
+  width: calc(100% - 24px);
+  max-height: 90%;
+  overflow: auto;
+}
+
+.ui--celular .ui-aviso-item__acoes .ui-botao {
+  min-height: 40px;
+}
+
+/* Moldura de celular na página */
+.aparelho--celular .aparelho__moldura {
+  padding: 10px;
+  border-radius: 36px;
+}
+
+.aparelho--celular .aparelho__janela {
+  border-radius: 26px;
+}

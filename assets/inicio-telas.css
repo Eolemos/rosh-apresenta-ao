@@ -1,0 +1,360 @@
+/* Página inicial: telinhas que ilustram cada passo da noite (recortes das telas do Rosh) */
+
+.tela {
+  margin: 0;
+}
+
+.tela__vidro {
+  padding: 0.9rem;
+  border-radius: 16px;
+  border: 1px solid var(--linha);
+  background: #150f17;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.tela figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--texto-3);
+}
+
+.t-rotulo {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  color: var(--texto-3);
+}
+
+.t-rotulo + .t-rotulo,
+.t-bloco + .t-rotulo {
+  margin-top: 0.75rem;
+}
+
+/* Mapa de mesas */
+.t-mesas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.t-mesa {
+  padding: 0.45rem 0.3rem;
+  border-radius: 8px;
+  border: 1px solid var(--linha);
+  background: var(--fumo-2);
+  text-align: center;
+}
+
+.t-mesa b {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.t-mesa small {
+  font-size: 0.72rem;
+  color: var(--texto-3);
+}
+
+.t-mesa--escolhida {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+}
+
+.t-mesa--carvao {
+  border-color: var(--latao);
+  background: var(--latao-fundo);
+}
+
+.t-mesa--carvao small {
+  color: var(--latao);
+}
+
+/* Marcas e sabores */
+.t-marcas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.t-marca {
+  padding: 0.85rem 0.5rem 0.45rem;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.t-marca--zomo {
+  background: #1f7a5c;
+}
+
+.t-marca--ziggy {
+  background: #e3a233;
+  color: #2b1d05;
+}
+
+.t-marca--adalya {
+  background: #b9334a;
+}
+
+.t-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.t-chip {
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--brasa);
+  background: var(--brasa-fundo);
+  color: var(--brasa-2);
+  font-weight: 600;
+}
+
+.t-chip--falta {
+  border-color: var(--linha);
+  background: transparent;
+  color: var(--texto-3);
+  text-decoration: line-through;
+}
+
+/* Linhas de valor e ações */
+.t-linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.22rem 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.t-linha--desconto {
+  color: var(--vidro);
+}
+
+.t-linha--total {
+  margin-top: 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--linha);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.t-botao {
+  margin-top: 0.7rem;
+  padding: 0.7rem 0.6rem;
+  border-radius: 10px;
+  background: var(--brasa);
+  color: #2a1408;
+  font-weight: 700;
+  text-align: center;
+}
+
+.t-botao--vidro {
+  border: 1px solid var(--vidro);
+  background: var(--vidro-fundo);
+  color: var(--vidro);
+}
+
+.t-qtd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--linha);
+  background: var(--fumo-2);
+}
+
+.t-qtd__botoes {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+}
+
+.t-qtd__botoes span {
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--linha);
+}
+
+.t-qtd__botoes span:last-child {
+  border-color: var(--brasa);
+  color: var(--brasa-2);
+}
+
+.t-promo {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--vidro);
+  background: var(--vidro-fundo);
+  color: var(--vidro);
+  font-weight: 600;
+}
+
+/* Cartões: pedido na cozinha, aviso e crédito */
+.t-cartao {
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--linha);
+  border-left: 3px solid var(--latao);
+  background: var(--fumo-2);
+}
+
+.t-cartao--vidro {
+  border-color: var(--vidro);
+  border-left-color: var(--vidro);
+  background: var(--vidro-fundo);
+}
+
+.t-cartao__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.t-cartao__topo b {
+  font-size: 1.15rem;
+}
+
+.t-cartao p {
+  margin-top: 0.2rem;
+  color: var(--texto-2);
+}
+
+.t-cartao .t-destaque {
+  color: var(--brasa-2);
+  font-weight: 600;
+}
+
+.t-estado {
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--latao);
+  background: var(--latao-fundo);
+  color: var(--latao);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.t-estado--vidro {
+  border-color: var(--vidro);
+  background: var(--vidro-fundo);
+  color: var(--vidro);
+}
+
+.tela .comanda {
+  max-width: 260px;
+  margin: 0 auto;
+  font-size: 0.78rem;
+}
+
+/* Celular do dono */
+.cel {
+  margin: 0;
+}
+
+.cel__corpo {
+  padding: 0.9rem 0.8rem 1.1rem;
+  border-radius: 28px;
+  border: 2px solid #3a2d40;
+  background: #150f17;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
+  font-size: 0.86rem;
+}
+
+.cel__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+}
+
+.cel__sino {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--linha);
+}
+
+.cel__sino svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cel__sino b {
+  position: absolute;
+  top: -0.3rem;
+  right: -0.3rem;
+  display: grid;
+  place-items: center;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  background: var(--recusa);
+  color: #2b0a10;
+  font-size: 0.7rem;
+}
+
+.cel__numero {
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid var(--brasa);
+  background: var(--brasa-fundo);
+}
+
+.cel__numero b {
+  display: block;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cel__numero span {
+  color: var(--texto-2);
+}
+
+.cel__aviso {
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid var(--linha);
+  border-left: 3px solid var(--recusa);
+  background: var(--fumo-2);
+}
+
+.cel__aviso--baixo {
+  border-left-color: var(--latao);
+}
+
+.cel__aviso small {
+  display: block;
+  color: var(--texto-3);
+}
+
+.cel figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--texto-3);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .cel {
+    max-width: 250px;
+  }
+}

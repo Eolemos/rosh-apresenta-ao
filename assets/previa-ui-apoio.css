@@ -1,0 +1,396 @@
+/* Interface do Rosh: diálogos de apoio (mapa de mesas, PIN, treino, dicas), caixa e central */
+
+.ui-menu-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ui-menu-lista .ui-botao {
+  justify-content: flex-start;
+}
+
+.ui-usuario--botao {
+  min-height: 44px;
+  padding: 0 10px 0 4px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--texto);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ui-usuario--botao:hover {
+  border-color: #3a2d40;
+}
+
+.ui-ajuda-botao {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #3a2d40;
+  border-radius: 50%;
+  background: #1f1823;
+  color: var(--texto-2);
+  font: 700 16px var(--fonte);
+  cursor: pointer;
+}
+
+/* Mapa de mesas */
+.ui-modal__caixa--mapa {
+  width: 860px;
+  max-height: 92%;
+  overflow: auto;
+}
+
+.ui-mapa {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ui-mapa__mesa {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 112px;
+  padding: 10px;
+  border: 1px solid #2f2535;
+  border-radius: 12px;
+  background: #18121b;
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-mapa__mesa--ocupada {
+  border-color: #4a3a50;
+  background: #221a26;
+  color: var(--texto-2);
+}
+
+.ui-mapa__mesa--carvao {
+  border-color: var(--latao);
+  background: rgba(207, 167, 96, 0.12);
+}
+
+.ui-mapa__nome {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.ui-mapa__credito {
+  color: var(--vidro);
+  font-weight: 650;
+}
+
+.ui-mapa__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.ui-mesas-lista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ui-opcao--mesa-linha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 54px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.ui-opcao--mesa-linha span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--texto-3);
+}
+
+.ui-mesas-livres summary {
+  min-height: 40px;
+  padding: 8px 2px;
+  color: var(--texto-2);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ui-modal__caixa--troca {
+  width: 840px;
+  height: 92%;
+}
+
+.ui-troca {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+/* Tela de bloqueio e PIN */
+.ui-modal--bloqueio {
+  background: rgba(10, 6, 12, 0.9);
+}
+
+.ui-usuarios {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ui-usuario-botao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 96px;
+  padding: 10px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #241c28;
+  color: var(--texto);
+  font: 600 13px var(--fonte);
+  cursor: pointer;
+}
+
+.ui-usuario-botao[aria-pressed="true"] {
+  border-color: var(--brasa);
+}
+
+.ui-usuario__avatar--grande {
+  width: 46px;
+  height: 46px;
+  font-size: 20px;
+}
+
+.ui-bloqueio__texto {
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--recusa-fundo);
+  color: #ffb3bd;
+  font-size: 14px;
+}
+
+/* Modo treino: barra e faixa laranja */
+.ui--treino .ui-barra {
+  background: #3a220f;
+  border-bottom-color: #ff8a1f;
+}
+
+.ui-faixa-treino {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 26px;
+  background: repeating-linear-gradient(135deg, #ff8a1f 0 14px, #f27a0c 14px 28px);
+  color: #2a1408;
+  font-size: 12.5px;
+  font-weight: 650;
+}
+
+.ui-faixa-treino strong {
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.ui-selo--treino {
+  background: #ff8a1f;
+  color: #2a1408;
+}
+
+.ui-selo--alerta {
+  background: rgba(229, 72, 77, 0.18);
+  color: #ff8a8e;
+}
+
+/* Dicas de primeiro uso */
+.ui-dica {
+  position: absolute;
+  z-index: 8;
+  width: 300px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f1e9ee;
+  color: #1d1520;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.ui-dica__passo {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8a3d12;
+}
+
+.ui-dica__texto {
+  margin-top: 3px !important;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.ui-dica__acoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.ui-dica .ui-link {
+  color: #8a3d12;
+}
+
+.ui-dica-alvo {
+  outline: 3px solid var(--brasa-2);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Caixa: gaveta de dinheiro e diferença */
+.ui-gaveta-resumo {
+  padding: 10px;
+  border: 1px solid #3a2d40;
+  border-radius: 10px;
+  background: #201824;
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-gaveta-resumo strong {
+  display: block;
+  font-size: 19px;
+  color: var(--texto);
+}
+
+.ui-gaveta-dinheiro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ui-miudos__total {
+  padding-top: 4px;
+  border-top: 1px solid #2f2535;
+  font-weight: 700;
+}
+
+.ui-diferenca {
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--vidro-fundo);
+  color: #cdeee9;
+  font-size: 13px;
+}
+
+.ui-diferenca--alerta {
+  background: var(--latao-fundo);
+  color: #e8d4ad;
+}
+
+/* Central: lista de compras, menu, papéis, campos travados */
+.ui-compras {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 6px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-compras li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 9px;
+  border-radius: 9px;
+  background: #201824;
+  font-size: 13px;
+}
+
+.ui-compras li span {
+  flex: 1;
+  min-width: 0;
+}
+
+.ui-compras small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--texto-3);
+}
+
+.ui-estoque-resumo__titulo,
+.ui-painel__titulo--espaco {
+  margin-top: 12px !important;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.ui-estoque-resumo__baixo {
+  color: var(--latao);
+}
+
+.ui-fechamentos__dif {
+  font-size: 11.5px;
+  color: var(--latao);
+}
+
+button.ui-menu__item {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+button.ui-menu__item:hover {
+  background: #221a26;
+}
+
+.ui-menu__item--inerte {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ui-segmento--abas {
+  width: fit-content;
+}
+
+.ui-form__rede {
+  margin: 0;
+  padding: 10px 12px 12px;
+  border: 1px dashed #4a3a50;
+  border-radius: 12px;
+  opacity: 0.7;
+}
+
+.ui-form__rede legend {
+  padding: 0 6px;
+  font-size: 12px;
+  color: var(--texto-3);
+}
+
+.ui-campo__ajuda {
+  font-weight: 500;
+  color: var(--texto-3);
+}
+
+.ui-cfg-promo__trava {
+  margin-top: 6px !important;
+  font-size: 12px;
+  color: var(--latao);
+}
+
+.ui-linha--entre {
+  justify-content: space-between;
+}

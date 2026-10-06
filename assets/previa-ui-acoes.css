@@ -1,0 +1,265 @@
+/* Interface do Rosh: botões, coluna lateral e estados */
+
+/* Botões */
+.ui-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #241c28;
+  color: var(--texto);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ui-botao:hover:not(:disabled) {
+  background: #2d2332;
+}
+
+.ui-botao--primario {
+  border-color: var(--brasa);
+  background: var(--brasa);
+  color: #2a1408;
+}
+
+.ui-botao--primario:hover:not(:disabled) {
+  border-color: var(--brasa-2);
+  background: var(--brasa-2);
+}
+
+.ui-botao--primario:disabled {
+  border-color: #3a2d40;
+  background: #2a2130;
+  color: #7d6f80;
+  cursor: not-allowed;
+}
+
+.ui-botao--grande {
+  min-height: 52px;
+  padding: 0 26px;
+  font-size: 17px;
+}
+
+.ui-botao--brasa {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+  color: var(--brasa-2);
+}
+
+/* Sem pacote para abrir: não pode parecer uma ação disponível */
+.ui-botao--brasa:disabled {
+  border-color: var(--linha);
+  background: transparent;
+  color: var(--texto-3);
+  cursor: not-allowed;
+}
+
+.ui-botao--vidro {
+  border-color: var(--vidro);
+  background: var(--vidro-fundo);
+  color: var(--vidro);
+}
+
+.ui-botao--vidro:hover:not(:disabled) {
+  background: rgba(99, 199, 186, 0.22);
+}
+
+.ui-botao--pequeno {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.ui-alternar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--texto-2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ui-alternar__trilho {
+  position: relative;
+  width: 36px;
+  height: 22px;
+  border-radius: 11px;
+  background: #3a2d40;
+  transition: background-color 0.15s;
+}
+
+.ui-alternar__trilho::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #cfc3cc;
+  transition: transform 0.15s;
+}
+
+.ui-alternar[aria-pressed="true"] .ui-alternar__trilho {
+  background: var(--brasa);
+}
+
+.ui-alternar[aria-pressed="true"] .ui-alternar__trilho::after {
+  transform: translateX(14px);
+  background: #fff;
+}
+
+/* Coluna lateral: meus pedidos ou turno */
+.ui-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  padding: 14px;
+  overflow: auto;
+  background: #18121b;
+  border-left: 1px solid #2f2535;
+}
+
+.ui-lateral__titulo {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.ui-lateral__sub {
+  margin-top: -6px !important;
+  font-size: 12px;
+  color: var(--texto-3);
+}
+
+.ui-alerta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--vidro);
+  border-radius: 12px;
+  background: var(--vidro-fundo);
+}
+
+.ui-alerta__titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--vidro);
+}
+
+.ui-alerta__texto {
+  font-size: 13px;
+  color: var(--texto-2);
+}
+
+.ui-pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-pedidos__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: #201824;
+}
+
+.ui-pedidos__mesa {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.ui-pedidos__detalhe,
+.ui-vazio {
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-estado {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 9px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.ui-estado--fila {
+  border-color: rgba(207, 167, 96, 0.5);
+  background: var(--latao-fundo);
+  color: var(--latao);
+}
+
+.ui-estado--preparo {
+  border-color: rgba(255, 123, 53, 0.55);
+  background: var(--brasa-fundo);
+  color: var(--brasa-2);
+}
+
+.ui-estado--pronto {
+  border-color: rgba(99, 199, 186, 0.55);
+  background: var(--vidro-fundo);
+  color: var(--vidro);
+}
+
+.ui-estado--entregue {
+  border-color: #3a2d40;
+  color: var(--texto-3);
+}
+
+.ui-estado--cancelado {
+  border-color: rgba(236, 106, 125, 0.55);
+  background: var(--recusa-fundo);
+  color: var(--recusa);
+}
+
+/* Créditos de rosh grátis na coluna lateral */
+.ui-credito {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 11px;
+  border: 1px dashed var(--vidro);
+  border-radius: 12px;
+  background: rgba(99, 199, 186, 0.07);
+}
+
+.ui-credito__titulo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--vidro);
+}
+
+.ui-credito__titulo svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ui-credito__texto {
+  font-size: 12.5px;
+  color: var(--texto-2);
+}

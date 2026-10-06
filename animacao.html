@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O Rosh em 2 minutos</title>
+  <meta name="description" content="O Rosh em 2 minutos: veja como um pedido anda, do tablet do garçom até a mesa.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d1520'/%3E%3Ccircle cx='16' cy='17' r='8' fill='%23ff7b35'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/animacao.css">
+  <link rel="stylesheet" href="assets/animacao-palco.css">
+</head>
+<body>
+  <div class="pagina">
+    <header class="topo">
+      <h1 class="marca">
+        <span class="marca__nome">O Rosh</span>
+        <span class="marca__desc">em 2 minutos</span>
+      </h1>
+      <nav class="topo__links" aria-label="Páginas da apresentação">
+        <a class="botao" href="index.html">Início</a>
+        <a class="botao" href="tour.html">Tour guiado</a>
+        <a class="botao" href="previa.html">Explorar as telas</a>
+        <a class="botao" href="animacao.html" aria-current="page">Em 2 minutos</a>
+        <a class="botao" href="especificacao.html">Detalhes</a>
+      </nav>
+    </header>
+
+    <main class="apresentacao">
+      <section class="palco-area" aria-label="O Rosh em 2 minutos, em cenas">
+        <div class="palco">
+          <canvas class="palco__fumaca" aria-hidden="true"></canvas>
+          <svg id="palco" viewBox="0 0 1000 600" role="img" aria-labelledby="cena-titulo" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <filter id="brilho" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="borrado"/>
+                <feMerge>
+                  <feMergeNode in="borrado"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <g id="palco-cena"></g>
+          </svg>
+        </div>
+
+        <p class="narracao" id="narracao" aria-live="polite"></p>
+        <ol class="narracao-lista" id="narracao-lista" hidden></ol>
+
+        <div class="controles" role="group" aria-label="Controles da animação">
+          <button class="botao" type="button" id="btn-anterior">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+            Anterior
+          </button>
+          <button class="botao botao--brasa" type="button" id="btn-tocar">
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="icone-pausar"><path d="M5 3v10M11 3v10"/></svg>
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="icone-tocar"><path d="M5 3l8 5-8 5z"/></svg>
+            <span id="btn-tocar-texto">Pausar</span>
+          </button>
+          <button class="botao" type="button" id="btn-proxima">
+            Próxima
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+          <button class="botao" type="button" id="btn-recomecar">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.5M3 2.5v3h3"/></svg>
+            Recomeçar
+          </button>
+        </div>
+      </section>
+
+      <aside class="legenda" aria-live="polite">
+        <p class="legenda__contagem" id="cena-contagem"></p>
+        <h2 class="legenda__titulo" id="cena-titulo"></h2>
+        <p class="legenda__texto" id="cena-texto"></p>
+        <ul class="legenda__beneficios" id="cena-beneficios"></ul>
+      </aside>
+
+      <nav class="cenas" aria-label="Cenas da animação">
+        <ol id="lista-cenas"></ol>
+      </nav>
+    </main>
+  </div>
+
+  <script src="assets/animacao-desenho.js"></script>
+  <script src="assets/animacao-cenas-a.js"></script>
+  <script src="assets/animacao-cenas-b.js"></script>
+  <script src="assets/animacao-cenas-c.js"></script>
+  <script src="assets/animacao-cenas-d.js"></script>
+  <script src="assets/animacao-fumaca.js"></script>
+  <script src="assets/animacao-motor.js"></script>
+</body>
+</html>

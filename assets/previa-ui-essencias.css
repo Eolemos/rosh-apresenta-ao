@@ -1,0 +1,331 @@
+/* Interface do Rosh: escolha das essências (marcas, sabores, busca, filtros) */
+
+.ui-ess {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ui-ess__titulo {
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-3);
+}
+
+.ui-ess__escolhidos,
+.ui-ess__recentes,
+.ui-ess__categorias {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  overflow: hidden;
+}
+
+.ui-ess__vazio {
+  font-size: 13px;
+  color: var(--texto-3);
+}
+
+.ui-escolhido {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 38px;
+  padding: 0 4px 0 12px;
+  border: 1px solid var(--brasa);
+  border-radius: 999px;
+  background: var(--brasa-fundo);
+  color: #ffd9c2;
+  font-size: 13.5px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.ui-escolhido__tirar {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ui-escolhido__tirar:hover {
+  background: rgba(255, 123, 53, 0.25);
+}
+
+.ui-escolhido__tirar svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ui-ess__barra {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ui-ess__marca {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: var(--marca);
+  color: var(--marca-texto);
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.ui-botao--fantasma {
+  min-height: 44px;
+  padding: 0 12px 0 6px;
+  border-color: transparent;
+  background: transparent;
+  color: var(--texto-2);
+}
+
+.ui-busca {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #1f1823;
+  color: var(--texto-3);
+}
+
+.ui-busca:focus-within {
+  border-color: var(--brasa);
+}
+
+.ui-busca input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--texto);
+  font: 500 15px var(--fonte);
+}
+
+.ui-busca input::placeholder {
+  color: var(--texto-3);
+}
+
+.ui-busca input:focus-visible {
+  outline: 0;
+}
+
+.ui-busca input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* Filtros e atalhos em forma de pílula */
+.ui-filtro,
+.ui-chip-sabor {
+  flex: none;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid #3a2d40;
+  border-radius: 999px;
+  background: #1f1823;
+  color: var(--texto-2);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ui-filtro[aria-pressed="true"] {
+  border-color: var(--latao);
+  background: var(--latao-fundo);
+  color: var(--latao);
+}
+
+.ui-chip-sabor[aria-pressed="true"] {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+  color: #ffd9c2;
+}
+
+.ui-chip-sabor:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ui-ess__conteudo {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+/* Marcas: o nome sobre a cor da marca */
+.ui-marcas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ui-marca {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 3px;
+  min-height: 104px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--marca);
+  color: var(--marca-texto);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.ui-marca:hover {
+  filter: brightness(1.08);
+}
+
+.ui-marca__nome {
+  font-size: 23px;
+  font-weight: 750;
+  font-variation-settings: "wdth" 85;
+  line-height: 1;
+}
+
+.ui-marca__selo {
+  order: -1;
+  margin-bottom: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
+  color: #ffe9b8;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.ui-marca__info {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.ui-marca--busca {
+  border: 1px dashed #5a4862;
+  background: #1c1520;
+  color: var(--texto);
+  box-shadow: none;
+}
+
+.ui-marca--busca svg {
+  margin-bottom: auto;
+  color: var(--brasa-2);
+}
+
+.ui-marca--busca .ui-marca__nome {
+  font-size: 17px;
+}
+
+/* Sabores */
+.ui-sabores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ui-sabor {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-height: 70px;
+  padding: 9px 12px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #1f1823;
+  color: var(--texto);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ui-sabor:hover:not(:disabled) {
+  border-color: #5a4862;
+}
+
+.ui-sabor[aria-pressed="true"] {
+  border-color: var(--brasa);
+  background: var(--brasa-fundo);
+}
+
+.ui-sabor:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ui-sabor--falta:disabled {
+  border-style: dashed;
+  opacity: 0.5;
+}
+
+.ui-sabor__nome {
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.ui-sabor__nota {
+  font-size: 12.5px;
+  color: var(--texto-3);
+}
+
+.ui-sabor__rodape {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.ui-sabor__marca,
+.ui-sabor__linha {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 650;
+  color: var(--texto-2);
+}
+
+.ui-sabor__marca::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--marca);
+}
+
+.ui-sabor__falta {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--recusa);
+}
+
+.ui-ess__nada {
+  padding: 18px 4px;
+  font-size: 14px;
+  color: var(--texto-3);
+}

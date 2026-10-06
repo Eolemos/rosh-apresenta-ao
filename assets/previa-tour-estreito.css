@@ -1,0 +1,119 @@
+/* Tour guiado: tela estreita (celular) e movimento reduzido */
+
+@media (max-width: 760px) {
+  .tour {
+    --tour-alt: auto;
+  }
+
+  /* Tela estreita: o sistema fica grande o bastante para ler e a vista desliza até o destaque */
+  .tour .pv-principal {
+    padding-bottom: 320px;
+    overflow-x: clip;
+  }
+
+  .tour .pv-palco {
+    width: 840px;
+    max-width: none;
+    margin-inline: 0;
+    justify-content: start;
+    transform: translateX(var(--tour-pan, 0px));
+    transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
+  }
+
+  .tour .pv-palco[data-vista="gestao"],
+  .tour .pv-palco[data-vista="config"] {
+    width: 1000px;
+  }
+
+  .tour .pv-palco[data-vista="gestao"][data-foco="celular"] {
+    width: calc(100vw - 32px);
+    justify-items: center;
+  }
+
+  /* No tour o painel do computador aparece também em tela estreita, ampliado */
+  .tour .pv-palco[data-vista="gestao"]:not([data-foco="celular"]) .pv-item--gestao {
+    display: block;
+  }
+
+  .tour .pv-palco .pv-item {
+    max-width: none;
+  }
+
+  .tour .pv-palco[data-vista="gestao"][data-foco="celular"] .pv-item--celular {
+    max-width: 360px;
+  }
+
+  /* Controles em duas linhas: capítulo e saída em cima, botões embaixo */
+  .tour-barra {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "meio meio sair" "botoes . capitulos";
+    gap: 8px 10px;
+    padding-inline: 10px;
+  }
+
+  .tour-barra__meio {
+    grid-area: meio;
+  }
+
+  .tour-barra__botoes {
+    grid-area: botoes;
+  }
+
+  .tour-barra__lado {
+    display: contents;
+  }
+
+  .tour-barra [data-tour="capitulos"] {
+    grid-area: capitulos;
+  }
+
+  .tour-botao--sair {
+    grid-area: sair;
+    min-height: 44px;
+  }
+
+  .tour-capitulos {
+    bottom: 136px;
+    max-height: calc(100vh - 160px);
+  }
+
+  .tour-barra [data-tour="voltar"] span,
+  .tour-barra [data-tour="avancar"] span,
+  .tour-barra [data-tour="capitulos"] span {
+    display: none;
+  }
+
+  .tour-botao {
+    padding: 0 10px;
+  }
+
+  .tour-botao--tocar {
+    min-width: 0;
+  }
+
+  .tour-botao--sair {
+    font-size: 0.82rem;
+  }
+
+  .tour-barra__passo {
+    display: none;
+  }
+
+  .tour-balao__texto {
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tour-luz,
+  .tour-balao,
+  .tour .pv-palco {
+    transition: none;
+  }
+
+  .tour-luz--ligada,
+  .tour-toque--agora {
+    animation: none;
+  }
+}

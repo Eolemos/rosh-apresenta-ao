@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rosh: prévia das telas</title>
+  <meta name="description" content="Prévia interativa das telas do Rosh: tablet do garçom, cozinha, caixa, gestão e configuração.">
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    if (/[?&]embutido=1/.test(location.search)) document.documentElement.classList.add('embutido');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/previa.css">
+  <link rel="stylesheet" href="assets/previa-ui.css">
+  <link rel="stylesheet" href="assets/previa-ui-acoes.css">
+  <link rel="stylesheet" href="assets/previa-ui-pedido.css">
+  <link rel="stylesheet" href="assets/previa-ui-essencias.css">
+  <link rel="stylesheet" href="assets/previa-ui-caixa.css">
+  <link rel="stylesheet" href="assets/previa-ui-paineis.css">
+  <link rel="stylesheet" href="assets/previa-ui-gestao.css">
+  <link rel="stylesheet" href="assets/previa-ui-config.css">
+  <link rel="stylesheet" href="assets/previa-ui-estoque.css">
+  <link rel="stylesheet" href="assets/previa-ui-v5.css">
+  <link rel="stylesheet" href="assets/previa-ui-v5-paineis.css">
+  <link rel="stylesheet" href="assets/previa-ui-apoio.css">
+  <link rel="stylesheet" href="assets/previa-ui-celular.css">
+  <link rel="stylesheet" href="assets/previa-pagina.css">
+</head>
+<body>
+
+<header class="pv-topo">
+  <a class="pv-marca" href="index.html"><span class="pv-marca__brasa" aria-hidden="true"></span>Rosh</a>
+  <nav class="pv-nav" aria-label="Apresentação">
+    <a href="index.html">Início</a>
+    <a href="tour.html">Tour guiado</a>
+    <a href="previa.html" aria-current="page">Explorar as telas</a>
+    <a href="animacao.html">Em 2 minutos</a>
+    <a href="especificacao.html">Detalhes</a>
+  </nav>
+</header>
+
+<main class="pv-principal">
+  <div class="pv-cabecalho">
+    <h1 class="pv-titulo">Prévia das telas</h1>
+    <p class="pv-lide">Simule um pedido: lance no tablet do garçom e acompanhe na cozinha. Dados e valores de exemplo.</p>
+  </div>
+
+  <div class="pv-abas" role="tablist" aria-label="Telas do sistema">
+    <button class="pv-aba" type="button" role="tab" id="aba-ao-vivo" data-vista="ao-vivo" aria-selected="true" aria-controls="palco">Pedido ao vivo</button>
+    <button class="pv-aba" type="button" role="tab" id="aba-tablet" data-vista="tablet" aria-selected="false" aria-controls="palco" tabindex="-1">Tablet do garçom</button>
+    <button class="pv-aba" type="button" role="tab" id="aba-cozinha" data-vista="cozinha" aria-selected="false" aria-controls="palco" tabindex="-1">Cozinha</button>
+    <button class="pv-aba" type="button" role="tab" id="aba-caixa" data-vista="caixa" aria-selected="false" aria-controls="palco" tabindex="-1">Caixa</button>
+    <button class="pv-aba" type="button" role="tab" id="aba-gestao" data-vista="gestao" aria-selected="false" aria-controls="palco" tabindex="-1">Gestão</button>
+    <button class="pv-aba" type="button" role="tab" id="aba-config" data-vista="config" aria-selected="false" aria-controls="palco" tabindex="-1">Configuração</button>
+  </div>
+  <p class="pv-dica" id="dica" aria-live="polite"></p>
+
+  <div class="pv-palco" id="palco" role="tabpanel" aria-labelledby="aba-ao-vivo" data-vista="ao-vivo">
+
+    <figure class="pv-item pv-item--tablet">
+      <div class="aparelho aparelho--tablet" data-largura="1080" data-altura="675">
+        <div class="aparelho__moldura">
+          <div class="aparelho__janela"><div class="aparelho__tela" id="tela-tablet"></div></div>
+        </div>
+      </div>
+      <figcaption class="pv-legenda"><strong>Tablet do garçom.</strong> Cada garçom entra com o próprio PIN. O pedido sai em quatro toques: mesa e rosh, essências por marca, adicionais e pagamento.</figcaption>
+    </figure>
+
+    <figure class="pv-item pv-item--cozinha">
+      <div class="aparelho aparelho--monitor" data-largura="960" data-altura="540">
+        <div class="aparelho__moldura">
+          <div class="aparelho__janela"><div class="aparelho__tela" id="tela-cozinha"></div></div>
+        </div>
+        <div class="pv-impressora" id="impressora" aria-hidden="true">
+          <div class="pv-impressora__saida"><div class="comanda pv-impressora__comanda" id="comanda-impressa"></div></div>
+          <div class="pv-impressora__corpo"></div>
+        </div>
+      </div>
+      <figcaption class="pv-legenda"><strong>Tela da cozinha.</strong> O pedido pago aparece na hora e a comanda sai na impressora ao lado.</figcaption>
+    </figure>
+
+    <figure class="pv-item pv-item--caixa">
+      <div class="aparelho aparelho--monitor" data-largura="1080" data-altura="675">
+        <div class="aparelho__moldura">
+          <div class="aparelho__janela"><div class="aparelho__tela" id="tela-caixa"></div></div>
+        </div>
+      </div>
+      <figcaption class="pv-legenda"><strong>Tela do caixa.</strong> Pedido no balcão com pagamento na hora, e o fechamento do turno de quem está no caixa.</figcaption>
+    </figure>
+
+    <figure class="pv-item pv-item--gestao">
+      <div class="aparelho aparelho--janela" data-largura="1200" data-altura="1000">
+        <div class="aparelho__moldura">
+          <div class="aparelho__barra" aria-hidden="true"><p>Central Rosh, no navegador</p></div>
+          <div class="aparelho__janela"><div class="aparelho__tela" id="tela-gestao"></div></div>
+        </div>
+      </div>
+      <figcaption class="pv-legenda"><strong>Gestão no computador.</strong> O gerente vê a unidade; o master alterna para todas as unidades da rede.</figcaption>
+    </figure>
+
+    <figure class="pv-item pv-item--celular">
+      <div class="aparelho aparelho--celular" data-largura="390" data-altura="780">
+        <div class="aparelho__moldura">
+          <div class="aparelho__janela"><div class="aparelho__tela" id="tela-celular"></div></div>
+        </div>
+      </div>
+      <figcaption class="pv-legenda"><strong>Celular do dono.</strong> A gestão feita para a tela pequena: escolha a loja, veja os números e resolva os avisos.</figcaption>
+    </figure>
+
+    <figure class="pv-item pv-item--config">
+      <div class="aparelho aparelho--janela" data-largura="1200" data-altura="780">
+        <div class="aparelho__moldura">
+          <div class="aparelho__barra" aria-hidden="true"><p>Central Rosh, no navegador</p></div>
+          <div class="aparelho__janela"><div class="aparelho__tela" id="tela-config"></div></div>
+        </div>
+      </div>
+      <figcaption class="pv-legenda"><strong>Configuração.</strong> Gerente e master cadastram marcas, essências, adicionais, tipos de rosh e promoções, e controlam o estoque em pacotes.</figcaption>
+    </figure>
+
+  </div>
+</main>
+
+<script src="assets/previa-catalogo.js"></script>
+<script src="assets/previa-estado.js"></script>
+<script src="assets/previa-estoque.js"></script>
+<script src="assets/previa-mesas.js"></script>
+<script src="assets/previa-cadastro.js"></script>
+<script src="assets/previa-numeros.js"></script>
+<script src="assets/previa-ui.js"></script>
+<script src="assets/previa-form.js"></script>
+<script src="assets/previa-acesso.js"></script>
+<script src="assets/previa-avisos.js"></script>
+<script src="assets/previa-essencias.js"></script>
+<script src="assets/previa-construtor-conta.js"></script>
+<script src="assets/previa-construtor.js"></script>
+<script src="assets/previa-pedido-acoes.js"></script>
+<script src="assets/previa-tablet-mesas.js"></script>
+<script src="assets/previa-tablet.js"></script>
+<script src="assets/previa-caixa.js"></script>
+<script src="assets/previa-cozinha-estoque.js"></script>
+<script src="assets/previa-cozinha.js"></script>
+<script src="assets/previa-gestao-cartoes.js"></script>
+<script src="assets/previa-gestao.js"></script>
+<script src="assets/previa-gestao-celular.js"></script>
+<script src="assets/previa-config-cardapio.js"></script>
+<script src="assets/previa-config-estoque.js"></script>
+<script src="assets/previa-config-precos.js"></script>
+<script src="assets/previa-config-promos.js"></script>
+<script src="assets/previa-config.js"></script>
+<script src="assets/previa-dicas.js"></script>
+<script src="assets/previa-app.js"></script>
+<script src="assets/previa-altura.js"></script>
+</body>
+</html>

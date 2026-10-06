@@ -1,0 +1,334 @@
+/* Interface do Rosh: salão (mesas com status, conta em partes, pagamento, prontos para entregar, cozinha compacta) */
+
+/* Aviso no pé da tela, longe dos passos e dos diálogos */
+.ui-aviso {
+  top: auto;
+  bottom: 100px;
+  max-width: calc(100% - 40px);
+  white-space: normal;
+}
+
+.ui--cozinha .ui-aviso,
+.ui--gestao .ui-aviso {
+  bottom: 24px;
+}
+
+.ui-modal {
+  padding: 14px 14px 68px;
+}
+
+.ui-modal--gaveta {
+  padding: 0;
+}
+
+.ui-modal ~ .ui-aviso,
+.ui-aviso:has(~ .ui-modal) {
+  bottom: 12px;
+}
+
+.ui-modal--gaveta ~ .ui-aviso,
+.ui-aviso:has(~ .ui-modal--gaveta) {
+  left: 24px;
+  max-width: 420px;
+  transform: none;
+}
+
+.ui-aviso--acao {
+  padding-right: 8px;
+}
+
+.ui-aviso__botao {
+  min-height: 40px;
+  margin-left: 6px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 9px;
+  background: #1d1520;
+  color: #fff;
+  font: 700 14px var(--fonte);
+  cursor: pointer;
+}
+
+/* Tirar sabor: alvo de toque grande */
+.ui-escolhido {
+  height: 46px;
+  padding-right: 2px;
+}
+
+.ui-escolhido__tirar {
+  width: 44px;
+  height: 44px;
+}
+
+.ui-escolhido__tirar svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mesas com status */
+.ui-opcao--mesa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.ui-mesa__numero {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.ui-mesa__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--texto-3);
+}
+
+.ui-mesa__status svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ui-opcao--ocupada .ui-mesa__status {
+  color: var(--texto-2);
+}
+
+.ui-opcao--carvao {
+  border-color: var(--latao);
+  background: rgba(207, 167, 96, 0.14);
+}
+
+.ui-opcao--carvao .ui-mesa__status {
+  color: var(--latao);
+}
+
+/* Conta e pagamento */
+.ui-carrinho {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ui-carrinho__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-carrinho__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 10px;
+  padding: 9px 11px;
+  border: 1px solid #2f2535;
+  border-radius: 11px;
+  background: #1c1520;
+}
+
+.ui-carrinho__item--falta {
+  border-style: dashed;
+  border-color: var(--latao);
+}
+
+.ui-carrinho__nome {
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.ui-carrinho__detalhe {
+  font-size: 12.5px;
+  color: var(--texto-2);
+}
+
+.ui-carrinho__preco {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ui-carrinho__acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 6px;
+}
+
+.ui-conta-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.ui-conta-lista div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ui-conta-lista dt {
+  color: var(--texto-3);
+}
+
+.ui-conta-lista dd {
+  margin: 0;
+  color: var(--texto-2);
+}
+
+.ui-conta-lista__desconto dd {
+  color: var(--vidro);
+}
+
+.ui-conta-lista__total {
+  margin-top: 3px;
+  padding-top: 4px;
+  border-top: 1px solid #2f2535;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.ui-conta-lista__total dt,
+.ui-conta-lista__total dd {
+  color: var(--texto);
+}
+
+.ui-conta-lista--passo {
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: #18121b;
+}
+
+/* No rodapé: partes pequenas em duas colunas, total embaixo */
+.ui-conta-lista--rodape {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, auto));
+  gap: 1px 14px;
+  min-width: 250px;
+  max-width: 330px;
+  font-size: 11.5px;
+}
+
+.ui-conta-lista--rodape dt {
+  overflow: hidden;
+  max-width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ui-conta-lista--rodape .ui-conta-lista__total {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+  padding-top: 2px;
+  font-size: 18px;
+}
+
+.ui .ui-rotulo--espaco {
+  margin-top: 14px;
+}
+
+.ui-promo-auto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  border: 1px solid var(--latao);
+  border-radius: 11px;
+  background: var(--latao-fundo);
+  font-size: 13px;
+}
+
+.ui-promo-auto--fora {
+  border-style: dashed;
+  background: transparent;
+  color: var(--texto-2);
+}
+
+.ui-campo--recebido input {
+  width: 180px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ui-troco,
+.ui-cobre {
+  margin-top: 8px !important;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--vidro-fundo);
+  color: #cdeee9;
+  font-size: 13.5px;
+}
+
+.ui-troco strong {
+  font-size: 18px;
+}
+
+.ui-troco--falta {
+  background: var(--recusa-fundo);
+  color: #ffb3bd;
+}
+
+.ui-botao--duas {
+  flex-direction: column;
+  gap: 0;
+  min-width: 250px;
+  line-height: 1.15;
+}
+
+.ui-botao__sub {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* Coluna lateral: rosh grátis, prontos e meus pedidos */
+.ui-lateral__qtd {
+  margin-left: 4px;
+  font-size: 13px;
+  color: var(--texto-3);
+}
+
+.ui-pronto {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid #3a2d40;
+  border-radius: 11px;
+  background: #201824;
+}
+
+.ui-pronto--meu {
+  border-color: var(--vidro);
+  background: var(--vidro-fundo);
+}
+
+.ui-pronto__mesa {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ui-pronto__texto {
+  font-size: 12.5px;
+  color: var(--texto-2);
+}
+
+.ui-pedidos__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ui-pedidos__num {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--texto-3);
+}

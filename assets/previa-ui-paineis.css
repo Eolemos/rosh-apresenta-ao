@@ -1,0 +1,224 @@
+/* Interface do Rosh: tela da cozinha */
+
+/* Cozinha */
+.ui--cozinha .ui-barra {
+  height: 52px;
+}
+
+.ui-relogio {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ui-quadro {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+}
+
+.ui-coluna {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 10px;
+  border-top: 3px solid;
+  border-radius: 14px;
+  background: #1a131d;
+}
+
+.ui-coluna--fila {
+  border-top-color: var(--latao);
+}
+
+.ui-coluna--preparo {
+  border-top-color: var(--brasa);
+}
+
+.ui-coluna--pronto {
+  border-top-color: var(--vidro);
+}
+
+.ui-coluna__titulo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px !important;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ui-coluna__qtd {
+  font-size: 14px;
+  color: var(--texto-3);
+}
+
+.ui-coluna__cartoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.ui-card {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px;
+  border: 1px solid #3a2d40;
+  border-radius: 12px;
+  background: #241b28;
+}
+
+.ui-card__topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.ui-card__mesa {
+  font-size: 24px;
+  font-weight: 750;
+  font-variation-settings: "wdth" 85;
+  letter-spacing: -0.01em;
+}
+
+.ui-card__tempo {
+  font-size: 13px;
+  color: var(--texto-3);
+}
+
+.ui-card--fila .ui-card__tempo {
+  color: var(--latao);
+}
+
+.ui-card__rosh {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.ui-card__sabores {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--brasa-2);
+}
+
+.ui-card__adicionais {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--texto);
+}
+
+.ui-card__selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 2px 0 !important;
+}
+
+.ui-card__tipo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px !important;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--latao);
+}
+
+.ui-card__tipo svg {
+  width: 17px;
+  height: 17px;
+}
+
+.ui-card--reposicao {
+  border: 1px dashed var(--latao);
+  background: repeating-linear-gradient(135deg, #241b28 0 12px, #271d2a 12px 24px);
+}
+
+.ui-card__obs {
+  font-size: 13px;
+  color: var(--latao);
+}
+
+.ui-card__venda {
+  margin-top: 2px !important;
+  font-size: 12px;
+  color: var(--texto-3);
+}
+
+.ui-card__acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ui-card__acoes .ui-botao {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.ui-card__nota {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vidro);
+}
+
+.ui-icone {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #3a2d40;
+  border-radius: 10px;
+  background: #1c1520;
+  color: var(--texto-2);
+  cursor: pointer;
+}
+
+.ui-icone:hover {
+  color: var(--texto);
+  border-color: #5a4862;
+}
+
+/* Selos de promoção, usados na cozinha e na configuração */
+.ui-selo {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
+.ui-selo--vidro {
+  background: var(--vidro);
+  color: #0e2421;
+}
+
+.ui-selo--latao {
+  background: var(--latao-fundo);
+  color: var(--latao);
+  box-shadow: inset 0 0 0 1px rgba(207, 167, 96, 0.5);
+}
+
+.ui-selo--brasa {
+  background: var(--brasa);
+  color: #2a1408;
+}

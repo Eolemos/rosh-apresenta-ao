@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Rosh: o sistema de pedidos do seu lounge</title>
+  <meta name="description" content="Veja como o Rosh cuida dos pedidos de narguilé do lounge, do tablet do garçom ao fechamento do caixa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/nav.css">
+  <link rel="stylesheet" href="assets/inicio.css">
+  <link rel="stylesheet" href="assets/inicio-secoes.css">
+  <link rel="stylesheet" href="assets/inicio-telas.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__marca" href="index.html"><span class="nav__brasa" aria-hidden="true"></span>Rosh</a>
+  <nav aria-label="Páginas da apresentação">
+    <ul class="nav__links">
+      <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
+      <li><a class="nav__link" href="tour.html">Tour guiado</a></li>
+      <li><a class="nav__link" href="previa.html">Explorar as telas</a></li>
+      <li><a class="nav__link" href="animacao.html">Em 2 minutos</a></li>
+      <li><a class="nav__link" href="especificacao.html">Detalhes</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="pagina">
+
+  <section class="abre" aria-labelledby="titulo">
+    <div>
+      <h1 class="abre__titulo" id="titulo">O pedido sai da mesa, chega pago na cozinha e fecha certo no caixa.</h1>
+      <p class="abre__lide">Rosh é o sistema de pedidos da tabacaria do seu lounge. O garçom lança no tablet, o cliente paga na hora, a comanda sai impressa e você acompanha tudo de casa.</p>
+      <div class="abre__acoes">
+        <a class="botao botao--brasa" href="tour.html">Ver o tour guiado</a>
+        <a class="botao" href="animacao.html">Ver em 2 minutos</a>
+      </div>
+    </div>
+    <div class="imp" aria-label="Exemplo de comanda impressa na cozinha">
+      <div class="imp__corpo" aria-hidden="true">
+        <span class="imp__nome">Impressora da cozinha</span><span class="imp__luz"></span><span class="imp__fenda"></span>
+      </div>
+      <div class="imp__saida">
+        <div class="comanda">
+          <div class="comanda__centro">Cozinha</div>
+          <div class="comanda__linha"><span>Sexta, 21:43</span><span>Pedido 0153</span></div>
+          <div class="comanda__mesa">MESA 07</div>
+          <hr class="comanda__corte">
+          <div><strong>1x Rosh grande</strong></div>
+          <div>&nbsp;&nbsp;Watermelon Mint (Zomo)</div>
+          <div>&nbsp;&nbsp;Love 66 (Adalya)</div>
+          <div>+ 1 carvão extra</div>
+          <div>Promoção: Happy hour 20%</div>
+          <hr class="comanda__corte">
+          <div>Vendido por: Rafa (garçom)</div>
+          <div>Pagamento: Pix</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="parte" aria-labelledby="hoje">
+    <h2 class="parte__titulo" id="hoje">Como é hoje, sem sistema</h2>
+    <p class="parte__lide">Quem trabalha em noite cheia conhece. Nada disso é culpa da equipe: é falta de ferramenta.</p>
+    <ul class="pontos pontos--dor">
+      <li><strong>Pedido no papel ou de cabeça</strong><span>No caminho até a cozinha, um pedido se perde ou chega errado.</span></li>
+      <li><strong>Narguilé que saiu sem pagar</strong><span>A essência e o carvão foram gastos e a conta nunca fechou.</span></li>
+      <li><strong>Quem vendeu o quê?</strong><span>No fim da noite, ninguém sabe ao certo quem lançou cada pedido.</span></li>
+      <li><strong>Carvão esquecido</strong><span>A mesa fica sem carvão, ninguém percebe e o cliente vai embora mais cedo.</span></li>
+      <li><strong>Caixa que não bate</strong><span>Dinheiro, cartão e Pix misturados. A diferença só aparece no dia seguinte.</span></li>
+    </ul>
+  </section>
+
+  <section class="parte" aria-labelledby="noite">
+    <h2 class="parte__titulo" id="noite">Uma noite no lounge com o Rosh</h2>
+    <p class="parte__lide">Acompanhe a mesa 07, do momento em que o grupo senta até o caixa fechado.</p>
+    <p class="parte__nota">Nomes, sabores e valores são de exemplo.</p>
+
+    <ol class="noite">
+      <li class="passo">
+        <p class="passo__hora">21:40</p>
+        <div><h3 class="passo__titulo">O grupo chega</h3><p class="passo__texto">O garçom Rafa abre o tablet e vê o mapa das mesas. A 07 está livre. Um toque e o pedido começa.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-mesas">
+            <div class="t-mesa"><b>05</b><small>narguilé há 20 min</small></div>
+            <div class="t-mesa"><b>06</b><small>livre</small></div>
+            <div class="t-mesa t-mesa--escolhida"><b>07</b><small>livre</small></div>
+            <div class="t-mesa"><b>08</b><small>narguilé há 8 min</small></div>
+            <div class="t-mesa"><b>09</b><small>livre</small></div>
+            <div class="t-mesa"><b>10</b><small>livre</small></div>
+          </div>
+        </div><figcaption>No tablet do garçom: o mapa de mesas.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">21:41</p>
+        <div><h3 class="passo__titulo">Rosh, marca e sabores</h3><p class="passo__texto">Rafa escolhe o tipo de rosh e depois os sabores, separados por marca, do jeito que a casa conhece o estoque. Sabor em falta aparece riscado, então ninguém promete o que não tem.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-marcas t-bloco"><div class="t-marca t-marca--zomo">Zomo</div><div class="t-marca t-marca--ziggy">Ziggy</div><div class="t-marca t-marca--adalya">Adalya</div></div>
+          <p class="t-rotulo">Rosh grande, 2 de 3 sabores</p>
+          <div class="t-chips"><span class="t-chip">Watermelon Mint (Zomo)</span><span class="t-chip">Love 66 (Adalya)</span><span class="t-chip t-chip--falta">Swiss Alps</span></div>
+        </div><figcaption>No tablet do garçom: marcas e sabores.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">21:42</p>
+        <div><h3 class="passo__titulo">Carvão extra e promoção</h3><p class="passo__texto">O cliente quer um carvão a mais: um toque no +. É horário de happy hour, e o desconto entra sozinho. O garçom não precisa lembrar.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-qtd"><span>Carvão extra, R$ 5,00</span><span class="t-qtd__botoes"><span>−</span>1<span>+</span></span></div>
+          <div class="t-promo"><span>Happy hour 20%</span><span>aplicada sozinha</span></div>
+        </div><figcaption>No tablet do garçom: adicionais e promoção.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">21:43</p>
+        <div><h3 class="passo__titulo">O cliente paga na hora</h3><p class="passo__texto">O tablet mostra a conta linha por linha. Rafa cobra o Pix e só então confirma. Sem pagamento, o pedido não existe.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-linha"><span>Rosh grande</span><span>R$ 75,00</span></div>
+          <div class="t-linha"><span>Sabor premium (Adalya)</span><span>R$ 10,00</span></div>
+          <div class="t-linha"><span>1 carvão extra</span><span>R$ 5,00</span></div>
+          <div class="t-linha t-linha--desconto"><span>Happy hour 20%</span><span>− R$ 18,00</span></div>
+          <div class="t-linha t-linha--total"><span>Total</span><span>R$ 72,00</span></div>
+          <div class="t-botao">Pagamento recebido: R$ 72,00 no Pix</div>
+        </div><figcaption>No tablet do garçom: a conta explicada.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">21:43</p>
+        <div><h3 class="passo__titulo">A cozinha recebe no mesmo segundo</h3><p class="passo__texto">O pedido aparece na tela de quem monta o narguilé e a comanda sai impressa, com a mesa em letra grande. Se o papel acabar, o pedido continua na tela.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-cartao">
+            <div class="t-cartao__topo"><b>Mesa 07</b><span class="t-estado">Na fila</span></div>
+            <p>Rosh grande</p>
+            <p class="t-destaque">Watermelon Mint (Zomo)<br>Love 66 (Adalya)</p>
+            <p>+ 1 carvão extra</p>
+            <div class="t-botao">Começar preparo</div>
+          </div>
+        </div><figcaption>Na tela da cozinha: o pedido novo.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">21:51</p>
+        <div><h3 class="passo__titulo">Pronto para entregar</h3><p class="passo__texto">A cozinha marca como pronto e o tablet do Rafa avisa. Ele leva o narguilé e marca como entregue.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-cartao t-cartao--vidro">
+            <div class="t-cartao__topo"><b>Mesa 07 pronta</b><span class="t-estado t-estado--vidro">Pronto</span></div>
+            <p>Rosh grande, seu pedido</p>
+            <div class="t-botao t-botao--vidro">Marcar entregue</div>
+          </div>
+        </div><figcaption>No tablet do garçom: o aviso de pronto.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">22:23</p>
+        <div><h3 class="passo__titulo">O tablet lembra do carvão</h3><p class="passo__texto">Meia hora depois, a mesa 07 fica laranja no mapa: é hora de oferecer carvão. Mais um pedido rápido, pago na hora, e a cozinha recebe a reposição.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-mesas">
+            <div class="t-mesa"><b>06</b><small>livre</small></div>
+            <div class="t-mesa t-mesa--carvao"><b>07</b><small>carvão há 32 min</small></div>
+            <div class="t-mesa"><b>08</b><small>narguilé há 50 min</small></div>
+          </div>
+          <div class="t-botao">Mais carvão para a mesa 07</div>
+        </div><figcaption>No tablet do garçom: a hora de oferecer carvão.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">22:50</p>
+        <div><h3 class="passo__titulo">Rosh duplo, sem confusão</h3><p class="passo__texto">A mesa 05 entrou na promoção rosh duplo: paga um, ganha dois. O tablet guarda o rosh grátis e mostra até quando vale. Na hora do segundo, Rafa lança sem cobrar.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-cartao t-cartao--vidro">
+            <div class="t-cartao__topo"><b>Mesa 05</b><span class="t-estado t-estado--vidro">1 rosh grátis</span></div>
+            <p>Do pedido 0148, às 20:55. Vale até 23:55, uma vez.</p>
+            <div class="t-botao t-botao--vidro">Lançar 2º rosh</div>
+          </div>
+        </div><figcaption>No tablet do garçom: o rosh grátis da mesa.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">23:10</p>
+        <div><h3 class="passo__titulo">No balcão também</h3><p class="passo__texto">Um cliente pede direto no caixa. A Bia lança, recebe em dinheiro e o sistema calcula o troco. O pedido segue para a cozinha do mesmo jeito.</p></div>
+        <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-linha"><span>Rosh simples</span><span>R$ 45,00</span></div>
+          <div class="t-linha"><span>Valor recebido</span><span>R$ 50,00</span></div>
+          <div class="t-linha t-linha--total"><span>Troco</span><span>R$ 5,00</span></div>
+          <div class="t-botao">Pagamento recebido: R$ 45,00 em dinheiro</div>
+        </div><figcaption>Na tela do caixa: venda no balcão.</figcaption></figure>
+      </li>
+
+      <li class="passo">
+        <p class="passo__hora">02:00</p>
+        <div><h3 class="passo__titulo">Cada um fecha o seu caixa</h3><p class="passo__texto">No fim do turno, Rafa e Bia fecham o próprio movimento: quantos pedidos, quanto em dinheiro, cartão e Pix. O gerente confere e pronto.</p></div>
+        <figure class="tela">
+          <div class="comanda" aria-hidden="true">
+            <div class="comanda__centro">Fechamento de turno</div>
+            <div class="comanda__mesa">RAFA</div>
+            <div class="comanda__centro">garçom</div>
+            <hr class="comanda__corte">
+            <div class="comanda__linha"><span>Pedidos</span><span>23</span></div>
+            <div class="comanda__linha"><span>Dinheiro</span><span>6</span></div>
+            <div class="comanda__linha"><span>Cartão</span><span>9</span></div>
+            <div class="comanda__linha"><span>Pix</span><span>8</span></div>
+            <hr class="comanda__corte">
+            <div>Conferido por: Ana (gerente)</div>
+          </div>
+          <figcaption>Impresso no caixa: o fechamento do Rafa.</figcaption>
+        </figure>
+      </li>
+    </ol>
+  </section>
+
+  <section class="parte" aria-labelledby="dono">
+    <h2 class="parte__titulo" id="dono">O que você, dono, ganha</h2>
+    <p class="parte__lide">O lounge passa a ter números. E você não precisa estar lá para ver.</p>
+    <div class="dono">
+      <figure class="cel">
+        <div class="cel__corpo" aria-hidden="true">
+          <div class="cel__topo"><span>Rosh</span><span class="cel__sino"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 20a2 2 0 0 0 4 0"/></svg><b>2</b></span></div>
+          <div class="cel__numero"><b>56 pedidos</b><span>hoje, na Unidade 1</span></div>
+          <div class="cel__aviso"><strong>Em falta</strong><small>Love 66 (Adalya), Unidade 1</small></div>
+          <div class="cel__aviso cel__aviso--baixo"><strong>Estoque baixo</strong><small>High Mint (Onix), resta 1 pacote</small></div>
+        </div>
+        <figcaption>O painel do dono no celular.</figcaption>
+      </figure>
+      <ul class="pontos">
+        <li><strong>Vê tudo de casa, no celular</strong><span>Pedidos acontecendo agora e os números do dia, de cada loja.</span></li>
+        <li><strong>O sininho avisa antes de faltar</strong><span>Essência acabando ou em falta aparece na hora, com a loja e a marca.</span></li>
+        <li><strong>Sabe quem vendeu e quanto</strong><span>Cada pedido tem dono: quem lançou, para qual mesa e como foi pago.</span></li>
+        <li><strong>Promoções que entram sozinhas</strong><span>Você cria e muda a promoção quando quiser. Ela vale no horário certo, sem depender da memória de ninguém.</span></li>
+        <li><strong>Estoque contado em pacotes</strong><span>Entrada, pacote aberto e contagem. O sistema monta a lista de compras.</span></li>
+        <li><strong>Nada sai sem pagar</strong><span>O pedido só chega na cozinha depois do pagamento confirmado.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="parte" aria-labelledby="internet">
+    <h2 class="parte__titulo" id="internet">E se a internet cair?</h2>
+    <p class="parte__lide">A loja continua vendendo. O sistema roda em um pequeno computador dentro do lounge, e os tablets falam com ele pela rede da casa.</p>
+    <div class="elo" role="img" aria-label="A loja continua funcionando mesmo sem ligação com a nuvem">
+      <div class="elo__lado elo__lado--loja"><strong>Na loja</strong><span>Tablets, cozinha, caixa e impressora seguem normais.</span></div>
+      <div class="elo__fio"></div>
+      <div class="elo__lado elo__lado--nuvem"><strong>Na nuvem</strong><span>Recebe a cópia de tudo assim que a internet volta.</span></div>
+    </div>
+    <ul class="pontos pontos--loja">
+      <li><strong>Nenhum pedido se perde</strong><span>O que aconteceu sem internet sobe sozinho depois, na ordem certa.</span></li>
+      <li><strong>Seus dados têm cópia fora da loja</strong><span>A nuvem guarda tudo e faz backup todos os dias.</span></li>
+      <li><strong>E se o computador da loja parar?</strong><span>O gerente liga o modo de emergência e a nuvem assume as telas até ele voltar.</span></li>
+    </ul>
+  </section>
+
+  <section class="parte" aria-labelledby="facil">
+    <h2 class="parte__titulo" id="facil">Fácil para quem nunca usou</h2>
+    <p class="parte__lide">Funcionário novo vende na primeira noite, sem manual.</p>
+    <ul class="pontos pontos--pares">
+      <li><strong>Modo treino</strong><span>Para praticar à vontade. Nada do treino conta no caixa, no estoque ou nos relatórios.</span></li>
+      <li><strong>Dicas na tela</strong><span>Na primeira vez em cada tela aparecem três dicas curtas. Um botão "?" mostra de novo.</span></li>
+      <li><strong>Errou? Desfaz</strong><span>Cinco segundos para desfazer, e dá para trocar a mesa ou os sabores enquanto o pedido está na fila.</span></li>
+      <li><strong>Botões grandes, palavras simples</strong><span>Feito para tocar com pressa, em ambiente escuro.</span></li>
+    </ul>
+  </section>
+
+  <section class="parte" aria-labelledby="instala">
+    <h2 class="parte__titulo" id="instala">Como instala</h2>
+    <p class="parte__lide">Você mesmo instala, seguindo um assistente. A parte da nuvem fica por nossa conta.</p>
+    <ol class="numerados">
+      <li><strong>Baixe o instalador</strong><span>No mini PC com Windows que vai ficar na loja, baixe o instalador do Rosh e abra.</span></li>
+      <li><strong>Siga o assistente</strong><span>Digite o código da sua loja, escolha as impressoras e imprima uma comanda de teste.</span></li>
+      <li><strong>Ligue os tablets</strong><span>Em cada tablet, aponte a câmera para o QR code que aparece na tela. Pronto, o Rosh abre.</span></li>
+      <li><strong>Cadastre a equipe</strong><span>Cada pessoa recebe a sua senha curta e já pode vender.</span></li>
+    </ol>
+    <h3 class="subtitulo">O que a loja precisa ter</h3>
+    <ul class="etiquetas">
+      <li>Mini PC com Windows</li><li>Tablets para os garçons</li><li>Impressora térmica</li><li>Roteador com 4G de reserva</li><li>Nobreak</li>
+    </ul>
+  </section>
+
+  <section class="parte" aria-labelledby="rede">
+    <h2 class="parte__titulo" id="rede">Cresce com a sua rede</h2>
+    <p class="parte__lide">Começa em uma loja e já está pronto para várias. Um painel só mostra todas, e o cardápio e as promoções podem valer para a rede inteira ou para uma loja.</p>
+    <ul class="etiquetas etiquetas--nova">
+      <li>Loja 1</li><li>Loja 2</li><li>Loja 3</li><li>Loja 4</li><li>Nova loja: instalar e ligar</li>
+    </ul>
+  </section>
+
+  <section class="parte" aria-labelledby="etapas">
+    <h2 class="parte__titulo" id="etapas">Como vamos construir</h2>
+    <p class="parte__lide">Em três etapas. Cada uma já funciona sozinha e prepara a próxima.</p>
+    <ol class="numerados">
+      <li><strong>A loja funcionando</strong><span>Tablet do garçom, caixa, cozinha, impressão, estoque e fechamento, tudo na loja-teste.</span></li>
+      <li><strong>Você vê de casa</strong><span>A nuvem recebe a cópia de tudo, com o painel do dono e os avisos no celular.</span></li>
+      <li><strong>A rede protegida</strong><span>Modo de emergência, atualizações à distância e abertura de novas lojas.</span></li>
+    </ol>
+    <h3 class="subtitulo">O que fica para depois</h3>
+    <ul class="etiquetas">
+      <li>Cobrança automática na maquininha ou no Pix</li><li>Comidas e bebidas do bar</li><li>Delivery</li><li>Nota fiscal (continua no sistema atual)</li>
+    </ul>
+  </section>
+
+  <section class="parte" aria-labelledby="perguntas">
+    <h2 class="parte__titulo" id="perguntas">Perguntas frequentes</h2>
+    <div class="faq">
+      <details><summary>Preciso de internet para funcionar?</summary><p>Para vender, não. A loja funciona pela rede interna. A internet serve para você acompanhar de casa e para a cópia de segurança. Com um chip 4G de reserva no roteador, nem isso para.</p></details>
+      <details><summary>E se o garçom errar o pedido?</summary><p>Ele tem cinco segundos para desfazer. Depois disso, ainda pode trocar a mesa ou os sabores enquanto a cozinha não começou. Para cancelar um pedido pago, ele pede ao gerente pelo tablet, e o gerente aprova até pelo celular.</p></details>
+      <details><summary>Posso mudar preços e promoções sozinho?</summary><p>Sim. Na tela de configuração você cria e edita marcas, sabores, tipos de rosh, adicionais e promoções. A mudança aparece na hora nos tablets.</p></details>
+      <details><summary>Como sei o que tem no estoque?</summary><p>Cada essência tem a quantidade de pacotes e um mínimo. A cozinha avisa quando abre um pacote, e o sininho mostra o que está acabando. A lista de compras se monta sozinha.</p></details>
+      <details><summary>Funciona em qualquer tablet?</summary><p>Em tablets Android comuns, de 8 a 10 polegadas, com o navegador atualizado. Não precisa baixar nada em loja de aplicativos.</p></details>
+      <details><summary>Meus dados ficam seguros?</summary><p>Cada pessoa entra com a própria senha curta, então ninguém vende no nome de outro. Só o gerente cancela pedido ou dá desconto fora das promoções, e tudo fica registrado. A nuvem guarda uma cópia com backup diário.</p></details>
+      <details><summary>Quanto tempo leva para instalar?</summary><p>O assistente tem poucos passos. O que mais toma tempo é cadastrar o cardápio de verdade da casa: marcas, sabores, preços e a equipe. Combinamos isso juntos antes da primeira noite.</p></details>
+      <details><summary>O Rosh emite nota fiscal?</summary><p>Não. O pagamento continua na sua maquininha ou no Pix, e a nota fiscal continua no sistema que você já usa. O Rosh registra quem vendeu, o valor e a forma de pagamento.</p></details>
+    </div>
+    <div class="fecho">
+      <a class="botao botao--brasa" href="tour.html">Ver o tour guiado</a>
+      <a class="botao" href="previa.html">Explorar as telas</a>
+    </div>
+  </section>
+
+  <footer class="pe">
+    <p>Rosh, sistema de pedidos para a tabacaria do lounge.</p>
+    <nav aria-label="Outras páginas">
+      <a href="tour.html">Tour guiado</a><a href="previa.html">Explorar as telas</a><a href="animacao.html">Em 2 minutos</a><a href="especificacao.html">Detalhes</a>
+    </nav>
+  </footer>
+</main>
+
+</body>
+</html>
