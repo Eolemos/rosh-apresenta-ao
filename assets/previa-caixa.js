@@ -39,7 +39,9 @@
 
     function desenharPainel() {
       var turno = N.turnos[op()] || { estado: 'sem' };
-      U.desenhar(barraEl, window.RoshTablet.barra('Caixa', 'caixa', '<span class="ui-chip">' + R.rotuloDia() + '</span>' +
+      U.desenhar(barraEl, window.RoshTablet.barra('Caixa', 'caixa',
+        '<button type="button" class="ui-botao ui-botao--pequeno" data-acao="mesas" data-foco="mesas">' + window.RoshTablet.ICONE_MESAS + 'Mesas</button>' +
+        '<span class="ui-chip">' + R.rotuloDia() + '</span>' +
         '<span class="ui-chip' + (turno.estado === 'aberto' ? ' ui-chip--aberto' : '') + '">' + (turno.estado === 'aberto' ? 'Turno aberto' : 'Turno fechado') + '</span>'));
       A.marcarTreino(tela, 'caixa');
       var nome = C.OPERADORES[op()].nome;
@@ -64,7 +66,7 @@
         '<div class="ui-linha"><button type="button" class="ui-botao ui-botao--pequeno" data-acao="sangria" data-foco="sangria">Retirada (sangria)</button>' +
         '<button type="button" class="ui-botao ui-botao--pequeno" data-acao="fechar" data-foco="fechar">Fechar turno</button></div>' +
         (ultimos.length ? '<h2 class="ui-lateral__titulo">Últimos pedidos</h2><ul class="ui-pedidos">' + ultimos.map(function (p) {
-          return '<li class="ui-pedidos__item"><div class="ui-pedidos__texto"><p class="ui-pedidos__mesa">' + R.nomeMesa(p.mesa) + ' <span class="ui-pedidos__num">0' + p.numero + '</span></p>' +
+          return '<li class="ui-pedidos__item"><div class="ui-pedidos__texto"><p class="ui-pedidos__mesa">' + R.esc(R.nomeMesa(p.mesa)) + ' <span class="ui-pedidos__num">0' + p.numero + '</span></p>' +
             window.RoshPosVenda.situacao(p) + '</div><button type="button" class="ui-botao ui-botao--mini" data-acao="acoes" data-id="' + p.id + '">Ações</button></li>';
         }).join('') + '</ul>' : ''));
     }

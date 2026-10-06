@@ -111,7 +111,12 @@
     { id: 'pix', nome: 'Pix' }
   ];
 
-  var MESAS = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  // Mesas fixas são opcionais: quem numera as mesas cadastra aqui e elas viram atalhos de um toque
+  var MESAS_FIXAS = [
+    { id: 'fx-07', nome: 'Mesa 07' },
+    { id: 'fx-vip1', nome: 'VIP 1' }
+  ];
+  var LIMITE_MESA = { nome: 24, descricao: 60 };
 
   var OPERADORES = {
     rafa: { id: 'rafa', nome: 'Rafa', cargo: 'garçom' },
@@ -245,7 +250,8 @@
     UNIDADES: UNIDADES,
     OBS_GELO: OBS_GELO,
     PAGAMENTOS: PAGAMENTOS,
-    MESAS: MESAS,
+    MESAS_FIXAS: MESAS_FIXAS,
+    LIMITE_MESA: LIMITE_MESA,
     OPERADORES: OPERADORES,
     PROMOCOES: PROMOCOES,
     VALE: VALE,

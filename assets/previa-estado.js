@@ -111,6 +111,23 @@
   var recentes = [];
   var proximoNumero = 140;
 
+  // Mesa é um atendimento aberto na hora, com nome e descrição; o balcão não é mesa
+  var mesas = [];
+  var proximaMesa = 1;
+
+  function abrirMesa(dados, minutosAtras) {
+    var m = {
+      id: 'm' + proximaMesa++, nome: dados.nome, descricao: dados.descricao || '', abertaPor: dados.abertaPor,
+      fixaId: dados.fixaId || null, abertaEm: agora() - (minutosAtras || 0) * 60000, fechadaEm: 0
+    };
+    mesas.push(m);
+    return m;
+  }
+
+  function mesa(id) {
+    return C.porId(mesas, id);
+  }
+
   function saboresDe(p) {
     var lista = [];
     (p.itens || []).forEach(function (i) { lista = lista.concat(i.sabores); });
@@ -175,16 +192,26 @@
     return { roshId: roshId, sabores: sabores, adicionais: adicionais || {}, gelo: Boolean(gelo) };
   }
 
-  // Pedidos que já estavam acontecendo quando a prévia abriu
-  registrar({ mesa: '11', itens: [item('simples', ['zo-strong-mint'])], pagamento: 'pix', vendedorId: 'leo', estado: 'entregue' }, 38);
-  registrar({ mesa: '02', itens: [item('grande', ['zo-watermelon-mint', 'ad-love-66', 'zo-gum-mint'])], pagamento: 'cartao', vendedorId: 'rafa', estado: 'entregue' }, 48);
-  registrar({ tipo: 'reposicao', mesa: '02', carvoes: 1, pagamento: 'pix', vendedorId: 'rafa', estado: 'entregue' }, 35);
-  registrar({ mesa: '06', itens: [item('mix', ['zi-hapocalyx-mint', 'zi-happy-berry'])], pagamento: 'dinheiro', recebido: 6000, vendedorId: 'duda', estado: 'entregue' }, 25);
-  registrar({ tipo: 'reposicao', mesa: '11', carvoes: 2, pagamento: 'pix', vendedorId: 'leo' }, 1);
-  registrar({ mesa: '03', itens: [item('mix', ['ad-love-66', 'na-menta'])], pagamento: 'cartao', vendedorId: 'leo', estado: 'preparo' }, 12);
-  registrar({ mesa: '09', itens: [item('simples', ['zo-watermelon-mint'], {}, true)], pagamento: 'pix', vendedorId: 'rafa' }, 4);
+  // Mesas e pedidos que já estavam acontecendo quando a prévia abriu
+  var ju = abrirMesa({ nome: 'Aniversário da Ju', descricao: 'mesa grande do meio', abertaPor: 'rafa' }, 50).id;
+  var sinuca = abrirMesa({ nome: 'Grupo da sinuca', descricao: 'ao lado da sinuca, 4 pessoas', abertaPor: 'leo' }, 40).id;
+  var fernanda = abrirMesa({ nome: 'Fernanda e amigas', descricao: 'sofá da entrada, 3 pessoas', abertaPor: 'duda' }, 27).id;
+  var vip = abrirMesa({ nome: 'VIP 1', abertaPor: 'leo', fixaId: 'fx-vip1' }, 14).id;
+  var pedro = abrirMesa({ nome: 'Turma do Pedro', descricao: 'sofá do fundo, 6 pessoas', abertaPor: 'rafa' }, 12).id;
+
+  registrar({ mesa: sinuca, itens: [item('simples', ['zo-strong-mint'])], pagamento: 'pix', vendedorId: 'leo', estado: 'entregue' }, 38);
+  registrar({ mesa: ju, itens: [item('grande', ['zo-watermelon-mint', 'ad-love-66', 'zo-gum-mint'])], pagamento: 'cartao', vendedorId: 'rafa', estado: 'entregue' }, 48);
+  registrar({ tipo: 'reposicao', mesa: ju, carvoes: 1, pagamento: 'pix', vendedorId: 'rafa', estado: 'entregue' }, 35);
+  registrar({ mesa: fernanda, itens: [item('mix', ['zi-hapocalyx-mint', 'zi-happy-berry'])], pagamento: 'dinheiro', recebido: 6000, vendedorId: 'duda', estado: 'entregue' }, 25);
+  registrar({ tipo: 'reposicao', mesa: sinuca, carvoes: 2, pagamento: 'pix', vendedorId: 'leo' }, 1);
+  registrar({ mesa: vip, itens: [item('mix', ['ad-love-66', 'na-menta'])], pagamento: 'cartao', vendedorId: 'leo', estado: 'preparo' }, 12);
   registrar({ mesa: 'Balcão', itens: [item('grande', ['zi-happy-berry', 'zo-strong-mint', 'zi-fresh-lemon'], { carvao: 1 })], pagamento: 'dinheiro', recebido: 10000, vendedorId: 'bia', estado: 'preparo' }, 16);
-  registrar({ mesa: '05', itens: [item('mix', ['on-high-lemon', 'on-high-mint'])], pagamento: 'dinheiro', recebido: 6000, promoId: 'duplo', vendedorId: 'rafa', estado: 'pronto' }, 10);
+  registrar({ mesa: pedro, itens: [item('mix', ['on-high-lemon', 'on-high-mint'])], pagamento: 'dinheiro', recebido: 6000, promoId: 'duplo', vendedorId: 'rafa', estado: 'pronto' }, 10);
+  // No tour guiado esta mesa é aberta ao vivo, então ela não vem pronta
+  if (!window.ROSH_TOUR) {
+    var casal = abrirMesa({ nome: 'Casal da janela', descricao: 'perto da entrada, 2 pessoas', abertaPor: 'rafa' }, 5).id;
+    registrar({ mesa: casal, itens: [item('grande', ['zo-watermelon-mint', 'ad-love-66'], { carvao: 1 })], pagamento: 'pix', vendedorId: 'rafa' }, 4);
+  }
   recentes.splice(0, recentes.length, 'zo-watermelon-mint', 'ad-love-66', 'zo-strong-mint', 'on-high-mint', 'zi-happy-berry');
 
   // Pedido novo fica 5 s com "Desfazer" antes de chegar na cozinha
@@ -264,8 +291,14 @@
     });
   }
 
-  function nomeMesa(mesa) {
-    return mesa === 'Balcão' ? 'Balcão' : 'Mesa ' + mesa;
+  // Nome da mesa de um pedido (vai na comanda); a descrição só aparece nas telas
+  function nomeMesa(id) {
+    if (id === 'Balcão') return 'Balcão';
+    return mesa(id) ? mesa(id).nome : 'Mesa';
+  }
+
+  function descMesa(id) {
+    return mesa(id) ? mesa(id).descricao : '';
   }
 
   function descricao(p) {
@@ -276,6 +309,10 @@
 
   window.Rosh = {
     config: config,
+    mesas: mesas,
+    mesa: mesa,
+    abrirMesa: abrirMesa,
+    descMesa: descMesa,
     pedidos: pedidos,
     recentes: recentes,
     ao: ao,

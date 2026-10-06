@@ -55,7 +55,7 @@
         })));
       }
 
-      const mesas = ['Mesa 03', 'Mesa 08', 'Mesa 11'];
+      const mesas = ['Casal da janela', 'Turma do fundo', 'Aniversário da Ju'];
       const linhasFila = mesas.map((m, i) => api.oculto(D.textoTela(api, 492, 262 + i * 22, m, { pai: narg.tela, forte: true })));
 
       const pontos = Array.from({ length: 9 }, () => D.token(api, 'vidro', 7));
@@ -147,7 +147,7 @@
       const narg = D.monitor(api, 830, 290, 'Cozinha');
       D.textoTela(api, 747, 258, 'Fila da cozinha', { pai: narg.tela, fraco: true });
       const cartao = api.oculto(api.el('g', {}, narg.tela));
-      D.textoTela(api, 747, 290, 'Mesa 03', { pai: cartao, forte: true });
+      D.textoTela(api, 747, 290, 'Turma do fundo', { pai: cartao, forte: true });
       D.textoTela(api, 747, 312, 'Só na tela, sem comanda', { pai: cartao, fraco: true });
       const imp = D.impressora(api, 830, 480);
       D.rotulo(api, 830, 536, 'Impressora');

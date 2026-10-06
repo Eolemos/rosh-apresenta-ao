@@ -49,7 +49,7 @@
         <div class="comanda">
           <div class="comanda__centro">Cozinha</div>
           <div class="comanda__linha"><span>Sexta, 21:43</span><span>Pedido 0153</span></div>
-          <div class="comanda__mesa">MESA 07</div>
+          <div class="comanda__mesa comanda__mesa--nome">CASAL DA JANELA</div>
           <hr class="comanda__corte">
           <div><strong>1x Rosh grande</strong></div>
           <div>&nbsp;&nbsp;Watermelon Mint (Zomo)</div>
@@ -78,23 +78,23 @@
 
   <section class="parte" aria-labelledby="noite">
     <h2 class="parte__titulo" id="noite">Uma noite no lounge com o Rosh</h2>
-    <p class="parte__lide">Acompanhe a mesa 07, do momento em que o grupo senta até o caixa fechado.</p>
+    <p class="parte__lide">Acompanhe a mesa do Casal da janela, do momento em que os dois sentam até o caixa fechado.</p>
     <p class="parte__nota">Nomes, sabores e valores são de exemplo.</p>
 
     <ol class="noite">
       <li class="passo">
         <p class="passo__hora">21:40</p>
-        <div><h3 class="passo__titulo">O grupo chega</h3><p class="passo__texto">O garçom Rafa abre o tablet e vê o mapa das mesas. A 07 está livre. Um toque e o pedido começa.</p></div>
+        <div><h3 class="passo__titulo">O casal chega</h3><p class="passo__texto">O garçom Rafa toca em "Nova mesa" e dá a ela o nome que a equipe já usaria: Casal da janela. Na descrição, escreve "perto da entrada, 2 pessoas", para qualquer colega achar. A mesa nasce na hora. Se a sua loja numera as mesas, dá para deixar atalhos fixos, como "Mesa 07" ou "VIP 1".</p></div>
         <figure class="tela"><div class="tela__vidro" aria-hidden="true">
-          <div class="t-mesas">
-            <div class="t-mesa"><b>05</b><small>narguilé há 20 min</small></div>
-            <div class="t-mesa"><b>06</b><small>livre</small></div>
-            <div class="t-mesa t-mesa--escolhida"><b>07</b><small>livre</small></div>
-            <div class="t-mesa"><b>08</b><small>narguilé há 8 min</small></div>
-            <div class="t-mesa"><b>09</b><small>livre</small></div>
-            <div class="t-mesa"><b>10</b><small>livre</small></div>
+          <p class="t-rotulo">Nova mesa</p>
+          <div class="t-campo t-campo--ativo"><small>Nome</small><b>Casal da janela</b></div>
+          <div class="t-campo t-bloco"><small>Descrição</small><span>perto da entrada, 2 pessoas</span></div>
+          <p class="t-rotulo">Mesas abertas</p>
+          <div class="t-abertas">
+            <div class="t-aberta"><b>Turma do Pedro</b><span>sofá do fundo, 6 pessoas</span><small>narguilé há 45 min</small></div>
+            <div class="t-aberta"><b>Aniversário da Ju</b><span>mesa grande, 8 pessoas</span><small>narguilé há 20 min</small></div>
           </div>
-        </div><figcaption>No tablet do garçom: o mapa de mesas.</figcaption></figure>
+        </div><figcaption>No tablet do garçom: abrindo uma mesa nova.</figcaption></figure>
       </li>
 
       <li class="passo">
@@ -131,10 +131,11 @@
 
       <li class="passo">
         <p class="passo__hora">21:43</p>
-        <div><h3 class="passo__titulo">A cozinha recebe no mesmo segundo</h3><p class="passo__texto">O pedido aparece na tela de quem monta o narguilé e a comanda sai impressa, com a mesa em letra grande. Se o papel acabar, o pedido continua na tela.</p></div>
+        <div><h3 class="passo__titulo">A cozinha recebe no mesmo segundo</h3><p class="passo__texto">O pedido aparece na tela de quem monta o narguilé e a comanda sai impressa, com o nome da mesa em letra grande. A descrição aparece só nas telas. Se o papel acabar, o pedido continua na tela.</p></div>
         <figure class="tela"><div class="tela__vidro" aria-hidden="true">
           <div class="t-cartao">
-            <div class="t-cartao__topo"><b>Mesa 07</b><span class="t-estado">Na fila</span></div>
+            <div class="t-cartao__topo"><b>Casal da janela</b><span class="t-estado">Na fila</span></div>
+            <p class="t-onde">perto da entrada, 2 pessoas</p>
             <p>Rosh grande</p>
             <p class="t-destaque">Watermelon Mint (Zomo)<br>Love 66 (Adalya)</p>
             <p>+ 1 carvão extra</p>
@@ -145,10 +146,11 @@
 
       <li class="passo">
         <p class="passo__hora">21:51</p>
-        <div><h3 class="passo__titulo">Pronto para entregar</h3><p class="passo__texto">A cozinha marca como pronto e o tablet do Rafa avisa. Ele leva o narguilé e marca como entregue.</p></div>
+        <div><h3 class="passo__titulo">Pronto para entregar</h3><p class="passo__texto">A cozinha marca como pronto e o tablet do Rafa avisa, com o nome e a descrição da mesa. Ele leva o narguilé e marca como entregue.</p></div>
         <figure class="tela"><div class="tela__vidro" aria-hidden="true">
           <div class="t-cartao t-cartao--vidro">
-            <div class="t-cartao__topo"><b>Mesa 07 pronta</b><span class="t-estado t-estado--vidro">Pronto</span></div>
+            <div class="t-cartao__topo"><b>Casal da janela</b><span class="t-estado t-estado--vidro">Pronto</span></div>
+            <p class="t-onde">perto da entrada, 2 pessoas</p>
             <p>Rosh grande, seu pedido</p>
             <div class="t-botao t-botao--vidro">Marcar entregue</div>
           </div>
@@ -157,23 +159,23 @@
 
       <li class="passo">
         <p class="passo__hora">22:23</p>
-        <div><h3 class="passo__titulo">O tablet lembra do carvão</h3><p class="passo__texto">Meia hora depois, a mesa 07 fica laranja no mapa: é hora de oferecer carvão. Mais um pedido rápido, pago na hora, e a cozinha recebe a reposição.</p></div>
+        <div><h3 class="passo__titulo">O tablet lembra do carvão</h3><p class="passo__texto">Meia hora depois, o Casal da janela fica laranja na lista de mesas: é hora de oferecer carvão. Mais um pedido rápido, pago na hora, e a cozinha recebe a reposição.</p></div>
         <figure class="tela"><div class="tela__vidro" aria-hidden="true">
-          <div class="t-mesas">
-            <div class="t-mesa"><b>06</b><small>livre</small></div>
-            <div class="t-mesa t-mesa--carvao"><b>07</b><small>carvão há 32 min</small></div>
-            <div class="t-mesa"><b>08</b><small>narguilé há 50 min</small></div>
+          <div class="t-abertas">
+            <div class="t-aberta t-aberta--carvao"><b>Casal da janela</b><span>perto da entrada, 2 pessoas</span><small>carvão há 32 min</small></div>
+            <div class="t-aberta"><b>Turma do Pedro</b><span>sofá do fundo, 6 pessoas</span><small>carvão há 12 min</small></div>
           </div>
-          <div class="t-botao">Mais carvão para a mesa 07</div>
+          <div class="t-botao">Mais carvão para Casal da janela</div>
         </div><figcaption>No tablet do garçom: a hora de oferecer carvão.</figcaption></figure>
       </li>
 
       <li class="passo">
         <p class="passo__hora">22:50</p>
-        <div><h3 class="passo__titulo">Rosh duplo, sem confusão</h3><p class="passo__texto">A mesa 05 entrou na promoção rosh duplo: paga um, ganha dois. O tablet guarda o rosh grátis e mostra até quando vale. Na hora do segundo, Rafa lança sem cobrar.</p></div>
+        <div><h3 class="passo__titulo">Rosh duplo, sem confusão</h3><p class="passo__texto">A Turma do Pedro, no sofá do fundo, entrou na promoção rosh duplo: paga um, ganha dois. O tablet guarda o rosh grátis e mostra até quando vale. Na hora do segundo, Rafa lança sem cobrar.</p></div>
         <figure class="tela"><div class="tela__vidro" aria-hidden="true">
           <div class="t-cartao t-cartao--vidro">
-            <div class="t-cartao__topo"><b>Mesa 05</b><span class="t-estado t-estado--vidro">1 rosh grátis</span></div>
+            <div class="t-cartao__topo"><b>Turma do Pedro</b><span class="t-estado t-estado--vidro">1 rosh grátis</span></div>
+            <p class="t-onde">sofá do fundo, 6 pessoas</p>
             <p>Do pedido 0148, às 20:55. Vale até 23:55, uma vez.</p>
             <div class="t-botao t-botao--vidro">Lançar 2º rosh</div>
           </div>
@@ -182,8 +184,9 @@
 
       <li class="passo">
         <p class="passo__hora">23:10</p>
-        <div><h3 class="passo__titulo">No balcão também</h3><p class="passo__texto">Um cliente pede direto no caixa. A Bia lança, recebe em dinheiro e o sistema calcula o troco. O pedido segue para a cozinha do mesmo jeito.</p></div>
+        <div><h3 class="passo__titulo">No balcão também</h3><p class="passo__texto">Um cliente pede direto no caixa. A Bia lança como Balcão, sem abrir mesa, recebe em dinheiro e o sistema calcula o troco. O pedido segue para a cozinha do mesmo jeito.</p></div>
         <figure class="tela"><div class="tela__vidro" aria-hidden="true">
+          <div class="t-linha t-linha--onde"><span>Onde</span><span>Balcão</span></div>
           <div class="t-linha"><span>Rosh simples</span><span>R$ 45,00</span></div>
           <div class="t-linha"><span>Valor recebido</span><span>R$ 50,00</span></div>
           <div class="t-linha t-linha--total"><span>Troco</span><span>R$ 5,00</span></div>
@@ -307,6 +310,7 @@
       <details><summary>E se o garçom errar o pedido?</summary><p>Ele tem cinco segundos para desfazer. Depois disso, ainda pode trocar a mesa ou os sabores enquanto a cozinha não começou. Para cancelar um pedido pago, ele pede ao gerente pelo tablet, e o gerente aprova até pelo celular.</p></details>
       <details><summary>Posso mudar preços e promoções sozinho?</summary><p>Sim. Na tela de configuração você cria e edita marcas, sabores, tipos de rosh, adicionais e promoções. A mudança aparece na hora nos tablets.</p></details>
       <details><summary>Como sei o que tem no estoque?</summary><p>Cada essência tem a quantidade de pacotes e um mínimo. A cozinha avisa quando abre um pacote, e o sininho mostra o que está acabando. A lista de compras se monta sozinha.</p></details>
+      <details><summary>Minha loja não numera as mesas. Funciona?</summary><p>Sim. A mesa nasce na hora, com o nome que a equipe já usa, como "Casal da janela", e uma descrição curta para qualquer um achar. Quem numera as mesas pode cadastrar mesas fixas, como "Mesa 07" ou "VIP 1".</p></details>
       <details><summary>Funciona em qualquer tablet?</summary><p>Em tablets Android comuns, de 8 a 10 polegadas, com o navegador atualizado. Não precisa baixar nada em loja de aplicativos.</p></details>
       <details><summary>Meus dados ficam seguros?</summary><p>Cada pessoa entra com a própria senha curta, então ninguém vende no nome de outro. Só o gerente cancela pedido ou dá desconto fora das promoções, e tudo fica registrado. A nuvem guarda uma cópia com backup diário.</p></details>
       <details><summary>Quanto tempo leva para instalar?</summary><p>O assistente tem poucos passos. O que mais toma tempo é cadastrar o cardápio de verdade da casa: marcas, sabores, preços e a equipe. Combinamos isso juntos antes da primeira noite.</p></details>

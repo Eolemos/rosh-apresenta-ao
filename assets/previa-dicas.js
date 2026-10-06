@@ -7,11 +7,11 @@
   var DICAS = {
     tablet: [
       ['.ui-passos', 'O pedido sai em quatro passos. Toque num passo para voltar a ele; no último você confere a conta e confirma o pagamento.'],
-      ['[data-acao="mesas"]', 'Mapa de mesas: veja há quanto tempo cada mesa está sem carvão e libere a mesa quando o cliente for embora.'],
+      ['[data-acao="nova-mesa"]', 'Mesa é um atendimento aberto na hora: dê um nome e, se quiser, uma descrição. Em Mesas você vê todas as abertas, o carvão de cada uma e libera quando o cliente for embora.'],
       ['.ui-lateral', 'Aqui ficam os prontos para entregar de toda a equipe, o rosh grátis das mesas e os seus pedidos, com Ações para trocar mesa ou pedir cancelamento.']
     ],
     caixa: [
-      ['.ui-grade--caixa', 'Pedido no balcão: escolha Balcão ou a mesa do cliente e siga os passos como no tablet.'],
+      ['.ui-mesas', 'Pedido no balcão: escolha Balcão, uma mesa aberta ou abra uma mesa nova, e siga os passos como no tablet.'],
       ['[data-parte="turno"]', 'Seu turno: o dinheiro esperado na gaveta, as retiradas e o fechamento com a contagem.'],
       ['[data-acao="menu-usuario"]', 'Toque no seu nome para trocar de usuário, ligar o modo treino ou ver estas dicas de novo.']
     ],
@@ -27,7 +27,7 @@
     ],
     config: [
       ['[data-parte="papel"]', 'Veja a tela como gerente ou como master. Só o master muda o que vale para todas as lojas.'],
-      ['.ui-config .ui-segmento', 'Marcas e essências, estoque, preços e promoções ficam em abas.'],
+      ['.ui-config .ui-segmento--abas', 'Marcas e essências, estoque, preços, promoções e mesas fixas ficam em abas.'],
       ['[data-acao="nova-marca"], [data-acao="aba"]', 'O que você cadastra aparece no tablet, no caixa e na cozinha na hora.']
     ]
   };

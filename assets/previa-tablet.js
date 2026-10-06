@@ -11,6 +11,12 @@
 
   var ICONE_MESAS = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>';
 
+  // A descrição da mesa aparece só nas telas, para a equipe achar a mesa
+  function descMesa(p) {
+    var d = R.descMesa(p.mesa);
+    return d ? '<p class="ui-mesa-desc">' + R.esc(d) + '</p>' : '';
+  }
+
   // Barra de cima de cada aparelho: título, botões, dicas e a pessoa logada
   function barra(titulo, aparelho, extra) {
     return '<header class="ui-barra"><div class="ui-barra__marca"><span class="ui-brasa" aria-hidden="true"></span><span class="ui-barra__titulo">' + titulo + '</span></div>' +
@@ -22,8 +28,11 @@
     el.addEventListener('click', function (ev) {
       var alvo = ev.target.closest('[data-acao]');
       if (!alvo) return;
-      if (alvo.getAttribute('data-acao') === 'menu-usuario') A.menu(tela, aparelho, cfg);
-      if (alvo.getAttribute('data-acao') === 'dicas' && window.RoshDicas) window.RoshDicas.mostrar(aparelho, true);
+      var acao = alvo.getAttribute('data-acao');
+      if (acao === 'menu-usuario') A.menu(tela, aparelho, cfg);
+      if (acao === 'dicas' && window.RoshDicas) window.RoshDicas.mostrar(aparelho, true);
+      if (acao === 'mesas') window.RoshMapaMesas.abrir(tela, aparelho);
+      if (acao === 'reposicao') window.RoshMapaMesas.reposicao(tela, null, aparelho);
     });
   }
 
@@ -69,7 +78,7 @@
       var creditos = M.creditosDisponiveis();
       if (creditos.length) {
         html += '<h2 class="ui-lateral__titulo">Rosh grátis</h2>' + creditos.map(function (c) {
-          return '<div class="ui-credito' + novo('c' + c.id) + '"><p class="ui-credito__titulo">' + U.ICONES.presente + R.nomeMesa(c.mesa) + ': 1 ' + R.esc(R.rosh(c.roshId).nome.toLowerCase()) + '</p>' +
+          return '<div class="ui-credito' + novo('c' + c.id) + '"><p class="ui-credito__titulo">' + U.ICONES.presente + R.esc(R.nomeMesa(c.mesa)) + ': 1 ' + R.esc(R.rosh(c.roshId).nome.toLowerCase()) + '</p>' +
             '<p class="ui-credito__texto">Pedido 0' + c.origem + ' às ' + R.hora(c.criadoEm) + ', ' + C.OPERADORES[c.vendedorId].nome + '. Vale até ' + R.hora(c.validoAte) + ', uma vez.</p>' +
             '<button type="button" class="ui-botao ui-botao--vidro ui-botao--pequeno" data-acao="segundo" data-id="' + c.id + '" data-foco="segundo-' + c.id + '">Lançar 2º rosh</button></div>';
         }).join('');
@@ -78,8 +87,8 @@
       html += '<h2 class="ui-lateral__titulo">Prontos para entregar <span class="ui-lateral__qtd">' + lista.length + '</span></h2>';
       html += lista.length ? lista.map(function (p) {
         var meu = p.vendedorId === eu();
-        return '<div class="ui-pronto' + (meu ? ' ui-pronto--meu' : '') + novo('p' + p.id) + '" role="status"><p class="ui-pronto__mesa">' + R.nomeMesa(p.mesa) +
-          (p.treino ? ' <span class="ui-selo ui-selo--treino">Treino</span>' : '') + '</p>' +
+        return '<div class="ui-pronto' + (meu ? ' ui-pronto--meu' : '') + novo('p' + p.id) + '" role="status"><p class="ui-pronto__mesa">' + R.esc(R.nomeMesa(p.mesa)) +
+          (p.treino ? ' <span class="ui-selo ui-selo--treino">Treino</span>' : '') + '</p>' + descMesa(p) +
           '<p class="ui-pronto__texto">' + R.esc(R.descricao(p)) + ', ' + (meu ? 'seu pedido' : 'de ' + C.OPERADORES[p.vendedorId].nome) + '</p>' +
           '<button type="button" class="ui-botao ui-botao--vidro ui-botao--pequeno" data-acao="entregar" data-id="' + p.id + '" data-foco="entregar-' + p.id + '">Marcar entregue</button></div>';
       }).join('') : '<p class="ui-vazio">Nada pronto agora.</p>';
@@ -88,7 +97,7 @@
       var ativos = mine.filter(function (p) { return p.estado === 'fila' || p.estado === 'preparo' || p.estado === 'pronto'; }).reverse();
       var fim = mine.filter(function (p) { return p.estado === 'entregue' || p.estado === 'cancelado'; }).slice(-2).reverse();
       html += '<h2 class="ui-lateral__titulo">Meus pedidos</h2><ul class="ui-pedidos">' + ativos.concat(fim).map(function (p) {
-        return '<li class="ui-pedidos__item"><div class="ui-pedidos__texto"><p class="ui-pedidos__mesa">' + R.nomeMesa(p.mesa) + ' <span class="ui-pedidos__num">0' + p.numero + '</span></p>' +
+        return '<li class="ui-pedidos__item"><div class="ui-pedidos__texto"><p class="ui-pedidos__mesa">' + R.esc(R.nomeMesa(p.mesa)) + ' <span class="ui-pedidos__num">0' + p.numero + '</span></p>' + descMesa(p) +
           '<p class="ui-pedidos__detalhe">' + R.esc(R.descricao(p)) + ', ' + R.tempoDecorrido(p.criadoEm) + '</p>' + window.RoshPosVenda.situacao(p) +
           (p.treino ? ' <span class="ui-selo ui-selo--treino">Treino</span>' : '') + '</div>' +
           '<button type="button" class="ui-botao ui-botao--mini" data-acao="acoes" data-id="' + p.id + '" data-foco="acoes-' + p.id + '" aria-label="Ações do pedido 0' + p.numero + '">Ações</button></li>';
@@ -113,12 +122,6 @@
       if (acao === 'acoes') window.RoshPosVenda.abrir(tela, C.porId(R.pedidos, id), eu());
     });
 
-    barraEl.addEventListener('click', function (ev) {
-      var alvo = ev.target.closest('[data-acao]');
-      if (!alvo) return;
-      if (alvo.getAttribute('data-acao') === 'reposicao') window.RoshMapaMesas.reposicao(tela);
-      if (alvo.getAttribute('data-acao') === 'mesas') window.RoshMapaMesas.abrir(tela);
-    });
     ligarBarra(tela, barraEl, 'tablet');
 
     function tudo() {
@@ -131,5 +134,5 @@
     tudo();
   }
 
-  window.RoshTablet = { montar: montarTablet, barra: barra, ligarBarra: ligarBarra };
+  window.RoshTablet = { montar: montarTablet, barra: barra, ligarBarra: ligarBarra, descMesa: descMesa, ICONE_MESAS: ICONE_MESAS };
 })();

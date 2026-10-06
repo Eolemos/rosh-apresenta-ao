@@ -18,6 +18,12 @@
     return null;
   }
 
+  // Mesa aberta com esse nome (o roteiro fala das mesas pelo nome, como a equipe)
+  function idMesa(nome) {
+    var mesa = window.Rosh.mesas.filter(function (m) { return m.nome === nome && !m.fechadaEm; })[0];
+    return mesa ? mesa.id : '';
+  }
+
   function resolver(alvo) {
     if (!alvo) return null;
     return typeof alvo === 'function' ? alvo() : q(alvo);
@@ -182,6 +188,6 @@
   }
 
   window.RoshTourAcoes = {
-    criar: criar, q: q, achar: achar, resolver: resolver, visivel: visivel, mostrarDentro: mostrarDentro, ligarSom: ligarSom, falhas: falhas
+    criar: criar, q: q, achar: achar, idMesa: idMesa, resolver: resolver, visivel: visivel, mostrarDentro: mostrarDentro, ligarSom: ligarSom, falhas: falhas
   };
 })();

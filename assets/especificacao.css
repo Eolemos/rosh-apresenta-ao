@@ -1247,3 +1247,8 @@
     break-before: page;
   }
 }
+
+/* Nome de mesa mais longo que um número: letra um pouco menor para caber na bobina */
+.comanda__mesa--nome {
+  font-size: 1.35rem;
+}

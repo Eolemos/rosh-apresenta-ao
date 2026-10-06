@@ -44,20 +44,45 @@
         }
       },
       {
-        texto: 'O botão Mesas mostra o salão: quais mesas estão livres e quais têm cliente.',
+        texto: 'O botão Mesas mostra todas as mesas abertas, com o nome que a equipe deu e o tempo de cada narguilé.',
         alvo: function () { return q(T + ' .ui-mapa') || q(T + ' [data-acao="mesas"]'); },
         faz: async function (t) { await t.clicar(T + ' [data-acao="mesas"]'); }
       },
       {
-        texto: 'A mesa 02 está em laranja: o último carvão foi há mais de 30 minutos. É hora de oferecer mais.',
+        texto: 'O Aniversário da Ju está em laranja: o último carvão foi há mais de 30 minutos. É hora de oferecer mais.',
         alvo: T + ' .ui-mapa__mesa--carvao'
       },
       {
-        texto: 'Pedido novo para a mesa 07. O garçom toca na mesa e escolhe o tipo de rosh.',
-        alvo: function () { return q(T + ' .ui-passo1') || q(T + ' .ui-passos'); },
+        texto: 'Chegou um casal. O garçom toca em Nova mesa: aqui a mesa é aberta na hora, sem precisar de número.',
+        alvo: function () { return q(T + ' .ui-modal__caixa--form') || q(T + ' [data-acao="nova-mesa"]'); },
         faz: async function (t) {
           await t.clicar(T + ' .ui-modal [data-acao="fechar"]');
-          await t.clicar(T + ' [data-acao="mesa"][data-valor="07"]', 800);
+          await t.clicar(T + ' [data-acao="nova-mesa"]');
+        }
+      },
+      {
+        texto: 'Ele dá um nome, Casal da janela, e uma descrição para a equipe achar: perto da entrada, 2 pessoas.',
+        alvo: T + ' .ui-modal__caixa--form',
+        tempo: 6400,
+        faz: async function (t) {
+          await t.digitar(T + ' .ui-modal [data-campo="nome"]', 'Casal da janela', 70);
+          await t.digitar(T + ' .ui-modal [data-campo="descricao"]', 'perto da entrada, 2 pessoas', 45);
+        }
+      },
+      {
+        texto: 'Mesa aberta. Ela entra na lista e toda a equipe passa a ver.',
+        alvo: function () { return q(T + ' .ui-mesa-aberta[aria-pressed="true"]') || q(T + ' .ui-modal__caixa--form'); },
+        faz: async function (t) { await t.clicar(T + ' .ui-modal [data-acao="salvar"]'); }
+      },
+      {
+        texto: 'Sua loja numera as mesas? As mesas fixas ficam aqui como atalhos de um toque: Mesa 07, VIP 1.',
+        alvo: T + ' .ui-mesas__atalhos'
+      },
+      {
+        texto: 'Agora o pedido do casal. O garçom escolhe o tipo de rosh: um rosh grande.',
+        alvo: function () { return q(T + ' .ui-passo1 .ui-pilha') || q(T + ' .ui-passos'); },
+        faz: async function (t) {
+          await t.espera(900);
           await t.clicar(T + ' [data-acao="rosh"][data-valor="grande"]');
         }
       },
@@ -83,11 +108,10 @@
         alvo: T + ' .ui-conta-lista--rodape'
       },
       {
-        texto: 'Adicionais: dois carvões extras, cobrados à parte.',
+        texto: 'Adicionais: um carvão extra, cobrado à parte.',
         alvo: T + ' .ui-adicional',
         faz: async function (t) {
           await t.clicar(T + ' [data-acao="continuar"]');
-          await t.clicar(T + ' [data-acao="mais"][data-valor="carvao"]', 500);
           await t.clicar(T + ' [data-acao="mais"][data-valor="carvao"]');
         }
       },
@@ -114,12 +138,14 @@
     ]
   });
 
-  function cartao07() {
-    return achar(Z + ' .ui-card', 'Mesa 07');
+  var CASAL = 'Casal da janela';
+
+  function cartaoCasal() {
+    return achar(Z + ' .ui-card', CASAL);
   }
 
   function botaoDoCartao() {
-    var cartao = cartao07();
+    var cartao = cartaoCasal();
     return cartao && cartao.querySelector('[data-acao="avancar"]');
   }
 
@@ -135,19 +161,19 @@
     vista: 'cozinha',
     passos: [
       {
-        texto: 'Na cozinha, o pedido da mesa 07 aparece na hora, com um aviso sonoro.',
-        alvo: cartao07,
+        texto: 'Na cozinha, o pedido do Casal da janela aparece na hora, com um aviso sonoro. A descrição ajuda a achar a mesa.',
+        alvo: cartaoCasal,
         faz: async function (t) {
-          await t.ate(cartao07, 8000);
+          await t.ate(cartaoCasal, 8000);
           t.som();
         }
       },
       {
-        texto: 'A comanda sai impressa: mesa, sabores, adicionais e quem vendeu.',
+        texto: 'A comanda sai impressa com o nome da mesa em letras grandes, os sabores, os adicionais e quem vendeu.',
         alvo: '#impressora .pv-impressora__saida',
         tempo: 5600,
         faz: async function (t) {
-          var pedido = window.Rosh.pedidos.filter(function (p) { return p.mesa === '07' && p.tipo === 'rosh'; })[0];
+          var pedido = window.Rosh.pedidos.filter(function (p) { return p.mesa === A.idMesa(CASAL) && p.tipo === 'rosh'; })[0];
           if (pedido && !t.rapido()) window.RoshApp.imprimir(pedido);
         }
       },
@@ -157,12 +183,12 @@
       },
       {
         texto: 'A cozinha toca em Começar preparo quando pega o pedido.',
-        alvo: cartao07,
+        alvo: cartaoCasal,
         faz: async function (t) { await t.clicar(botaoDoCartao); }
       },
       {
         texto: 'E em Marcar pronto quando o narguilé está montado. O garçom é avisado no tablet dele.',
-        alvo: cartao07,
+        alvo: cartaoCasal,
         faz: async function (t) { await t.clicar(botaoDoCartao); }
       },
       {

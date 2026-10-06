@@ -10,8 +10,15 @@
   var T = '#tela-tablet';
   var X = '#tela-caixa';
 
-  function pronto07() {
-    return achar(T + ' .ui-pronto', 'Mesa 07');
+  var JU = 'Aniversário da Ju';
+  var FERNANDA = 'Fernanda e amigas';
+
+  function prontoCasal() {
+    return achar(T + ' .ui-pronto', 'Casal da janela');
+  }
+
+  function naReposicao(nome) {
+    return function () { return q(T + ' .ui-modal [data-acao="mesa"][data-valor="' + A.idMesa(nome) + '"]'); };
   }
 
   // Verdadeiro quando nenhum pedido está mais nos 5 segundos do Desfazer
@@ -19,8 +26,8 @@
     return !window.Rosh.pedidos.some(function (p) { return window.Rosh.podeDesfazer(p); });
   }
 
-  function mesa05NoMapa() {
-    return achar(T + ' .ui-mapa__mesa', 'Mesa 05');
+  function fernandaNasMesas() {
+    return achar(T + ' .ui-mapa__mesa', FERNANDA);
   }
 
   caps.push({
@@ -32,11 +39,11 @@
         alvo: T + ' .ui-lateral'
       },
       {
-        texto: 'O da mesa 07 é do Rafa. Ele leva o narguilé e marca como entregue.',
-        alvo: function () { return pronto07() || q(T + ' .ui-lateral'); },
+        texto: 'O do Casal da janela é do Rafa. Ele leva o narguilé e marca como entregue.',
+        alvo: function () { return prontoCasal() || q(T + ' .ui-lateral'); },
         faz: async function (t) {
           await t.espera(900);
-          await t.clicar(function () { return pronto07() && pronto07().querySelector('[data-acao="entregar"]'); });
+          await t.clicar(function () { return prontoCasal() && prontoCasal().querySelector('[data-acao="entregar"]'); });
         }
       },
       {
@@ -45,11 +52,11 @@
         faz: async function (t) { await t.clicar(T + ' [data-acao="reposicao"]'); }
       },
       {
-        texto: 'As mesas com cliente vêm primeiro. A 02, em laranja, é a que mais espera. Dois carvões, pagos no Pix.',
+        texto: 'A lista traz as mesas abertas. O Aniversário da Ju, em laranja, é a que mais espera. Dois carvões, pagos no Pix.',
         alvo: T + ' .ui-modal__caixa',
         tempo: 6400,
         faz: async function (t) {
-          await t.clicar(T + ' .ui-modal [data-acao="mesa"][data-valor="02"]', 700);
+          await t.clicar(naReposicao(JU), 700);
           await t.clicar(T + ' .ui-modal [data-acao="mais"]', 700);
           await t.clicar(T + ' .ui-modal [data-acao="pagamento"][data-valor="pix"]');
         }
@@ -81,7 +88,7 @@
         alvo: T + ' .ui-credito'
       },
       {
-        texto: 'A mesa 05 pediu o segundo. O garçom toca em Lançar 2º rosh: a mesa e o tipo já vêm prontos.',
+        texto: 'A Turma do Pedro pediu o segundo. O garçom toca em Lançar 2º rosh: a mesa e o tipo já vêm prontos.',
         alvo: function () { return q(T + ' .ui-passos'); },
         faz: async function (t) { await t.clicar(T + ' .ui-credito [data-acao="segundo"]'); }
       },
@@ -100,12 +107,13 @@
         faz: async function (t) { await t.clicar(T + ' [data-acao="finalizar"]'); }
       },
       {
-        texto: 'O cliente foi embora? Liberar mesa. O mapa fica certo para o próximo.',
-        alvo: function () { return mesa05NoMapa() || q(T + ' .ui-aviso') || q(T + ' [data-acao="mesas"]'); },
-        tempo: 6200,
+        texto: 'A Fernanda e as amigas foram embora. Liberar mesa fecha o atendimento. Mesa esquecida aberta fecha sozinha na virada do dia.',
+        alvo: function () { return fernandaNasMesas() || q(T + ' .ui-modal .ui-form__nota') || q(T + ' .ui-aviso') || q(T + ' .ui-mesas__lista'); },
+        tempo: 7600,
         faz: async function (t) {
           await t.clicar(T + ' [data-acao="mesas"]', 1600);
-          await t.clicar(T + ' .ui-modal [data-acao="liberar"][data-valor="05"]');
+          await t.clicar(function () { return q(T + ' .ui-modal [data-acao="liberar"][data-valor="' + A.idMesa(FERNANDA) + '"]'); }, 2600);
+          await t.clicar(T + ' .ui-modal [data-acao="fechar"]');
         }
       }
     ]

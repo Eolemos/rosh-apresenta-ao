@@ -31,43 +31,83 @@
   margin-top: 0.75rem;
 }
 
-/* Mapa de mesas */
-.t-mesas {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.4rem;
-}
-
-.t-mesa {
-  padding: 0.45rem 0.3rem;
+/* Mesa nova (nome e descrição) e a lista de mesas abertas */
+.t-campo {
+  padding: 0.45rem 0.65rem;
   border-radius: 8px;
   border: 1px solid var(--linha);
   background: var(--fumo-2);
-  text-align: center;
 }
 
-.t-mesa b {
+.t-campo + .t-campo {
+  margin-top: 0.4rem;
+}
+
+.t-campo--ativo {
+  border-color: var(--brasa);
+}
+
+.t-campo small {
   display: block;
-  font-size: 1.05rem;
-}
-
-.t-mesa small {
   font-size: 0.72rem;
   color: var(--texto-3);
 }
 
-.t-mesa--escolhida {
-  border-color: var(--brasa);
-  background: var(--brasa-fundo);
+.t-abertas {
+  display: grid;
+  gap: 0.4rem;
 }
 
-.t-mesa--carvao {
+.t-aberta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.05rem 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--linha);
+  background: var(--fumo-2);
+}
+
+.t-aberta span {
+  grid-column: 1;
+  font-size: 0.8rem;
+  color: var(--texto-2);
+}
+
+.t-aberta small {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 0.74rem;
+  color: var(--texto-3);
+  white-space: nowrap;
+}
+
+.t-aberta--carvao {
   border-color: var(--latao);
   background: var(--latao-fundo);
 }
 
-.t-mesa--carvao small {
+.t-aberta--carvao small {
   color: var(--latao);
+}
+
+.t-abertas + .t-botao {
+  margin-top: 0.6rem;
+}
+
+/* A descrição da mesa aparece só nas telas, nunca na comanda */
+.t-cartao .t-onde {
+  margin-top: 0.05rem;
+  font-size: 0.78rem;
+  color: var(--texto-3);
+}
+
+.t-linha--onde {
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--linha);
+  color: var(--texto-2);
 }
 
 /* Marcas e sabores */

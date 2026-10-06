@@ -8,6 +8,7 @@
   var E = window.RoshEssencias;
   var M = window.RoshMesas;
   var A = window.RoshAcesso;
+  var ME = window.RoshMesaEscolha;
 
   var PASSOS = ['Mesa e rosh', 'Essências', 'Adicionais', 'Conta e pagamento'];
 
@@ -22,7 +23,7 @@
 
   function Construtor(raiz, cfg) {
     var sel = novo();
-    var ui = { passo: 1, modo: 'marcas', marcaId: null, categoria: null, busca: '', focarBusca: false };
+    var ui = { passo: 1, modo: 'marcas', marcaId: null, categoria: null, busca: '', buscaMesa: '', focarBusca: false };
     var ctx = { cfg: cfg, ui: ui, desenhar: desenhar, reiniciar: reiniciar };
     Object.defineProperty(ctx, 'sel', { get: function () { return sel; } });
 
@@ -59,22 +60,7 @@
       }).join('') + '</nav>';
     }
 
-    // Mesa livre ou ocupada, há quanto tempo e se o carvão está atrasado
-    function htmlMesa(m) {
-      var info = cfg.modo === 'garcom' && m !== 'Balcão' ? M.infoMesa(m) : { ocupada: false };
-      var status = '';
-      if (cfg.modo === 'garcom' && m !== 'Balcão') {
-        status = info.ocupada
-          ? '<span class="ui-mesa__status">' + (info.carvaoAtrasado ? U.ICONES.brasa + 'carvão ' + R.minutos(info.ultimoCarvaoEm) + ' min' : 'narguilé ' + R.minutos(info.narguileEm) + ' min') + '</span>'
-          : '<span class="ui-mesa__status">livre</span>';
-      }
-      return '<button type="button" class="ui-opcao ui-opcao--mesa' + (info.ocupada ? ' ui-opcao--ocupada' : '') + (info.carvaoAtrasado ? ' ui-opcao--carvao' : '') +
-        '" data-acao="mesa" data-valor="' + m + '" data-foco="mesa-' + m + '" aria-pressed="' + (sel.mesa === m) + '"' + (sel.segundo ? ' disabled' : '') + '>' +
-        '<span class="ui-mesa__numero">' + m + '</span>' + status + (info.credito ? '<span class="ui-opcao__credito">1 grátis</span>' : '') + '</button>';
-    }
-
     function htmlMesaERosh() {
-      var mesas = cfg.modo === 'caixa' ? ['Balcão'].concat(C.MESAS) : C.MESAS;
       var it = item();
       var aviso = '';
       if (sel.segundo) {
@@ -85,10 +71,7 @@
       } else if (sel.itens.length > 1) {
         aviso = '<div class="ui-faixa ui-faixa--latao"><p>Montando o <strong>narguilé ' + (sel.atual + 1) + ' de ' + sel.itens.length + '</strong> deste pedido. A mesa vale para todos.</p></div>';
       }
-      return aviso + '<div class="ui-passo1"><section class="ui-secao"><h3 class="ui-rotulo">' + (cfg.modo === 'caixa' ? 'Mesa ou balcão' : 'Mesa') + '</h3>' +
-        '<div class="ui-grade ui-grade--mesas ui-grade--' + cfg.modo + '">' + mesas.map(htmlMesa).join('') + '</div>' +
-        (cfg.modo === 'garcom' ? '<p class="ui-ajuda">Laranja: último carvão há mais de ' + M.LIMITE_CARVAO + ' min. Ofereça carvão.</p>' : '') + '</section>' +
-        '<section class="ui-secao"><h3 class="ui-rotulo">Tipo de rosh' + (sel.itens.length > 1 ? ' do narguilé ' + (sel.atual + 1) : '') + '</h3><div class="ui-pilha">' +
+      return aviso + '<div class="ui-passo1">' + ME.html(sel, ui, cfg) + '<section class="ui-secao"><h3 class="ui-rotulo">Tipo de rosh' + (sel.itens.length > 1 ? ' do narguilé ' + (sel.atual + 1) : '') + '</h3><div class="ui-pilha">' +
         C.ativos(C.ROSH).map(function (r) {
           return '<button type="button" class="ui-opcao ui-opcao--rosh" data-acao="rosh" data-valor="' + r.id + '" data-foco="rosh-' + r.id +
             '" aria-pressed="' + (it.roshId === r.id) + '"' + (sel.segundo ? ' disabled' : '') + '><span class="ui-opcao__nome">' + R.esc(r.nome) + '</span>' +
@@ -128,6 +111,13 @@
       desenhar();
     }
 
+    function escolherMesa(id) {
+      sel.mesa = id;
+      ui.buscaMesa = '';
+      if (id === 'Balcão' && sel.promoId === 'duplo') sel.promoId = null;
+      if (id && item().roshId && sel.itens.length === 1) ui.passo = 2;
+    }
+
     // Passa para o narguilé seguinte ou volta para editar um da lista
     function irParaItem(i, passo) {
       sel.atual = i;
@@ -147,11 +137,14 @@
       switch (nome) {
         case 'passo': ui.passo = Number(valor); break;
         case 'continuar': ui.passo = Math.min(4, ui.passo + 1); break;
-        case 'mesa':
-          sel.mesa = sel.mesa === valor ? null : valor;
-          if (sel.mesa === 'Balcão' && sel.promoId === 'duplo') sel.promoId = null;
-          if (sel.mesa && it.roshId && sel.itens.length === 1) ui.passo = 2;
-          break;
+        case 'mesa': escolherMesa(sel.mesa === valor ? null : valor); break;
+        case 'mesa-fixa': escolherMesa(M.abrirFixa(valor, A.operador(cfg.aparelho)).id); break;
+        case 'nova-mesa':
+          ME.nova(cfg.tela, A.operador(cfg.aparelho), function (m) {
+            escolherMesa(m.id);
+            desenhar();
+          });
+          return;
         case 'rosh':
           it.roshId = valor;
           it.sabores = it.sabores.slice(0, R.rosh(valor).max);
@@ -183,6 +176,10 @@
         E.digitar(ui, ev.target.value);
         desenhar();
       }
+      if (campo === 'busca-mesa') {
+        ui.buscaMesa = ev.target.value;
+        desenhar();
+      }
       if (campo === 'recebido') {
         sel.recebido = Math.round((parseFloat(ev.target.value.replace(',', '.')) || 0) * 100);
         window.RoshPagamento.atualizarTroco(ctx, raiz);
@@ -197,6 +194,8 @@
       });
       if (sel.promoId && !C.promoAtiva(R.promocao(sel.promoId), R.agora())) sel.promoId = null;
       if (sel.creditoId && !M.creditoDaMesa(sel.mesa)) sel = novo();
+      // Mesa liberada por outra pessoa sai do pedido em montagem
+      if (sel.mesa && sel.mesa !== 'Balcão' && R.mesa(sel.mesa).fechadaEm) sel.mesa = null;
       desenhar();
     });
 

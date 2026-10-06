@@ -18,18 +18,18 @@
   }
 
   function trocarMesa(tela, p, opId) {
-    U.abrirModal(tela, '<h2 class="ui-modal__titulo">Trocar a mesa do pedido 0' + p.numero + '</h2>' +
-      '<p class="ui-modal__texto">Hoje está na ' + R.nomeMesa(p.mesa) + '. O preço não muda e a troca fica registrada.</p>' +
-      '<div class="ui-grade ui-grade--mesas-modal">' + C.MESAS.filter(function (m) { return m !== p.mesa; }).map(function (m) {
-        return '<button type="button" class="ui-opcao ui-opcao--mesa" data-acao="mesa" data-valor="' + m + '">' + m + '</button>';
-      }).join('') + '</div><div class="ui-modal__acoes"><button type="button" class="ui-botao" data-acao="cancelar">Cancelar</button></div>', function (alvo, fechar) {
+    var modal = U.abrirModal(tela, '<h2 class="ui-modal__titulo">Trocar a mesa do pedido 0' + p.numero + '</h2>' +
+      '<p class="ui-modal__texto">Hoje está em ' + R.esc(R.nomeMesa(p.mesa)) + '. Escolha outra mesa aberta: o preço não muda e a troca fica registrada.</p>' +
+      window.RoshMesaEscolha.linhas(null, p.mesa) +
+      '<div class="ui-modal__acoes"><button type="button" class="ui-botao" data-acao="cancelar">Cancelar</button></div>', function (alvo, fechar) {
       if (alvo.getAttribute('data-acao') === 'mesa') {
         var nova = alvo.getAttribute('data-valor');
         M.trocarMesa(p.id, nova, opId);
-        U.aviso(tela, 'Pedido 0' + p.numero + ' agora é da ' + R.nomeMesa(nova) + '. A cozinha já vê a troca');
+        U.aviso(tela, 'Pedido 0' + p.numero + ' passou para ' + R.nomeMesa(nova) + '. A cozinha já vê a troca');
       }
       fechar();
     });
+    modal.el.querySelector('.ui-modal__caixa').classList.add('ui-modal__caixa--largo');
   }
 
   // Troca de sabores e gelo enquanto o pedido está na fila; o preço precisa ficar igual
@@ -112,7 +112,7 @@
     var naFila = p.estado === 'fila' && p.tipo === 'rosh';
     var pendente = p.cancelamento && p.cancelamento.estado === 'pendente';
     var podeCancelar = p.estado !== 'cancelado' && !pendente;
-    U.abrirModal(tela, '<h2 class="ui-modal__titulo">Pedido 0' + p.numero + ', ' + R.nomeMesa(p.mesa) + '</h2>' +
+    U.abrirModal(tela, '<h2 class="ui-modal__titulo">Pedido 0' + p.numero + ', ' + R.esc(R.nomeMesa(p.mesa)) + '</h2>' +
       '<p class="ui-modal__texto">' + R.esc(R.descricao(p)) + ', ' + R.reais(p.total) + (p.pagamento ? ' ' + R.pagamento(p.pagamento).nome.toLowerCase() : '') + '. ' +
       (p.historico.length ? 'Última mudança: ' + R.esc(p.historico[p.historico.length - 1].texto) + '.' : '') + '</p><div class="ui-menu-lista">' +
       (R.podeDesfazer(p) ? '<button type="button" class="ui-botao ui-botao--primario" data-acao="desfazer">Desfazer o envio</button>' : '') +

@@ -56,7 +56,8 @@
       var naCozinha = R.pedidos.filter(function (p) { return R.naCozinha(p) && (p.estado === 'fila' || p.estado === 'preparo'); }).length;
       return cartao('Faturamento líquido', R.reais(d.valor), d.pedidos + ' pedidos no dia', true) +
         '<div class="ui-cel-duas">' + cartao('Ticket médio', R.reais(Math.round(d.valor / d.pedidos))) + cartao('Carvões extra', d.carvoes) + '</div>' +
-        (escopo === 'u1' ? cartao('Na cozinha agora', naCozinha, 'Na fila ou em preparo') : '') +
+        (escopo === 'u1' ? '<div class="ui-cel-duas">' + cartao('Mesas atendidas hoje', d.mesas, window.RoshMesas.abertas().length + ' abertas agora') +
+          cartao('Na cozinha agora', naCozinha, 'Na fila ou em preparo') + '</div>' : cartao('Mesas atendidas hoje', d.mesas, escopo === 'todas' ? 'Nas 3 unidades' : '')) +
         '<section class="ui-cel-bloco"><h3 class="ui-cel-bloco__titulo">Pedidos por hora</h3>' + K.grafico(d.horas, 80) + '</section>' +
         '<section class="ui-cel-bloco"><h3 class="ui-cel-bloco__titulo">Precisa de você</h3>' + listaAvisos(3) + '</section>';
     }

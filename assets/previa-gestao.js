@@ -35,7 +35,8 @@
         '<button type="button" data-acao="vista" data-valor="u1" data-foco="vista-u1" aria-pressed="' + !todas + '">' + C.UNIDADES.u1 + '</button>' +
         '<button type="button" data-acao="vista" data-valor="todas" data-foco="vista-todas" aria-pressed="' + todas + '">Todas as unidades</button></div>' +
         '<button type="button" class="ui-ajuda-botao" data-acao="dicas" aria-label="Ver dicas desta tela">?</button>' + A.sino() + '</div></header>' +
-        '<div class="ui-kpis">' + K.kpi('Pedidos no dia', d.pedidos) + K.kpi('Faturamento líquido', R.reais(d.valor)) +
+        '<div class="ui-kpis ui-kpis--seis">' + K.kpi('Pedidos no dia', d.pedidos) + K.kpi('Faturamento líquido', R.reais(d.valor)) +
+        K.kpi('Mesas atendidas hoje', d.mesas, todas ? 'Nas 3 unidades' : window.RoshMesas.abertas().length + ' abertas agora') +
         K.kpi('Ticket médio', R.reais(Math.round(d.valor / d.pedidos))) + K.kpi('Carvões extra', d.carvoes, 'Em pedidos e reposições') +
         (todas ? K.kpi('Unidades abertas', '3', 'Todas com a caixinha online') : K.kpi('Na cozinha agora', naCozinha, 'Na fila ou em preparo')) + '</div>' +
         '<div class="ui-gestao__grade">' +

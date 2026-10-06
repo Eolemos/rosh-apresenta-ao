@@ -10,8 +10,8 @@
   // Tela de pedido: rosh, sabores, adicional (se houver), forma de pagamento e a confirmação
   function telaPedido(api, pai, x, hy, largura, dados) {
     const g = api.el('g', {}, pai);
-    D.textoTela(api, x, hy, dados.operador, { pai: g, fraco: true });
-    D.textoTela(api, x + largura, hy, dados.mesa, { pai: g, ancora: 'end', classe: 's-tela-texto--negrito' });
+    D.textoTela(api, x, hy, dados.operador, { pai: g, fraco: true, classe: 's-tela-texto--mini' });
+    D.textoTela(api, x + largura, hy, dados.mesa, { pai: g, ancora: 'end', classe: 's-tela-texto--negrito s-tela-texto--mini' });
 
     let y = hy + 10;
     const rosh = api.el('rect', { x, y, width: largura, height: 26, rx: 5, class: 's-contorno-linha' }, g);
@@ -78,7 +78,7 @@
     linhas.forEach((linha, i) => {
       D.textoTela(api, x + 10, y + 59 + i * 16, linha, { pai: cartao, classe: 's-tela-texto--mini' });
     });
-    const estado = D.textoTela(api, x + 181, y + 21, 'Na fila', {
+    const estado = D.textoTela(api, x + 181, y + 40, 'Na fila', {
       pai: cartao, ancora: 'end', classe: 's-preenche-brasa2 s-tela-texto--negrito s-tela-texto--mini'
     });
     return { vazia, cartao, estado };
@@ -102,17 +102,17 @@
 
   cenas.push({
     titulo: 'Um pedido, do tablet à mesa',
-    texto: 'O garçom faz o pedido no tablet. O cliente paga na hora. O pedido vai direto para a cozinha.',
+    texto: 'O garçom abre a mesa pelo nome e faz o pedido no tablet. O cliente paga na hora. O pedido vai direto para a cozinha.',
     beneficios: [
+      'A mesa é aberta na hora, pelo nome.',
       'Só existe pedido pago: dinheiro, cartão ou Pix.',
       'A cozinha recebe na tela e no papel.',
-      'O garçom é avisado quando fica pronto.',
       'Cada venda leva o nome de quem vendeu.'
     ],
-    duracao: 20000,
+    duracao: 22600,
     montar(api) {
       const pedido = {
-        mesa: 'Mesa 07', rosh: 'Rosh grande', adicional: '+ 1 carvão extra',
+        mesa: 'Casal da janela', rosh: 'Rosh grande', adicional: '+ 1 carvão extra',
         sabores: [{ nome: 'Watermelon Mint', marca: 'Zomo' }, { nome: 'Love 66', marca: 'Adalya' }],
         numero: 'Pedido 0153  21:47', vendedor: 'Rafa (garçom)', pagamento: 'Pix'
       };
@@ -123,12 +123,19 @@
 
       const tab = D.tablet(api, 150, 230, 'Tablet do garçom', 240, 200);
       const t = telaPedido(api, tab.tela, 51, 160, 198, { operador: 'Garçom: Rafa', ...pedido });
+      api.oculto(t.g);
+      // A mesa é aberta na hora, pelo nome, antes do pedido
+      const abrir = api.el('g', {}, tab.tela);
+      D.textoTela(api, 150, 190, 'Nova mesa', { pai: abrir, ancora: 'middle', fraco: true });
+      api.el('rect', { x: 61, y: 202, width: 178, height: 32, rx: 6, class: 's-contorno-brasa' }, abrir);
+      const nomeMesa = D.textoTela(api, 150, 224, '', { pai: abrir, ancora: 'middle', forte: true });
+      D.botaoTela(api, 90, 250, 120, 30, 'Abrir mesa', 'brasa', abrir);
       const pago = api.oculto(api.el('g', {}, tab.tela));
       D.textoTela(api, 150, 205, 'Pedido 0153', { pai: pago, ancora: 'middle', fraco: true });
       D.textoTela(api, 150, 232, 'Pagamento recebido', { pai: pago, ancora: 'middle', forte: true });
       D.textoTela(api, 150, 257, 'Pix. Pedido na cozinha.', { pai: pago, ancora: 'middle', fraco: true });
       const pronto = api.oculto(api.el('g', {}, tab.tela));
-      D.textoTela(api, 150, 205, 'Mesa 07 pronta', { pai: pronto, ancora: 'middle', forte: true });
+      D.textoTela(api, 150, 205, 'Casal da janela: pronto', { pai: pronto, ancora: 'middle', forte: true });
       D.textoTela(api, 150, 229, 'Levar até a mesa', { pai: pronto, ancora: 'middle', fraco: true });
       D.botaoTela(api, 90, 250, 120, 32, 'Entregue', 'brasa', pronto);
       const status = D.pilula(api, 150, 106, 'Na fila', 'brasa');
@@ -154,21 +161,33 @@
       const ponto = D.token(api, 'brasa');
       const ponto2 = D.token(api, 'brasa');
 
-      api.em(0, () => api.narrar('O garçom Rafa faz o pedido da mesa 07 no tablet.'));
-      api.em(700, () => marcar(api, t.rosh));
-      t.chips.forEach((chip, i) => api.em(1300 + i * 500, () => marcar(api, chip)));
-      api.em(2400, () => marcar(api, t.adicional));
-      api.em(3200, () => {
+      const T = 2600; // o pedido começa depois de a mesa ser aberta
+      api.em(0, () => {
+        api.narrar('O garçom Rafa abre a mesa pelo nome: "Casal da janela".');
+        api.anim(1100, (p) => {
+          nomeMesa.textContent = pedido.mesa.slice(0, Math.round(pedido.mesa.length * p));
+        }, (p) => p);
+      });
+      api.em(1700, () => api.anel(150, 265, 'brasa'));
+      api.em(2100, () => {
+        api.sumir(abrir, 250);
+        api.aparecer(t.g, 400);
+      });
+      api.em(T, () => api.narrar('Depois, monta o pedido no tablet.'));
+      api.em(T + 700, () => marcar(api, t.rosh));
+      t.chips.forEach((chip, i) => api.em(T + 1300 + i * 500, () => marcar(api, chip)));
+      api.em(T + 2400, () => marcar(api, t.adicional));
+      api.em(T + 3200, () => {
         marcar(api, t.formas.Pix);
         api.narrar('O cliente paga na hora, no Pix.');
       });
-      api.em(5000, () => {
+      api.em(T + 5000, () => {
         api.anel(t.confirmar.x, t.confirmar.y, 'brasa');
         D.tingir(c1, 'brasa');
         api.mover(ponto, c1, 1000);
         api.narrar('Rafa toca em "Pagamento recebido". O pedido está feito.');
       });
-      api.em(6000, () => {
+      api.em(T + 6000, () => {
         api.anel(460, 255, 'brasa');
         api.sumir(t.g, 250);
         api.aparecer(pago, 400);
@@ -176,42 +195,42 @@
         D.tingir(c7, 'brasa');
         api.mover(ponto2, c7, 900);
       });
-      api.em(6900, () => {
+      api.em(T + 6900, () => {
         api.contar(contagem.Pix, 2, 3, 400);
         api.contar(pedidos, 4, 5, 400);
         api.anel(270, 499, 'brasa');
         api.narrar('A venda fica no nome do Rafa: mais um Pix hoje.');
       });
-      api.em(8600, () => {
+      api.em(T + 8600, () => {
         D.tingir(c4, 'brasa');
         D.tingir(c5, 'brasa');
         api.mover(ponto, c4, 1100);
         api.mover(ponto2, c5, 1100);
         api.narrar('O pedido aparece na tela da cozinha e a comanda sai no papel.');
       });
-      api.em(9700, () => {
+      api.em(T + 9700, () => {
         api.sumir(fila.vazia, 200);
         api.surgir(fila.cartao, 500, 10);
         comanda.imprimir(1700);
       });
-      api.em(11800, () => {
+      api.em(T + 11800, () => {
         fila.estado.textContent = 'Em preparo';
         status.definir('Em preparo', 'brasa');
         api.narrar('A cozinha monta o narguilé e avisa: em preparo, depois pronto.');
       });
-      api.em(13600, () => {
+      api.em(T + 13600, () => {
         fila.estado.textContent = 'Pronto';
         status.definir('Pronto', 'brasa');
         api.mover(ponto, c4, 900, { reverso: true });
       });
-      api.em(14500, () => api.mover(ponto, c1, 900, { reverso: true }));
-      api.em(15400, () => {
+      api.em(T + 14500, () => api.mover(ponto, c1, 900, { reverso: true }));
+      api.em(T + 15400, () => {
         api.sumir(pago, 200);
         api.aparecer(pronto, 400);
         api.anel(150, 230, 'brasa');
-        api.narrar('O tablet avisa o Rafa. Ele leva o narguilé até a mesa.');
+        api.narrar('O tablet avisa: "Casal da janela: pronto". Rafa leva o narguilé até a mesa.');
       });
-      api.em(17400, () => {
+      api.em(T + 17400, () => {
         api.anel(150, 266, 'brasa');
         fila.estado.textContent = 'Entregue';
         status.definir('Entregue', 'latao');
@@ -232,7 +251,7 @@
     duracao: 17500,
     montar(api) {
       const pedido = {
-        mesa: 'Mesa 12', rosh: 'Rosh mix',
+        mesa: 'Balcão', rosh: 'Rosh mix',
         sabores: [{ nome: 'Banana Tropical', marca: 'Ziggy' }, { nome: 'High Mint', marca: 'Onix' }],
         numero: 'Pedido 0161  22:05', vendedor: 'Bia (caixa)', pagamento: 'cartão'
       };
@@ -287,7 +306,7 @@
 
       api.em(0, () => {
         api.anel(55, 205, 'brasa');
-        api.narrar('No balcão, a Bia faz o pedido da mesa 12 no caixa.');
+        api.narrar('No balcão, a Bia faz o pedido direto no caixa.');
       });
       api.em(900, () => marcar(api, t.rosh));
       t.chips.forEach((chip, i) => api.em(1500 + i * 500, () => marcar(api, chip)));

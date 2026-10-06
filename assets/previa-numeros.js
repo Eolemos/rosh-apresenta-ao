@@ -28,11 +28,11 @@
 
   // As outras lojas da rede, para a visão "Todas as unidades"
   var OUTRAS_UNIDADES = [
-    { id: 'u2', nome: C.UNIDADES.u2, pedidos: 31, valor: 196500, carvoes: 9, horas: [0, 1, 2, 2, 3, 5, 8, 6, 4],
+    { id: 'u2', nome: C.UNIDADES.u2, pedidos: 31, valor: 196500, carvoes: 9, mesas: 19, horas: [0, 1, 2, 2, 3, 5, 8, 6, 4],
       marcas: { zomo: 14, ziggy: 9, adalya: 4, nay: 3, onix: 1 }, sabores: { 'zo-watermelon-mint': 6, 'zo-strong-mint': 5, 'ad-love-66': 3 },
       promos: { happy: { n: 9, desc: 11800 }, aniversario: { n: 1, desc: 700 }, duplo: { n: 2, gratis: 1 } },
       turnos: { abertos: 3, aguardando: 1, conferidos: 1 } },
-    { id: 'u3', nome: C.UNIDADES.u3, pedidos: 27, valor: 168000, carvoes: 7, horas: [0, 0, 1, 2, 3, 4, 7, 6, 4],
+    { id: 'u3', nome: C.UNIDADES.u3, pedidos: 27, valor: 168000, carvoes: 7, mesas: 16, horas: [0, 0, 1, 2, 3, 4, 7, 6, 4],
       marcas: { zomo: 10, ziggy: 8, adalya: 6, nay: 2, onix: 1 }, sabores: { 'ad-love-66': 5, 'zo-watermelon-mint': 4, 'zi-happy-berry': 3 },
       promos: { happy: { n: 7, desc: 9100 }, duplo: { n: 1, gratis: 1 } },
       turnos: { abertos: 2, aguardando: 0, conferidos: 2 } }
@@ -221,16 +221,17 @@
   // Números de uma loja ou da rede inteira, no mesmo formato
   function resumoEscopo(escopo) {
     var u1 = resumoUnidade1();
-    var res = { pedidos: u1.pedidos, valor: u1.valor, carvoes: u1.carvoes, horas: u1.horas.slice(), u1: u1 };
+    var res = { pedidos: u1.pedidos, valor: u1.valor, carvoes: u1.carvoes, mesas: window.RoshMesas.atendidasHoje(), horas: u1.horas.slice(), u1: u1 };
     if (escopo === 'u1') return res;
     if (escopo !== 'todas') {
       var u = C.porId(OUTRAS_UNIDADES, escopo);
-      return { pedidos: u.pedidos, valor: u.valor, carvoes: u.carvoes, horas: u.horas.slice(), u1: u1 };
+      return { pedidos: u.pedidos, valor: u.valor, carvoes: u.carvoes, mesas: u.mesas, horas: u.horas.slice(), u1: u1 };
     }
     OUTRAS_UNIDADES.forEach(function (o) {
       res.pedidos += o.pedidos;
       res.valor += o.valor;
       res.carvoes += o.carvoes;
+      res.mesas += o.mesas;
       o.horas.forEach(function (n, i) { res.horas[i] += n; });
     });
     return res;

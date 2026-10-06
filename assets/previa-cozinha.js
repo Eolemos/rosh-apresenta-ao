@@ -38,7 +38,7 @@
       else principal = '<button type="button" class="ui-botao ui-botao--vidro" data-acao="entregar" data-id="' + p.id + '" data-foco="en-' + p.id + '">Marcar entregue</button>';
       return '<div class="ui-card__acoes">' + principal +
         '<button type="button" class="ui-icone" data-acao="reimprimir" data-id="' + p.id + '" data-foco="re-' + p.id + '" aria-label="Reimprimir a comanda de ' +
-        R.nomeMesa(p.mesa) + '" title="Reimprimir">' + U.ICONES.imprimir + '</button></div>';
+        R.esc(R.nomeMesa(p.mesa)) + '" title="Reimprimir">' + U.ICONES.imprimir + '</button></div>';
     }
 
     function selos(p) {
@@ -55,7 +55,8 @@
       var novo = !vistos[p.id + p.estado + (p.alteradoEm || '')];
       vistos[p.id + p.estado + (p.alteradoEm || '')] = true;
       var classe = 'ui-card ui-card--' + p.estado + (p.tipo === 'reposicao' ? ' ui-card--reposicao' : '') + idade(p) + (novo && iniciada ? ' ui-novo' : '');
-      var topo = '<header class="ui-card__topo"><span class="ui-card__mesa">' + R.nomeMesa(p.mesa) + '</span><span class="ui-card__tempo">' + R.minutos(p.criadoEm) + ' min</span></header>';
+      var topo = '<header class="ui-card__topo"><span class="ui-card__mesa">' + R.esc(R.nomeMesa(p.mesa)) + '</span><span class="ui-card__tempo">' + R.minutos(p.criadoEm) + ' min</span></header>' +
+        (R.descMesa(p.mesa) ? '<p class="ui-card__desc">' + R.esc(R.descMesa(p.mesa)) + '</p>' : '');
       var venda = '<p class="ui-card__venda">0' + p.numero + ', ' + R.esc(C.OPERADORES[p.vendedorId].nome) + ', ' + (p.pagamento ? R.pagamento(p.pagamento).nome : 'sem cobrança') + '</p>';
       if (p.tipo === 'reposicao') {
         return '<article class="' + classe + '"><p class="ui-card__tipo">' + U.ICONES.brasa + 'Reposição de carvão</p>' + topo + selos(p) +

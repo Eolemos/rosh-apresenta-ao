@@ -9,12 +9,12 @@
   var DISPOSITIVO = { 'ao-vivo': 'tablet', tablet: 'tablet', cozinha: 'cozinha', caixa: 'caixa', gestao: 'gestao', config: 'config' };
 
   var DICAS = {
-    'ao-vivo': 'Lance um pedido no tablet: mesa e rosh, essências por marca, adicionais e a conta. Confirme o pagamento; o pedido chega na cozinha 5 s depois, tempo de desfazer. Avance até pronto e ele aparece em Prontos para entregar.',
-    tablet: 'A tela que cada garçom usa no salão: mapa de mesas com o tempo do carvão, mais de um narguilé por pedido, rosh grátis da mesa e ações depois do envio. Toque no nome do garçom para trocar de usuário ou ligar o modo treino.',
+    'ao-vivo': 'Lance um pedido no tablet: abra uma mesa com um nome, escolha o rosh, as essências por marca, os adicionais e a conta. Confirme o pagamento; o pedido chega na cozinha 5 s depois, tempo de desfazer. Avance até pronto e ele aparece em Prontos para entregar.',
+    tablet: 'A tela que cada garçom usa no salão: mesas abertas na hora com nome e descrição, o tempo do carvão de cada uma, mais de um narguilé por pedido, rosh grátis da mesa e ações depois do envio. Toque no nome do garçom para trocar de usuário ou ligar o modo treino.',
     cozinha: 'A fila de montagem. Use Estoque para abrir um pacote novo ou marcar uma essência em falta; o aviso chega na hora para o gerente e o master.',
-    caixa: 'O caixa lança pedidos do balcão com troco calculado, abre o turno com fundo de troco, registra retiradas e fecha contando o dinheiro da gaveta.',
+    caixa: 'O caixa lança pedidos do balcão ou de uma mesa aberta com troco calculado, abre o turno com fundo de troco, registra retiradas e fecha contando o dinheiro da gaveta.',
     gestao: 'O painel do gerente e do master, no computador e no celular do dono. Todos os cartões seguem a loja escolhida; os avisos têm ação direta, como aprovar cancelamento.',
-    config: 'Troque entre Gerente e Master para ver o que cada um pode mudar. Cadastros, preços, estoque e promoções aparecem no tablet, no caixa e na cozinha na hora.'
+    config: 'Troque entre Gerente e Master para ver o que cada um pode mudar. Cadastros, preços, estoque, promoções e mesas fixas aparecem no tablet, no caixa e na cozinha na hora.'
   };
 
   // Cada tela é desenhada no tamanho real e reduzida para caber na moldura

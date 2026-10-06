@@ -40,7 +40,7 @@
   cursor: pointer;
 }
 
-/* Mapa de mesas */
+/* Mesas abertas */
 .ui-modal__caixa--mapa {
   width: 860px;
   max-height: 92%;
@@ -57,18 +57,11 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-height: 112px;
   padding: 10px;
-  border: 1px solid #2f2535;
+  border: 1px solid #4a3a50;
   border-radius: 12px;
-  background: #18121b;
-  font-size: 12.5px;
-  color: var(--texto-3);
-}
-
-.ui-mapa__mesa--ocupada {
-  border-color: #4a3a50;
   background: #221a26;
+  font-size: 12.5px;
   color: var(--texto-2);
 }
 
@@ -115,15 +108,6 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--texto-3);
-}
-
-.ui-mesas-livres summary {
-  min-height: 40px;
-  padding: 8px 2px;
-  color: var(--texto-2);
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 .ui-modal__caixa--troca {

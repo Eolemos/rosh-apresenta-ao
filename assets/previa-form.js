@@ -5,9 +5,9 @@
   var R = window.Rosh;
   var U = window.RoshUI;
 
-  function texto(campo, rotulo, valor, dica) {
+  function texto(campo, rotulo, valor, dica, maximo) {
     return '<label class="ui-campo"><span>' + rotulo + '</span><input type="text" data-campo="' + campo + '" value="' + R.esc(valor || '') + '"' +
-      (dica ? ' placeholder="' + R.esc(dica) + '"' : '') + '></label>';
+      (dica ? ' placeholder="' + R.esc(dica) + '"' : '') + (maximo ? ' maxlength="' + maximo + '"' : '') + '></label>';
   }
 
   function numero(campo, rotulo, valor, opcoes) {

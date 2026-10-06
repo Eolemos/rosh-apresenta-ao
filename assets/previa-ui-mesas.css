@@ -1,0 +1,335 @@
+/* Interface do Rosh: mesas abertas na hora (nome e descrição), atalhos das mesas fixas e a lista de mesas abertas */
+
+/* Passo "Mesa e rosh": a coluna das mesas é mais larga que a dos tipos de rosh */
+.ui-passo1 {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 18px;
+}
+
+.ui-mesas {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-mesas__acoes {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ui-mesas__nova {
+  height: 46px;
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.ui-mesas__nova svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.ui-mesas__balcao {
+  min-width: 96px;
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.ui-mesas__atalhos {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.ui-mesas__rotulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto-3);
+}
+
+.ui-mesas__atalho {
+  min-height: 46px;
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+.ui-mesas__atalho--aberta::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-left: 7px;
+  border-radius: 50%;
+  background: var(--vidro);
+}
+
+.ui-busca--mesas {
+  flex: none;
+  height: 40px;
+  margin-top: 8px;
+}
+
+.ui-mesas__lista {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 1px 4px 8px 1px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.ui-mesas .ui-ajuda {
+  flex: none;
+  margin-top: 4px !important;
+}
+
+/* Uma mesa aberta: nome e descrição à esquerda, tempo e rosh grátis à direita */
+.ui-mesa-aberta {
+  position: relative;
+  flex: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 10px;
+  min-height: 50px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.ui-mesa-aberta__nome {
+  grid-column: 1;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-mesa-aberta__desc {
+  grid-column: 1;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--texto-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-mesa-aberta__lado {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.ui-mesa-aberta__credito {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--vidro);
+  color: #0e2421;
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ui-mesa-aberta__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto-2);
+  white-space: nowrap;
+}
+
+.ui-mesa-aberta__status svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ui-opcao--carvao .ui-mesa-aberta__status {
+  color: var(--latao);
+}
+
+/* Descrição da mesa nas telas: cozinha, prontos para entregar e meus pedidos */
+.ui-mesa-desc,
+.ui-card__desc {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--texto-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-pedidos__texto .ui-mesa-desc {
+  max-width: 100%;
+  margin-top: -2px !important;
+}
+
+.ui-pronto .ui-mesa-desc {
+  margin-top: -4px !important;
+}
+
+.ui-card__mesa {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-card__topo {
+  gap: 8px;
+}
+
+.ui-card__tempo {
+  flex: none;
+}
+
+.ui-card__desc {
+  margin-top: -2px !important;
+  color: var(--texto-2);
+}
+
+/* Diálogo "Mesas abertas" */
+.ui-mapa__topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ui-mapa__topo .ui-botao {
+  flex: none;
+  height: 46px;
+}
+
+.ui-modal__caixa--mapa {
+  width: 900px;
+  height: 92%;
+  overflow: hidden;
+}
+
+.ui-modal__caixa--mapa > * {
+  flex: none;
+}
+
+.ui-modal .ui-mapa {
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: max-content;
+  align-content: start;
+  padding: 1px 4px 1px 1px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.ui-mapa__cabeca {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ui-mapa__nome {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ui-mapa__editar {
+  flex: none;
+  min-height: 24px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.ui-mapa .ui-vazio {
+  grid-column: 1 / -1;
+  padding: 18px 4px;
+}
+
+.ui-mapa__desc {
+  margin-bottom: 4px !important;
+  color: var(--texto-3);
+}
+
+.ui-mapa__linha--alerta,
+.ui-mapa__credito {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 650;
+}
+
+.ui-mapa__linha--alerta {
+  color: var(--latao);
+}
+
+.ui-mapa__linha--alerta svg,
+.ui-mapa__credito svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.ui-mapa__quem {
+  margin-top: 2px !important;
+  font-size: 11.5px;
+  color: var(--texto-3);
+}
+
+/* Lista para escolher uma mesa aberta (reposição de carvão, trocar a mesa do pedido) */
+.ui-opcao--mesa-linha strong {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-modal .ui-mesas-lista {
+  max-height: 232px;
+  padding: 1px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+/* Gestão: seis números no topo, com o faturamento mais largo */
+.ui-kpis--seis {
+  grid-template-columns: 1fr 1.25fr 1.15fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.ui-kpis--seis .ui-kpi__rotulo {
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+/* Configuração: mesas fixas */
+.ui-cfg-coluna--mesas {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+
+.ui-cfg-coluna--mesas th[scope="row"] {
+  white-space: nowrap;
+}
+
+.ui-cfg-regras {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13.5px;
+  color: var(--texto-2);
+}

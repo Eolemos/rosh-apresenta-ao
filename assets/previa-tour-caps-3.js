@@ -38,7 +38,7 @@
     vista: 'gestao',
     passos: [
       {
-        texto: 'Este é o painel do dono. No alto, os números do dia: pedidos, faturamento e valor médio por pedido.',
+        texto: 'Este é o painel do dono. No alto, os números do dia: pedidos, faturamento, mesas atendidas e valor médio por pedido.',
         alvo: G + ' .ui-kpis'
       },
       { texto: 'Pedidos por hora: dá para ver os horários de mais movimento.', alvo: painel(G, 'Pedidos por hora') },
@@ -50,7 +50,7 @@
         faz: async function (t) { await t.clicar(G + ' [data-acao="avisos"]'); }
       },
       {
-        texto: 'O Rafa pediu para cancelar o carvão da mesa 02. Você aprova: o pedido sai da cozinha e o valor volta para o cliente.',
+        texto: 'O Rafa pediu para cancelar o carvão do Aniversário da Ju. Você aprova: o pedido sai da cozinha e o valor volta para o cliente.',
         alvo: aviso('cancelamento'),
         tempo: 6500,
         faz: async function (t) {
@@ -121,7 +121,7 @@
     vista: 'config',
     passos: [
       {
-        texto: 'Na configuração, você e o gerente cuidam do cardápio: marcas, essências, preços e promoções.',
+        texto: 'Na configuração, você e o gerente cuidam do cardápio, dos preços, das promoções e das mesas fixas.',
         alvo: F + ' .ui-segmento--abas'
       },
       {
@@ -200,6 +200,21 @@
         texto: 'Salvo. Vale para os próximos pedidos; os que já foram feitos não mudam.',
         alvo: function () { return achar(F + ' .ui-cfg-promo', 'Happy hour 25%'); },
         faz: async function (t) { await t.clicar(F + ' [data-acao="salvar-promo"]'); }
+      },
+      {
+        texto: 'Sua loja numera as mesas? Em Mesas fixas você cadastra as que quiser. É opcional: abrir mesa na hora sempre funciona.',
+        alvo: painel(F, 'Mesas fixas desta loja'),
+        faz: async function (t) { await t.clicar(F + ' [data-acao="aba"][data-valor="mesas"]'); }
+      },
+      {
+        texto: 'Mesa 08 cadastrada. Ela já aparece como atalho no tablet e no caixa, ao lado de Nova mesa.',
+        alvo: function () { return q(F + ' .ui-modal__caixa') || achar(F + ' .ui-tabela--cfg tr', 'Mesa 08'); },
+        tempo: 6200,
+        faz: async function (t) {
+          await t.clicar(F + ' [data-acao="nova-fixa"]');
+          await t.digitar(modal('[data-campo="nome"]'), 'Mesa 08', 110);
+          await t.clicar(modal('[data-acao="salvar"]'));
+        }
       },
       {
         texto: 'Funcionário novo? No modo treino ele pratica à vontade: nada conta no caixa nem no estoque.',

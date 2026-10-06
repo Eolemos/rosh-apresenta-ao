@@ -185,19 +185,6 @@
   gap: 8px;
 }
 
-.ui-grade--garcom,
-.ui-grade--mesas-modal {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.ui-grade--mesas-modal {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.ui-grade--caixa {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
 .ui-grade--pagamento {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -276,35 +263,6 @@
 
 .ui-opcao[aria-pressed="true"]:disabled {
   opacity: 0.85;
-}
-
-.ui-opcao--mesa {
-  min-height: 72px;
-  font-size: 19px;
-}
-
-.ui-grade--caixa .ui-opcao--mesa {
-  min-height: 52px;
-  padding: 0 4px;
-  font-size: 15px;
-}
-
-.ui-grade--mesas-modal .ui-opcao--mesa {
-  min-height: 50px;
-}
-
-.ui-opcao__credito {
-  position: absolute;
-  left: 50%;
-  bottom: -7px;
-  padding: 1px 7px;
-  border-radius: 999px;
-  background: var(--vidro);
-  color: #0e2421;
-  font-size: 10.5px;
-  font-weight: 700;
-  white-space: nowrap;
-  transform: translateX(-50%);
 }
 
 .ui-opcao--rosh {

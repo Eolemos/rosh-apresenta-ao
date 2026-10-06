@@ -178,3 +178,7 @@
 .s-comanda--compacta .s-comanda-texto:not(.s-comanda-mesa) {
   font-size: 10.5px;
 }
+
+.s-comanda--compacta .s-comanda-mesa {
+  font-size: 18px;
+}

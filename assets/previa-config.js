@@ -11,7 +11,8 @@
     { id: 'marcas', nome: 'Marcas e essências', modulo: 'RoshCfgCardapio' },
     { id: 'estoque', nome: 'Estoque', modulo: 'RoshCfgEstoque' },
     { id: 'precos', nome: 'Adicionais e preços', modulo: 'RoshCfgPrecos' },
-    { id: 'promocoes', nome: 'Promoções', modulo: 'RoshCfgPromos' }
+    { id: 'promocoes', nome: 'Promoções', modulo: 'RoshCfgPromos' },
+    { id: 'mesas', nome: 'Mesas fixas', modulo: 'RoshCfgMesas' }
   ];
 
   function montarConfig(tela) {

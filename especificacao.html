@@ -39,7 +39,7 @@
         <a class="botao" href="#mapa">Ver o mapa do sistema</a>
         <a class="botao" href="animacao.html">Assistir à animação</a>
       </div>
-      <p class="abertura__versao">Especificação do sistema, versão 5, outubro de 2026.</p>
+      <p class="abertura__versao">Especificação do sistema, versão 7, outubro de 2026.</p>
     </div>
 
     <div class="impressora" aria-label="Exemplo de comanda impressa na cozinha">
@@ -52,7 +52,7 @@
         <div class="comanda" id="comanda-abertura">
           <div class="comanda__centro">Cozinha</div>
           <div class="comanda__linha"><span>02/10 21:47</span><span>Pedido 0153</span></div>
-          <div class="comanda__mesa">MESA 07</div>
+          <div class="comanda__mesa comanda__mesa--nome">CASAL DA JANELA</div>
           <hr class="comanda__corte">
           <div><strong>1x Rosh grande</strong></div>
           <div>&nbsp;&nbsp;Watermelon Mint (Zomo)</div>
@@ -92,6 +92,7 @@
           <li class="indice__capitulo">Como funciona
             <ul class="indice__lista">
               <li><a href="#pedido">A jornada de um pedido</a></li>
+              <li><a href="#mesas">Mesas abertas na hora</a></li>
               <li><a href="#estados">Os estados do pedido</a></li>
               <li><a href="#cardapio">Rosh e essências</a></li>
               <li><a href="#adicionais">Adicionais e promoções</a></li>
@@ -111,6 +112,7 @@
               <li><a href="#seguranca">Segurança</a></li>
               <li><a href="#qualidade">Qualidade e testes</a></li>
               <li><a href="#equipamentos">Equipamentos</a></li>
+              <li><a href="#instalacao">Instalação e suporte</a></li>
             </ul>
           </li>
           <li class="indice__capitulo">Como cresce
@@ -230,7 +232,7 @@
               <tr>
                 <th scope="row">Garçom</th>
                 <td>Tablet próprio</td>
-                <td>Ver o mapa de mesas, lançar pedidos (um ou vários narguilés) com adicionais e promoções, usar o crédito do rosh duplo, confirmar o pagamento, trocar a mesa ou os sabores enquanto o pedido está na fila, pedir cancelamento ao gerente, entregar os pedidos prontos, liberar a mesa e fechar o próprio turno.</td>
+                <td>Abrir mesas na hora, com nome e descrição, ver as mesas abertas, lançar pedidos (um ou vários narguilés) com adicionais e promoções, usar o crédito do rosh duplo, confirmar o pagamento, trocar a mesa ou os sabores enquanto o pedido está na fila, pedir cancelamento ao gerente, entregar os pedidos prontos, liberar a mesa e fechar o próprio turno.</td>
               </tr>
               <tr>
                 <th scope="row">Caixa</th>
@@ -268,12 +270,12 @@
 
       <section class="secao" id="pedido">
         <h3>A jornada de um pedido</h3>
-        <p>Um exemplo real de uso: a mesa 07 pede ao garçom Rafa um rosh grande com Watermelon Mint da Zomo e Love 66 da Adalya, mais um carvão extra, e paga no Pix.</p>
+        <p>Um exemplo real de uso: o garçom Rafa abre a mesa "Casal da janela", que pede um rosh grande com Watermelon Mint da Zomo e Love 66 da Adalya, mais um carvão extra, e paga no Pix.</p>
 
         <ol class="jornada">
           <li>
             <h4>O garçom monta o pedido no tablet</h4>
-            <p>Já identificado pelo PIN, ele escolhe a mesa, o tipo de rosh e os sabores (por marca), até o limite daquele rosh. Se o cliente quiser, acrescenta adicionais, como carvão extra, e aplica uma promoção ativa. Essências em falta não aparecem.</p>
+            <p>Já identificado pelo PIN, ele toca em "Nova mesa", dá um nome ("Casal da janela") e, se quiser, uma descrição ("perto da entrada, 2 pessoas"). Se a mesa já estiver aberta, é só tocar nela. Depois escolhe o tipo de rosh e os sabores (por marca), até o limite daquele rosh. Se o cliente quiser, acrescenta adicionais, como carvão extra, e aplica uma promoção ativa. Essências em falta não aparecem.</p>
             <span class="quem">Garçom, no tablet</span>
           </li>
           <li>
@@ -283,7 +285,7 @@
           </li>
           <li>
             <h4>A cozinha recebe</h4>
-            <p>O pedido pago aparece na tela da cozinha com aviso sonoro, e a comanda sai na impressora com a mesa, os sabores, quem vendeu e a forma de pagamento.</p>
+            <p>O pedido pago aparece na tela da cozinha com aviso sonoro, e a comanda sai na impressora com o nome da mesa em letra grande, os sabores, quem vendeu e a forma de pagamento.</p>
             <span class="quem quem--brasa">Tela e impressora da cozinha</span>
           </li>
           <li>
@@ -293,7 +295,7 @@
           </li>
           <li>
             <h4>Pronto</h4>
-            <p>A cozinha marca como pronto e o tablet do garçom avisa: "Mesa 07 pronta".</p>
+            <p>A cozinha marca como pronto e o tablet do garçom avisa: "Casal da janela: pronto".</p>
             <span class="quem">Cozinha</span>
           </li>
           <li>
@@ -310,6 +312,20 @@
         <p class="nota">Durante a sessão, o cliente pode pedir mais carvão: o garçom lança um pedido só de adicional para a mesa, pago na hora, e a cozinha recebe como reposição. Se a mesa ganhou o rosh duplo, o 2º rosh é lançado do mesmo jeito, a partir do crédito da mesa, sem cobrança do rosh.</p>
         <p class="nota">Errou? Logo depois de enviar, um botão "Desfazer" fica disponível por 5 segundos. Enquanto o pedido está na fila, quem vendeu pode trocar a mesa ou os sabores. Qualquer outra correção, ou um cancelamento, é pedida ao gerente pelo próprio tablet e aprovada por ele no sininho, até pelo celular.</p>
         <p class="nota nota--brasa">Quando o cliente vai até o balcão, o caminho é o mesmo: o caixa lança o pedido com a mesa (ou "balcão"), registra o pagamento e o pedido segue para a cozinha. A venda fica registrada no nome de quem estava no caixa.</p>
+      </section>
+
+      <section class="secao" id="mesas">
+        <h3>Mesas abertas na hora</h3>
+        <p>Muitos lounges não numeram as mesas: a equipe chama cada uma por um apelido ou por quem está sentado. No Rosh, a mesa nasce no momento do atendimento, com o nome que a casa usar.</p>
+        <ul class="lista">
+          <li><strong>Nova mesa:</strong> um nome curto e obrigatório ("Casal da janela", "Turma do Pedro") e uma descrição opcional ("perto da entrada, 2 pessoas"). Garçom, caixa ou gerente podem abrir.</li>
+          <li><strong>Mesas fixas, se a loja quiser:</strong> quem trabalha com numeração cadastra as suas ("Mesa 07", "VIP 1") e elas viram atalhos de um toque.</li>
+          <li><strong>Sem nomes repetidos:</strong> duas mesas abertas não podem ter o mesmo nome. Nome e descrição podem ser corrigidos depois.</li>
+          <li><strong>Lista de mesas abertas:</strong> cada cartão mostra o nome, a descrição, há quanto tempo está o narguilé, quando foi o último carvão e o rosh grátis, se houver. Tem busca.</li>
+          <li><strong>Toda a equipe enxerga:</strong> qualquer garçom pode lançar um carvão ou um novo pedido em uma mesa aberta. Fica registrado quem abriu a mesa e quem vendeu cada pedido.</li>
+          <li><strong>Na comanda, só o nome:</strong> o nome sai em letra grande. A descrição aparece apenas nas telas da equipe, porque o papel pode chegar à mão do cliente.</li>
+          <li><strong>Liberar mesa:</strong> quando o grupo vai embora, o garçom libera a mesa. As que ficarem esquecidas fecham sozinhas na virada do dia.</li>
+        </ul>
       </section>
 
       <section class="secao" id="estados">
@@ -398,7 +414,7 @@
         <ul class="lista">
           <li><strong>Cobrados à parte:</strong> o narguilé já vem com o carvão básico. Carvão extra é um adicional com preço próprio. A gestão cria outros adicionais quando quiser, como mangueira extra, muda preços e desativa os que saírem.</li>
           <li><strong>No pedido:</strong> o garçom ou o caixa marca a quantidade ("+2 carvões") junto do narguilé, e o valor soma no total.</li>
-          <li><strong>Depois, durante a sessão:</strong> um pedido só de adicional ("Mesa 07, 2 carvões") é pago na hora e vai para a cozinha destacado como reposição.</li>
+          <li><strong>Depois, durante a sessão:</strong> um pedido só de adicional ("Casal da janela, 2 carvões") é pago na hora e vai para a cozinha destacado como reposição.</li>
         </ul>
 
         <h4>Promoções em porcentagem</h4>
@@ -447,7 +463,7 @@
               <tr><th scope="row">Impressora com falha</th><td>Unidade 1: impressora da cozinha sem resposta</td><td>A comanda não saiu depois das novas tentativas</td></tr>
               <tr><th scope="row">Turno para conferir</th><td>Unidade 1: fechamento da Bia aguardando conferência</td><td>Um garçom ou caixa fechou o turno</td></tr>
               <tr><th scope="row">Cancelamento pedido</th><td>Unidade 1: Rafa pede cancelar o pedido 0158 (mesa errada)</td><td>Um garçom ou caixa pediu cancelamento</td></tr>
-              <tr><th scope="row">Pedido demorando</th><td>Unidade 1: mesa 04 esperando há 18 min</td><td>Um pedido passou do tempo na fila da cozinha</td></tr>
+              <tr><th scope="row">Pedido demorando</th><td>Unidade 1: "Aniversário da Ju" esperando há 18 min</td><td>Um pedido passou do tempo na fila da cozinha</td></tr>
             </tbody>
           </table>
         </div>
@@ -514,7 +530,7 @@
         <h3>Impressão na cozinha</h3>
         <div class="lado-a-lado">
           <div>
-            <p class="texto-2">A comanda é pensada para ser lida de longe, com as mãos ocupadas: o número da mesa em letra grande, depois o rosh, os sabores, os adicionais e a observação, e no fim a promoção, se houver, e quem vendeu.</p>
+            <p class="texto-2">A comanda é pensada para ser lida de longe, com as mãos ocupadas: o nome da mesa em letra grande, depois o rosh, os sabores, os adicionais e a observação, e no fim a promoção, se houver, e quem vendeu.</p>
             <ul class="lista">
               <li><strong>Impressoras de mercado:</strong> o Rosh fala ESC/POS, a linguagem padrão das impressoras térmicas, em bobinas de 58 ou 80 mm.</li>
               <li><strong>Ligação flexível:</strong> cada impressora pode estar no cabo USB de um computador ou na rede, com endereço próprio. A configuração é feita por impressora.</li>
@@ -526,7 +542,7 @@
           <div class="comanda" aria-label="Comanda de exemplo">
             <div class="comanda__centro">Cozinha</div>
             <div class="comanda__linha"><span>02/10 22:05</span><span>Pedido 0161</span></div>
-            <div class="comanda__mesa">MESA 12</div>
+            <div class="comanda__mesa">BALCÃO</div>
             <hr class="comanda__corte">
             <div><strong>1x Rosh mix</strong></div>
             <div>&nbsp;&nbsp;Banana Tropical (Ziggy)</div>
@@ -544,7 +560,7 @@
         <h3>Feito para quem nunca usou</h3>
         <p>Num lounge cheio, ninguém tem tempo de ler manual. O Rosh foi desenhado para que um funcionário novo consiga vender na primeira noite.</p>
         <div class="fichas fichas--3">
-          <article class="ficha"><h4>Mapa de mesas</h4><p>As mesas ocupadas mostram há quanto tempo está o narguilé e quando foi o último carvão. Passou de 30 minutos, a mesa fica âmbar: é hora de oferecer carvão.</p></article>
+          <article class="ficha"><h4>Mesas com o nome da casa</h4><p>A mesa nasce na hora com um nome. Cada mesa aberta mostra há quanto tempo está o narguilé e quando foi o último carvão. Passou de 30 minutos, fica âmbar: é hora de oferecer carvão.</p></article>
           <article class="ficha"><h4>Total explicado</h4><p>O valor nunca "pula": a tela mostra rosh, acréscimo premium, adicionais e desconto, linha por linha, antes de cobrar.</p></article>
           <article class="ficha"><h4>Desfazer e corrigir</h4><p>"Desfazer" por 5 segundos, troca de mesa e de sabores enquanto o pedido está na fila, e um pedido de correção ao gerente para o resto.</p></article>
           <article class="ficha"><h4>Cozinha que avisa</h4><p>O cartão do pedido muda de cor quando demora (âmbar depois de 10 minutos, vermelho depois de 15) e o gerente recebe um aviso.</p></article>
@@ -764,7 +780,7 @@
           <div class="fichas fichas--4">
             <article class="ficha"><h4>Unidade</h4><ul class="campos"><li>Nome e endereço</li><li>Ativa ou inativa</li></ul></article>
             <article class="ficha"><h4>Usuário</h4><ul class="campos"><li>Nome e cargo</li><li>Unidade (exceto o master)</li><li>Senha ou PIN</li></ul></article>
-            <article class="ficha"><h4>Mesa</h4><ul class="campos"><li>Número ou nome</li><li>Unidade</li></ul></article>
+            <article class="ficha"><h4>Mesa fixa (opcional)</h4><ul class="campos"><li>Nome, ex.: Mesa 07</li><li>Atalho de um toque</li></ul></article>
             <article class="ficha"><h4>Dispositivo</h4><ul class="campos"><li>Tablet ou tela</li><li>Ativo ou desativado</li></ul></article>
           </div>
         </div>
@@ -785,7 +801,7 @@
           <h4>Operação</h4>
           <div class="fichas fichas--3">
             <article class="ficha"><h4>Pedido</h4><ul class="campos"><li>Mesa ou balcão, dia operacional</li><li>Quem vendeu, um ou mais narguilés</li><li>Estado, treino ou real</li></ul></article>
-            <article class="ficha"><h4>Ocupação da mesa</h4><ul class="campos"><li>Aberta e liberada em</li><li>Último carvão, créditos</li></ul></article>
+            <article class="ficha"><h4>Mesa aberta</h4><ul class="campos"><li>Nome, descrição, quem abriu</li><li>Último carvão, créditos</li><li>Liberada em</li></ul></article>
             <article class="ficha"><h4>Pedido de cancelamento</h4><ul class="campos"><li>Quem pediu e motivo</li><li>Aprovado ou recusado por</li></ul></article>
             <article class="ficha"><h4>Item do pedido</h4><ul class="campos"><li>Rosh, sabores e adicionais</li><li>Preço congelado</li><li>Promoção e desconto</li></ul></article>
             <article class="ficha"><h4>Pagamento</h4><ul class="campos"><li>Forma e valor</li><li>Quem recebeu</li><li>Estorno, se houver</li></ul></article>
@@ -869,6 +885,25 @@
         </div>
       </section>
 
+      <section class="secao" id="instalacao">
+        <h3>Instalação, atualizações e suporte</h3>
+        <p>O Rosh foi pensado para ser instalado pelo próprio lounge, sem técnico no local.</p>
+        <ol class="jornada">
+          <li><h5>Baixar e abrir o instalador</h5><p>Um único arquivo, no mini computador da loja. O Windows pode mostrar um aviso de segurança; o guia rápido mostra os dois cliques para continuar.</p></li>
+          <li><h5>Digitar o código da loja</h5><p>O assistente baixa o cardápio, a equipe e as configurações daquela loja.</p></li>
+          <li><h5>Escolher as impressoras</h5><p>O assistente encontra as impressoras ligadas e imprime uma página de teste.</p></li>
+          <li><h5>Ligar os tablets</h5><p>Cada tablet aponta a câmera para o código que aparece na tela e o Rosh fica na tela inicial. Não precisa de loja de aplicativos.</p></li>
+          <li><h5>Fazer o pedido de teste</h5><p>Um pedido de treino sai do tablet e chega impresso na cozinha.</p></li>
+        </ol>
+        <ul class="lista">
+          <li><strong>Liga sozinho:</strong> o sistema inicia junto com o computador, sem ninguém precisar abrir nada.</li>
+          <li><strong>Atualizações automáticas:</strong> chegam de madrugada, com a loja fechada. Se algo der errado, o sistema volta sozinho para a versão anterior.</li>
+          <li><strong>Cópia de segurança:</strong> todo dia, no próprio computador e na nuvem.</li>
+          <li><strong>Suporte à distância:</strong> a nossa equipe acessa o computador da loja para resolver problemas sem deslocamento. Cada acesso fica registrado no painel do gerente e essa permissão consta no contrato.</li>
+          <li><strong>Nuvem por nossa conta:</strong> a central é instalada e mantida por nós.</li>
+        </ul>
+      </section>
+
       <!-- Parte 4 -->
       <header class="capitulo">
         <p class="capitulo__parte">Parte 4 de 4</p>
@@ -896,7 +931,7 @@
         <h4>Abrir uma unidade nova</h4>
         <ol class="jornada">
           <li><h5>Cadastrar a unidade na central</h5><p>Nome, endereço e gerente responsável.</p></li>
-          <li><h5>Cadastrar mesas, equipe e impressoras</h5><p>Cada pessoa recebe o seu PIN. O cardápio base da rede já vem pronto.</p></li>
+          <li><h5>Cadastrar equipe e impressoras</h5><p>Cada pessoa recebe o seu PIN. O cardápio base da rede já vem pronto, e mesas fixas são opcionais.</p></li>
           <li><h5>Ligar a caixinha</h5><p>Ela se conecta à central e baixa toda a configuração sozinha.</p></li>
           <li><h5>Ativar os tablets e as telas</h5><p>O gerente ativa cada aparelho lendo um QR code.</p></li>
           <li><h5>Imprimir uma comanda de teste</h5><p>Com a impressão confirmada, a unidade está pronta para abrir.</p></li>
@@ -914,7 +949,7 @@
               <li>Pagamento registrado na hora</li>
               <li>Adicionais, promoções e rosh duplo</li>
               <li>Estoque de essências e avisos da loja</li>
-              <li>Mapa de mesas, modo treino e dicas de primeiro uso</li>
+              <li>Mesas abertas na hora, modo treino e dicas de primeiro uso</li>
               <li>Tela da cozinha e comanda impressa</li>
               <li>Fechamento de turno por operador</li>
               <li>Gestão da unidade: cardápio, equipe, PINs</li>
@@ -974,7 +1009,8 @@
           <dt>Dia operacional</dt><dd>O dia de trabalho do lounge, que vira de madrugada (por exemplo, às 6h). Relatórios, turnos e créditos usam esse dia.</dd>
           <dt>Fundo de troco</dt><dd>O dinheiro com que o caixa começa o turno.</dd>
           <dt>Sangria</dt><dd>Uma retirada de dinheiro do caixa durante o turno, registrada com motivo.</dd>
-          <dt>Liberar mesa</dt><dd>A ação do garçom quando o grupo vai embora: a mesa fica livre no mapa e os créditos de rosh duplo daquela mesa acabam.</dd>
+          <dt>Mesa</dt><dd>Um atendimento aberto na hora, com um nome e uma descrição opcional. Lojas que numeram as mesas podem cadastrar mesas fixas como atalho.</dd>
+          <dt>Liberar mesa</dt><dd>A ação do garçom quando o grupo vai embora: a mesa sai da lista de mesas abertas e os créditos de rosh duplo daquela mesa acabam.</dd>
           <dt>Modo treino</dt><dd>Um modo para praticar: os pedidos saem marcados "TREINO" e não contam no caixa, no estoque nem nos relatórios.</dd>
           <dt>Comanda</dt><dd>O papel impresso na cozinha com o pedido da mesa.</dd>
           <dt>Fechamento de turno</dt><dd>O resumo do movimento de um garçom ou caixa: pedidos e totais por forma de pagamento, conferido pelo gerente.</dd>
@@ -995,7 +1031,7 @@
 </main>
 
 <footer class="rodape">
-  <p>Rosh, especificação do sistema, versão 5.</p>
+  <p>Rosh, especificação do sistema, versão 7.</p>
   <a href="animacao.html">Ver a animação do sistema</a>
 </footer>
 
